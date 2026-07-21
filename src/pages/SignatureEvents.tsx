@@ -7,7 +7,7 @@ export default function SignatureEvents() {
       {/* 1. Birthdays at Mankameshwar Palace */}
       <section className="relative min-h-screen flex items-center pt-20">
         <div className="absolute inset-0">
-          <img src="https://images.pexels.com/photos/1793035/pexels-photo-1793035.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Palace Birthday" className="w-full h-full object-cover opacity-40" />
+          <img src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg" alt="Palace Birthday" className="w-full h-full object-cover opacity-40" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/80 to-transparent" />
         </div>
         <div className="container mx-auto px-4 relative z-10">
@@ -50,7 +50,7 @@ export default function SignatureEvents() {
       {/* 2. Pool Parties at Vatika Resort */}
       <section className="relative min-h-screen flex items-center justify-end pt-20">
         <div className="absolute inset-0">
-          <img src="https://images.pexels.com/photos/221436/pexels-photo-221436.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Pool Party" className="w-full h-full object-cover opacity-40" />
+          <img src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/imageb.jpeg" alt="Pool Party" className="w-full h-full object-cover opacity-40" />
           <div className="absolute inset-0 bg-gradient-to-l from-[#0B0B0B] via-[#0B0B0B]/80 to-transparent" />
         </div>
         <div className="container mx-auto px-4 relative z-10 flex justify-end">

@@ -24,7 +24,7 @@ export default function Catering() {
     <div className="bg-[#0B0B0B] min-h-screen">
       {/* Hero */}
       <div className="relative h-[60vh] flex items-center justify-center text-center">
-        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=1920')] bg-cover bg-center opacity-30" />
+        <div className="absolute inset-0 bg-[url('https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/imageb.jpeg')] bg-cover bg-center opacity-30" />
         <div className="relative z-10 px-4">
           <ChefHat size={48} className="text-[#D4AF37] mx-auto mb-6" />
           <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Malhotra <span className="text-[#D4AF37]">Catering's</span></h1>

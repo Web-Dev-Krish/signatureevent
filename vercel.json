@@ -1,0 +1,28 @@
+{
+  "headers": [
+    {
+      "source": "/(.*\\.html)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/api/db-wake", "destination": "/api/db-wake.js" },
+    { "source": "/api/upload", "destination": "/api/upload.js" },
+    { "source": "/api/(venues|events|catering|blogs|testimonials|contact|bookings|signature-events|gallery|videos|faqs)", "destination": "/api/main?table=$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "https://xaaqlitnmzuihgjwaqwt.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhYXFsaXRubXp1aWhnandhcXd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NTk4MzIsImV4cCI6MjEwMDAzNTgzMn0.FiqjAtb8ZGsFJbckdYrfMtfgwVJ_PhR0Ixpp2HXlkHc",
+    "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhYXFsaXRubXp1aWhnandhcXd0Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NDQ1OTgzMiwiZXhwIjoyMTAwMDM1ODMyfQ.QSQKbVSAeITt6QFiN4_b2TlZNZjVCcRD7BrpzmvbPTA",
+    "VITE_SUPABASE_URL": "https://xaaqlitnmzuihgjwaqwt.supabase.co",
+    "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhhYXFsaXRubXp1aWhnandhcXd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0NTk4MzIsImV4cCI6MjEwMDAzNTgzMn0.FiqjAtb8ZGsFJbckdYrfMtfgwVJ_PhR0Ixpp2HXlkHc",
+    "VITE_GOOGLE_CLIENT_ID": "1065078894672-rmp5kp8vfjns5rn9kp5psfp16g691043.apps.googleusercontent.com",
+    "VITE_GOOGLE_AUTH_PROXY": "https://designarena.ai/auth/google/callback"
+  }
+}

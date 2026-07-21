@@ -1,94 +1,74 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Cake, Crown, PartyPopper, Waves } from 'lucide-react';
+import { GlassCard, GoldButton, Reveal, SectionHeader } from '../components/UI';
+
+const signatureEvents = [
+  {
+    title: "Birthday's at Mankameshwar Palace",
+    path: '/signature-events/birthday-mankameshwar',
+    image: '/images/signature-birthday.jpg',
+    icon: Cake,
+    price: 'Starting ₹85,000',
+    text: 'Royal birthday celebrations with luxury cake styling, themed decor, DJ, catering, photo booth, and premium guest service.'
+  },
+  {
+    title: 'Pool Parties at Vatika Resort',
+    path: '/signature-events/pool-vatika',
+    image: '/images/signature-pool.jpg',
+    icon: Waves,
+    price: 'Starting ₹1,10,000',
+    text: 'Resort-style pool parties with cabana setup, mocktail bar, live snacks, music, lighting, and safety-managed poolside service.'
+  }
+];
 
 export default function SignatureEvents() {
   return (
-    <div className="bg-[#0B0B0B]">
-      {/* 1. Birthdays at Mankameshwar Palace */}
-      <section className="relative min-h-screen flex items-center pt-20">
-        <div className="absolute inset-0">
-          <img src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg" alt="Palace Birthday" className="w-full h-full object-cover opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/80 to-transparent" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl">
-            <h2 className="text-sm font-bold tracking-[0.3em] text-[#D4AF37] mb-4 uppercase">Signature Package</h2>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
-              Royal Birthdays at <br/>
-              <span className="gold-gradient-text">Mankameshwar Palace</span>
-            </h1>
-            <p className="text-xl text-gray-300 mb-10 leading-relaxed font-light">
-              Experience the grandeur of a royal birthday celebration. Majestic decor, premium catering, and an ambiance fit for kings and queens.
-            </p>
-            
-            <div className="grid grid-cols-2 gap-8 mb-10 border-t border-white/10 pt-8">
-              <div>
-                <h4 className="text-[#D4AF37] font-semibold mb-2">Experience</h4>
-                <ul className="text-gray-400 space-y-2 text-sm">
-                  <li>• Palace Illumination</li>
-                  <li>• Royal Entry with Chariot</li>
-                  <li>• Live Sufi Music</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-[#D4AF37] font-semibold mb-2">Services</h4>
-                <ul className="text-gray-400 space-y-2 text-sm">
-                  <li>• 5-Star Catering</li>
-                  <li>• Premium Floral Decor</li>
-                  <li>• Photography & Drone</li>
-                </ul>
-              </div>
-            </div>
-            
-            <Link to="/contact" className="inline-block px-8 py-4 bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-white transition-colors">
-              Book This Package
-            </Link>
-          </div>
+    <section className="min-h-screen bg-obsidian pt-28">
+      <div className="relative overflow-hidden px-5 py-24 lg:px-8">
+        <img src="/images/hero-venue.jpg" alt="Signature luxury events" className="absolute inset-0 h-full w-full object-cover opacity-45" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.24),rgba(0,0,0,0.88)_64%)]" />
+        <Reveal className="relative z-10 mx-auto max-w-5xl text-center">
+          <p className="mb-4 text-sm font-bold uppercase tracking-[0.45em] text-gold">Signature Events</p>
+          <h1 className="font-display text-5xl leading-tight md:text-7xl">Exclusive Celebrations Designed by MalhotraEvents</h1>
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/72">Explore our two most popular ready-to-book experiences: premium birthday parties at Mankameshwar Palace and luxury pool parties at Vatika Resort.</p>
+        </Reveal>
+      </div>
+
+      <section className="section-padding bg-obsidian">
+        <SectionHeader eyebrow="Choose Your Experience" title="Two Signature Event Packages" text="Each package includes venue coordination, decor direction, catering support, entertainment planning, and guest experience management." />
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 lg:grid-cols-2 lg:px-8">
+          {signatureEvents.map((event, index) => {
+            const Icon = event.icon;
+            return (
+              <Reveal key={event.path} delay={index * 0.08}>
+                <Link to={event.path} className="group block overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.045] shadow-2xl transition hover:-translate-y-3 hover:border-gold/40 hover:shadow-gold">
+                  <div className="relative h-80 overflow-hidden">
+                    <img src={event.image} alt={event.title} className="h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+                    <span className="absolute left-6 top-6 grid h-14 w-14 place-items-center rounded-full bg-black/70 text-gold backdrop-blur"><Icon /></span>
+                    <span className="absolute bottom-6 right-6 rounded-full bg-gold px-5 py-3 text-sm font-black text-black">{event.price}</span>
+                  </div>
+                  <div className="p-7">
+                    <h2 className="font-display text-4xl">{event.title}</h2>
+                    <p className="mt-4 leading-8 text-white/65">{event.text}</p>
+                    <GoldButton className="mt-7 w-full">View Details</GoldButton>
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
-      {/* 2. Pool Parties at Vatika Resort */}
-      <section className="relative min-h-screen flex items-center justify-end pt-20">
-        <div className="absolute inset-0">
-          <img src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/imageb.jpeg" alt="Pool Party" className="w-full h-full object-cover opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-l from-[#0B0B0B] via-[#0B0B0B]/80 to-transparent" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 flex justify-end">
-          <div className="max-w-3xl text-right">
-            <h2 className="text-sm font-bold tracking-[0.3em] text-[#D4AF37] mb-4 uppercase">Signature Package</h2>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
-              Premium Pool Parties at <br/>
-              <span className="gold-gradient-text">Vatika Resort</span>
-            </h1>
-            <p className="text-xl text-gray-300 mb-10 leading-relaxed font-light ml-auto">
-              Dive into luxury. Neon night lighting, live DJ sets, floating decor, and exotic mocktails for the ultimate vibrant celebration.
-            </p>
-            
-            <div className="grid grid-cols-2 gap-8 mb-10 border-t border-white/10 pt-8 text-left">
-              <div>
-                <h4 className="text-[#D4AF37] font-semibold mb-2">Experience</h4>
-                <ul className="text-gray-400 space-y-2 text-sm">
-                  <li>• Neon Night Lighting</li>
-                  <li>• Live DJ & Dance Floor</li>
-                  <li>• Floating Pool Decor</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-[#D4AF37] font-semibold mb-2">Services</h4>
-                <ul className="text-gray-400 space-y-2 text-sm">
-                  <li>• Live BBQ & Counters</li>
-                  <li>• Exotic Mocktail Bar</li>
-                  <li>• Cabana Setup</li>
-                </ul>
-              </div>
-            </div>
-            
-            <Link to="/contact" className="inline-block px-8 py-4 bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-white transition-colors">
-              Book This Package
-            </Link>
-          </div>
-        </div>
+      <section className="section-padding bg-charcoal px-5">
+        <Reveal>
+          <GlassCard className="mx-auto max-w-6xl p-8 text-center md:p-14">
+            <Crown className="mx-auto mb-5 h-12 w-12 text-gold" />
+            <h2 className="font-display text-4xl md:text-6xl">Want a Fully Custom Signature Event?</h2>
+            <p className="mx-auto mt-5 max-w-2xl leading-8 text-white/65">Our team can combine catering, decor, entertainment, and venue styling into a custom birthday, pool party, anniversary, or private celebration.</p>
+            <Link to="/contact" className="mt-8 inline-block"><GoldButton>Book Consultation</GoldButton></Link>
+          </GlassCard>
+        </Reveal>
       </section>
-    </div>
+    </section>
   );
 }

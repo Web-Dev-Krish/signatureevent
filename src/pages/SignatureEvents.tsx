@@ -4,7 +4,7 @@ import { GlassCard, GoldButton, Reveal, SectionHeader } from '../components/UI';
 
 const signatureEvents = [
   {
-    title: "Birthday's at Mankameshwar Palace",
+    title: "Birthday's at Mankameshwar",
     path: '/signature-events/birthday-mankameshwar',
     image: 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg',
     icon: Cake,

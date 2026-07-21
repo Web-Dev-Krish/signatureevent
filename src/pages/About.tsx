@@ -27,7 +27,7 @@ export default function About() {
             </div>
           </div>
           <div className="relative h-[600px]">
-            <img src="https://images.pexels.com/photos/337980/pexels-photo-337980.jpeg?auto=compress&cs=tinysrgb&w=800" alt="About Us" className="w-full h-full object-cover rounded-sm" />
+            <img src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/about%20us.jpeg" alt="About Us" className="w-full h-full object-cover rounded-sm" />
             <div className="absolute -bottom-8 -left-8 bg-[#151515] p-8 border border-white/10 hidden md:block">
               <Award size={48} className="text-[#D4AF37] mb-4" />
               <h4 className="text-xl font-serif font-bold text-white">Award Winning</h4>

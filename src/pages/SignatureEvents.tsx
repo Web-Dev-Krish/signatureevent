@@ -25,7 +25,7 @@ export default function SignatureEvents() {
   return (
     <section className="min-h-screen bg-obsidian pt-28">
       <div className="relative overflow-hidden px-5 py-24 lg:px-8">
-        <img src="/images/hero-venue.jpg" alt="Signature luxury events" className="absolute inset-0 h-full w-full object-cover opacity-45" />
+        <img src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/homehero.jpeg" alt="Signature luxury events" className="absolute inset-0 h-full w-full object-cover opacity-45" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(212,175,55,0.24),rgba(0,0,0,0.88)_64%)]" />
         <Reveal className="relative z-10 mx-auto max-w-5xl text-center">
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.45em] text-gold">Signature Events</p>

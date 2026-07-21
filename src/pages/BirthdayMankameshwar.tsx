@@ -11,13 +11,13 @@ const services = [
 
 export default function BirthdayMankameshwar() {
   return (
-    <section className="min-h-screen bg-obsidian pt-28">
+    <section className="min-h-screen bg-obsidian pt-24">
       <div className="relative overflow-hidden px-5 py-24 lg:px-8">
         <img src="/images/signature-birthday.jpg" alt="Birthday at Mankameshwar Palace" className="absolute inset-0 h-full w-full object-cover opacity-55" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/70 to-obsidian" />
         <Reveal className="relative z-10 mx-auto max-w-5xl text-center">
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.45em] text-gold">Signature Birthday Experience</p>
-          <h1 className="font-display text-5xl leading-tight md:text-7xl">Birthday's at Mankameshwar Palace</h1>
+          <h1 className="font-display text-4xl leading-tight sm:text-5xl md:text-7xl">Birthday's at Mankameshwar Palace</h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-white/72">A luxury birthday package for families who want a royal venue, premium decoration, delicious catering, entertainment, and smooth event management.</p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row"><GoldButton>Starting ₹85,000</GoldButton><Link to="/contact"><GoldButton variant="outline">Book Birthday</GoldButton></Link></div>
         </Reveal>

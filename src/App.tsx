@@ -7,6 +7,8 @@ import Venues from './pages/Venues';
 import VenueDetails from './pages/VenueDetails';
 import Events from './pages/Events';
 import SignatureEvents from './pages/SignatureEvents';
+import BirthdayMankameshwar from './pages/BirthdayMankameshwar';
+import PoolVatika from './pages/PoolVatika';
 import Catering from './pages/Catering';
 import Blogs from './pages/Blogs';
 import About from './pages/About';
@@ -41,6 +43,8 @@ function App() {
             <Route path="venues/:id" element={<VenueDetails />} />
             <Route path="events" element={<Events />} />
             <Route path="signature-events" element={<SignatureEvents />} />
+            <Route path="signature-events/birthday-mankameshwar" element={<BirthdayMankameshwar />} />
+            <Route path="signature-events/pool-vatika" element={<PoolVatika />} />
             <Route path="catering" element={<Catering />} />
             <Route path="blogs" element={<Blogs />} />
             <Route path="about" element={<About />} />

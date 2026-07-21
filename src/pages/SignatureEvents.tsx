@@ -6,7 +6,7 @@ const signatureEvents = [
   {
     title: "Birthday's at Mankameshwar Palace",
     path: '/signature-events/birthday-mankameshwar',
-    image: '/images/signature-birthday.jpg',
+    image: 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg',
     icon: Cake,
     price: 'Starting ₹85,000',
     text: 'Royal birthday celebrations with luxury cake styling, themed decor, DJ, catering, photo booth, and premium guest service.'
@@ -14,7 +14,7 @@ const signatureEvents = [
   {
     title: 'Pool Parties at Vatika Resort',
     path: '/signature-events/pool-vatika',
-    image: '/images/signature-pool.jpg',
+    image: 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg',
     icon: Waves,
     price: 'Starting ₹1,10,000',
     text: 'Resort-style pool parties with cabana setup, mocktail bar, live snacks, music, lighting, and safety-managed poolside service.'

@@ -19,7 +19,7 @@ export default function Home() {
         {/* Luxury Background Image */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center"
-          style={{ backgroundImage: 'url("https://images.pexels.com/photos/5729026/pexels-photo-5729026.jpeg?auto=compress&cs=tinysrgb&w=1920")' }}
+          style={{ backgroundImage: 'url("https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/homehero.jpeg")' }}
         />
         {/* Overlay */}
         <div className="absolute inset-0 z-10 bg-black/60 bg-gradient-to-b from-black/80 via-black/40 to-[#0B0B0B]" />
@@ -154,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* Luxury CTA */}
-      <section className="py-32 relative flex items-center justify-center bg-fixed bg-center bg-cover" style={{ backgroundImage: 'url("https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&w=1920")' }}>
+      <section className="py-32 relative flex items-center justify-center bg-fixed bg-center bg-cover" style={{ backgroundImage: 'url("https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/home2.jpeg")' }}>
         <div className="absolute inset-0 bg-black/70" />
         <div className="relative z-10 text-center px-4">
           <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">Ready to Create Magic?</h2>

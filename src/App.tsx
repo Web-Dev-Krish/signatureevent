@@ -31,6 +31,7 @@ import AdminVideos from './pages/admin/Videos';
 import AdminCalendar from './pages/admin/Calendar';
 import AdminCustomers from './pages/admin/Customers';
 import AdminFaqs from './pages/admin/Faqs';
+import AdminPageMedia from './pages/admin/PageMedia';
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
             <Route path="calendar" element={<AdminCalendar />} />
             <Route path="customers" element={<AdminCustomers />} />
             <Route path="faqs" element={<AdminFaqs />} />
+            <Route path="page-media" element={<AdminPageMedia />} />
           </Route>
         </Routes>
       </BrowserRouter>

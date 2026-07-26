@@ -90,12 +90,12 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/contact"
+            <a
+              href="tel:+919876543210"
               className="mt-4 px-6 py-3 bg-[#D4AF37] text-black text-center font-bold uppercase tracking-wider"
             >
-              Book Now
-            </Link>
+              +91 98765 43210
+            </a>
           </motion.nav>
         )}
       </AnimatePresence>

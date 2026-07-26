@@ -11,7 +11,10 @@ const tableMap = {
   'signature-events': 'signature_events',
   'gallery': 'gallery',
   'videos': 'videos',
-  'faqs': 'faqs'
+  'faqs': 'faqs',
+  'venue-media': 'venue_media',
+  'venue-availability': 'venue_availability',
+  'page-media': 'page_media'
 };
 
 export default async function handler(req, res) {
@@ -49,6 +52,27 @@ export default async function handler(req, res) {
         query = query.order('id', { ascending: true });
       } else if (endpoint === 'gallery' || endpoint === 'videos') {
         query = query.order('created_at', { ascending: false });
+      } else if (endpoint === 'venue-media') {
+        if (req.query.venue_id) {
+          query = query.eq('venue_id', req.query.venue_id);
+        }
+        if (req.query.media_type) {
+          query = query.eq('media_type', req.query.media_type);
+        }
+        query = query.order('display_order', { ascending: true });
+      } else if (endpoint === 'venue-availability') {
+        if (req.query.venue_id) {
+          query = query.eq('venue_id', req.query.venue_id);
+        }
+        query = query.order('date', { ascending: true });
+      } else if (endpoint === 'page-media') {
+        if (req.query.page_slug) {
+          query = query.eq('page_slug', req.query.page_slug);
+        }
+        if (req.query.media_type) {
+          query = query.eq('media_type', req.query.media_type);
+        }
+        query = query.order('display_order', { ascending: true });
       }
 
       const { data, error } = await query;

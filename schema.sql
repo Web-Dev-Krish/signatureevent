@@ -112,3 +112,37 @@ CREATE TABLE faqs (
     answer TEXT NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- 12. Venue Media Table (images and videos for venues)
+CREATE TABLE venue_media (
+    id SERIAL PRIMARY KEY,
+    venue_id INTEGER REFERENCES venues(id) ON DELETE CASCADE,
+    media_type TEXT NOT NULL CHECK (media_type IN ('image', 'video')),
+    media_url TEXT NOT NULL,
+    thumbnail_url TEXT,
+    caption TEXT,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 13. Venue Availability Table (unavailable dates for venues)
+CREATE TABLE venue_availability (
+    id SERIAL PRIMARY KEY,
+    venue_id INTEGER REFERENCES venues(id) ON DELETE CASCADE,
+    date DATE NOT NULL,
+    reason TEXT,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE(venue_id, date)
+);
+
+-- 14. Page Media Table (for birthday-mankameshwar, pool-vatika pages)
+CREATE TABLE page_media (
+    id SERIAL PRIMARY KEY,
+    page_slug TEXT NOT NULL,
+    media_type TEXT NOT NULL CHECK (media_type IN ('image', 'video')),
+    media_url TEXT NOT NULL,
+    thumbnail_url TEXT,
+    caption TEXT,
+    display_order INTEGER DEFAULT 0,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);

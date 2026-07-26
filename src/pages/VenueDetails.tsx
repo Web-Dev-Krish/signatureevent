@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, Users, Star, CheckCircle, Calendar, DollarSign, Image as ImageIcon, Video } from 'lucide-react';
+import { MapPin, Users, Star, CheckCircle, Calendar as CalendarIcon, DollarSign, Image as ImageIcon, Video, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function VenueDetails() {
   const { id } = useParams();
   const [venue, setVenue] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [bookingForm, setBookingForm] = useState({ name: '', email: '', phone: '', date: '', guests: '' });
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [unavailableDates, setUnavailableDates] = useState<any[]>([]);
+  const [venueMedia, setVenueMedia] = useState<any[]>([]);
 
   useEffect(() => {
     fetch(`/api/venues?id=${id}`)
@@ -15,6 +18,14 @@ export default function VenueDetails() {
         setVenue(data);
         setLoading(false);
       });
+    
+    fetch(`/api/venue-media?venue_id=${id}`)
+      .then(res => res.json())
+      .then(data => setVenueMedia(data || []));
+    
+    fetch(`/api/venue-availability?venue_id=${id}`)
+      .then(res => res.json())
+      .then(data => setUnavailableDates(data || []));
   }, [id]);
 
   const handleBooking = async (e: any) => {
@@ -26,6 +37,44 @@ export default function VenueDetails() {
     });
     alert('Booking request sent successfully!');
     setBookingForm({ name: '', email: '', phone: '', date: '', guests: '' });
+  };
+
+  const prevMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+  const nextMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+
+  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+  const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+
+  const isDateUnavailable = (date: Date) => {
+    const dateStr = date.toISOString().split('T')[0];
+    return unavailableDates.some((d: any) => d.date === dateStr);
+  };
+
+  const renderCalendar = () => {
+    const days = [];
+    
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push(<div key={`empty-${i}`} className="p-2 border border-white/5 opacity-30 bg-[#151515]"></div>);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), d);
+      const unavailable = isDateUnavailable(date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const isPast = date < today;
+      
+      days.push(
+        <div key={`day-${d}`} className={`min-h-[60px] p-2 border border-white/5 ${
+          unavailable ? 'bg-red-900/20' : isPast ? 'bg-[#151515] opacity-30' : 'bg-[#151515] hover:bg-white/5'
+        } transition-colors cursor-pointer`}>
+          <div className={`font-bold text-sm ${unavailable ? 'text-red-400' : isPast ? 'text-gray-600' : 'text-gray-300'}`}>{d}</div>
+          {unavailable && <div className="text-xs text-red-400 mt-1">Unavailable</div>}
+        </div>
+      );
+    }
+
+    return days;
   };
 
   if (loading) return <div className="min-h-screen flex items-center justify-center text-[#D4AF37]">Loading...</div>;
@@ -82,7 +131,7 @@ export default function VenueDetails() {
               </div>
             </section>
 
-            {/* Gallery Placeholder */}
+            {/* Gallery */}
             <section>
               <div className="flex justify-between items-end mb-6">
                 <h2 className="text-3xl font-serif font-bold text-white">Gallery</h2>
@@ -91,22 +140,81 @@ export default function VenueDetails() {
                   <button className="flex items-center gap-2 hover:text-white"><Video size={20}/> Videos</button>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <img src={venue.image_url} className="w-full h-48 object-cover rounded-lg" alt="Gallery 1" />
-                <div className="bg-[#151515] flex items-center justify-center h-48 rounded-lg border border-white/5">
-                  <span className="text-gray-500">More images coming soon</span>
+              {venueMedia.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {venueMedia.map((media) => (
+                    <div key={media.id} className="rounded-lg overflow-hidden">
+                      {media.media_type === 'image' ? (
+                        <img src={media.media_url} alt={media.caption || 'Gallery'} className="w-full h-48 object-cover" />
+                      ) : (
+                        <video src={media.media_url} controls className="w-full h-48 object-cover" poster={media.thumbnail_url} />
+                      )}
+                      {media.caption && <p className="text-sm text-gray-400 mt-2">{media.caption}</p>}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-4">
+                  <img src={venue.image_url} className="w-full h-48 object-cover rounded-lg" alt="Gallery 1" />
+                  <div className="bg-[#151515] flex items-center justify-center h-48 rounded-lg border border-white/5">
+                    <span className="text-gray-500">More images coming soon</span>
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* Availability Calendar */}
+            <section>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-3xl font-serif font-bold text-white">Availability Calendar</h2>
+                <div className="flex items-center gap-4 bg-[#151515] rounded-lg p-2 border border-white/10">
+                  <button onClick={prevMonth} className="p-1 hover:bg-white/10 rounded text-gray-400"><ChevronLeft size={20} /></button>
+                  <span className="text-white font-bold min-w-[120px] text-center">
+                    {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
+                  </span>
+                  <button onClick={nextMonth} className="p-1 hover:bg-white/10 rounded text-gray-400"><ChevronRight size={20} /></button>
+                </div>
+              </div>
+              <div className="bg-[#151515] border border-white/10 rounded-xl overflow-hidden">
+                <div className="grid grid-cols-7 bg-[#0B0B0B] border-b border-white/10">
+                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+                    <div key={day} className="p-3 text-center text-sm font-bold text-[#D4AF37] uppercase tracking-wider">
+                      {day}
+                    </div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-7">
+                  {renderCalendar()}
+                </div>
+              </div>
+              <div className="flex gap-4 mt-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-red-900/20 rounded"></div>
+                  <span className="text-gray-400">Unavailable</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-[#151515] opacity-30 rounded"></div>
+                  <span className="text-gray-400">Past dates</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-[#151515] rounded border border-white/5"></div>
+                  <span className="text-gray-400">Available</span>
                 </div>
               </div>
             </section>
 
-            {/* Map Placeholder */}
+            {/* Map */}
             <section>
               <h2 className="text-3xl font-serif font-bold text-white mb-6">Location</h2>
               {venue.map_html ? (
-                <div className="w-full h-64 rounded-lg overflow-hidden border border-white/10" dangerouslySetInnerHTML={{ __html: venue.map_html }} />
+                <div className="w-full h-80 rounded-lg overflow-hidden border border-white/10" dangerouslySetInnerHTML={{ __html: venue.map_html }} />
               ) : (
-                <div className="w-full h-64 bg-[#151515] border border-white/10 flex items-center justify-center text-gray-500 rounded-lg">
-                  Google Maps Placeholder for {venue.location}
+                <div className="w-full h-80 bg-[#151515] border border-white/10 flex items-center justify-center text-gray-500 rounded-lg">
+                  <div className="text-center">
+                    <MapPin size={32} className="mx-auto mb-2 text-[#D4AF37]" />
+                    <p>Map coming soon</p>
+                    <p className="text-sm">{venue.location}</p>
+                  </div>
                 </div>
               )}
             </section>

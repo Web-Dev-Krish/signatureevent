@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Camera, GlassWater, LifeBuoy, Music2, Sparkles, Waves } from 'lucide-react';
 import { GlassCard, GoldButton, Reveal, SectionHeader, StatCounter } from '../components/UI';
+import { useState, useEffect } from 'react';
 
 const services = [
   ['Poolside Setup', 'Cabana seating, pool floats, welcome signage, towel station, changing-room coordination, and lounge decor.'],
@@ -10,6 +11,17 @@ const services = [
 ];
 
 export default function PoolVatika() {
+  const [pageMedia, setPageMedia] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch('/api/page-media?page_slug=pool-vatika')
+      .then(res => res.json())
+      .then(data => setPageMedia(data || []));
+  }, []);
+
+  const images = pageMedia.filter(m => m.media_type === 'image');
+  const videos = pageMedia.filter(m => m.media_type === 'video');
+
   return (
     <section className="min-h-screen bg-obsidian pt-24">
       <div className="relative overflow-hidden px-5 py-24 lg:px-8">
@@ -33,9 +45,22 @@ export default function PoolVatika() {
       <section className="section-padding bg-charcoal">
         <SectionHeader eyebrow="Images & Clips" title="Poolside Energy, Premium Comfort" />
         <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-3 lg:px-8">
-          {['/images/signature-pool.jpg', '/images/venue-garden.jpg', '/images/venue-royal.jpg'].map(img => <img key={img} src={img} alt="Pool party gallery" className="h-72 w-full rounded-[2rem] object-cover" />)}
+          {images.length > 0 ? images.slice(0, 3).map((media) => (
+            <img key={media.id} src={media.media_url} alt={media.caption || 'Pool party gallery'} className="h-72 w-full rounded-[2rem] object-cover" />
+          )) : ['/images/signature-pool.jpg', '/images/venue-garden.jpg', '/images/venue-royal.jpg'].map((img, i) => (
+            <img key={i} src={img} alt="Pool party gallery" className="h-72 w-full rounded-[2rem] object-cover" />
+          ))}
         </div>
-        <div className="mx-auto mt-6 grid max-w-7xl gap-5 px-5 md:grid-cols-2 lg:px-8"><video src="/videos/pool-party.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" /><video src="/videos/luxury-event.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" /></div>
+        <div className="mx-auto mt-6 grid max-w-7xl gap-5 px-5 md:grid-cols-2 lg:px-8">
+          {videos.length > 0 ? videos.slice(0, 2).map((media) => (
+            <video key={media.id} src={media.media_url} controls muted loop className="h-72 w-full rounded-[2rem] object-cover" poster={media.thumbnail_url} />
+          )) : (
+            <>
+              <video src="/videos/pool-party.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
+              <video src="/videos/luxury-event.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
+            </>
+          )}
+        </div>
       </section>
 
       <section className="section-padding bg-obsidian">

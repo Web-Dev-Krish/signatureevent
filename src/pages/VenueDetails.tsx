@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, Users, Star, CheckCircle, Calendar as CalendarIcon, DollarSign, Image as ImageIcon, Video, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Users, Star, CheckCircle, DollarSign, Image as ImageIcon, Video, ChevronLeft, ChevronRight, Phone, MessageCircle } from 'lucide-react';
 import { ymdToDateString } from '../lib/date';
 
 export default function VenueDetails() {
   const { id } = useParams();
   const [venue, setVenue] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [bookingForm, setBookingForm] = useState({ name: '', email: '', phone: '', date: '', guests: '' });
   const [currentDate, setCurrentDate] = useState(new Date());
   const [unavailableDates, setUnavailableDates] = useState<any[]>([]);
   const [venueMedia, setVenueMedia] = useState<any[]>([]);
@@ -28,17 +27,6 @@ export default function VenueDetails() {
       .then(res => res.json())
       .then(data => setUnavailableDates(data || []));
   }, [id]);
-
-  const handleBooking = async (e: any) => {
-    e.preventDefault();
-    await fetch('/api/bookings', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...bookingForm, venue_id: id })
-    });
-    alert('Booking request sent successfully!');
-    setBookingForm({ name: '', email: '', phone: '', date: '', guests: '' });
-  };
 
   const prevMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
@@ -208,10 +196,10 @@ export default function VenueDetails() {
             <section>
               <h2 className="text-3xl font-serif font-bold text-white mb-6">Location</h2>
               {venue.map_html ? (
-                <div className="w-full h-80 rounded-lg overflow-hidden border border-white/10" dangerouslySetInnerHTML={{ __html: venue.map_html }} />
+                <div className="map-embed rounded-lg border border-white/10" dangerouslySetInnerHTML={{ __html: venue.map_html }} />
               ) : (
-                <div className="w-full h-80 bg-[#151515] border border-white/10 flex items-center justify-center text-gray-500 rounded-lg">
-                  <div className="text-center">
+                <div className="map-embed bg-[#151515] border border-white/10 flex items-center justify-center text-gray-500 rounded-lg">
+                  <div className="text-center px-4">
                     <MapPin size={32} className="mx-auto mb-2 text-[#D4AF37]" />
                     <p>Map coming soon</p>
                     <p className="text-sm">{venue.location}</p>
@@ -221,35 +209,46 @@ export default function VenueDetails() {
             </section>
           </div>
 
-          {/* Sidebar / Booking Form */}
+          {/* Sidebar / Quick Info */}
           <div className="lg:col-span-1">
             <div className="glass-card p-8 sticky top-28">
-              <h3 className="text-2xl font-serif font-bold text-white mb-6">Request a Quote</h3>
-              <form onSubmit={handleBooking} className="space-y-4">
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">Full Name</label>
-                  <input required type="text" className="w-full bg-[#0B0B0B] border border-white/10 p-3 text-white focus:border-[#D4AF37] outline-none" value={bookingForm.name} onChange={e => setBookingForm({...bookingForm, name: e.target.value})} />
+              <h3 className="text-2xl font-serif font-bold text-white mb-6">Interested in this venue?</h3>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                  <span className="text-gray-400 text-sm flex items-center gap-2"><Users size={16} className="text-[#D4AF37]" /> Capacity</span>
+                  <span className="text-white font-semibold">Up to {venue.capacity}</span>
                 </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">Email Address</label>
-                  <input required type="email" className="w-full bg-[#0B0B0B] border border-white/10 p-3 text-white focus:border-[#D4AF37] outline-none" value={bookingForm.email} onChange={e => setBookingForm({...bookingForm, email: e.target.value})} />
+                <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                  <span className="text-gray-400 text-sm flex items-center gap-2"><DollarSign size={16} className="text-[#D4AF37]" /> Starting Price</span>
+                  <span className="text-[#D4AF37] font-semibold text-lg">${venue.price_per_day}/day</span>
                 </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">Mobile Number</label>
-                  <input required type="tel" className="w-full bg-[#0B0B0B] border border-white/10 p-3 text-white focus:border-[#D4AF37] outline-none" value={bookingForm.phone} onChange={e => setBookingForm({...bookingForm, phone: e.target.value})} />
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">Event Date</label>
-                  <input required type="date" className="w-full bg-[#0B0B0B] border border-white/10 p-3 text-white focus:border-[#D4AF37] outline-none" value={bookingForm.date} onChange={e => setBookingForm({...bookingForm, date: e.target.value})} />
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">Estimated Guests</label>
-                  <input required type="number" className="w-full bg-[#0B0B0B] border border-white/10 p-3 text-white focus:border-[#D4AF37] outline-none" value={bookingForm.guests} onChange={e => setBookingForm({...bookingForm, guests: e.target.value})} />
-                </div>
-                <button type="submit" className="w-full bg-[#D4AF37] text-black font-bold py-4 mt-4 hover:bg-[#F4D03F] transition-colors uppercase tracking-widest">
-                  Submit Request
-                </button>
-              </form>
+              </div>
+
+              <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                Our team will help you plan every detail — reach out and we'll get back to you shortly.
+              </p>
+
+              <Link
+                to="/contact"
+                className="w-full bg-[#D4AF37] text-black font-bold py-4 hover:bg-[#F4D03F] transition-colors uppercase tracking-widest flex items-center justify-center gap-2"
+              >
+                Contact Us
+              </Link>
+              <a
+                href="tel:+919876543210"
+                className="w-full mt-3 border border-white/10 text-white py-4 hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors uppercase tracking-widest text-sm flex items-center justify-center gap-2"
+              >
+                <Phone size={16} /> +91 98765 43210
+              </a>
+              <a
+                href="https://wa.me/919876543210"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full mt-3 border border-white/10 text-white py-4 hover:border-[#25D366] hover:text-[#25D366] transition-colors uppercase tracking-widest text-sm flex items-center justify-center gap-2"
+              >
+                <MessageCircle size={16} /> WhatsApp Us
+              </a>
             </div>
           </div>
         </div>

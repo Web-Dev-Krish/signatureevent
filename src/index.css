@@ -41,6 +41,30 @@ body {
   overflow-x: hidden;
 }
 
+/* Responsive map / iframe embed wrapper.
+   Google Maps (and other) embed codes usually come with hard-coded
+   width/height attributes on the <iframe>. This wrapper forces any
+   iframe/img dropped into it (via dangerouslySetInnerHTML) to fill
+   the container fluidly, while the height itself scales smoothly
+   between a sensible min and max as the viewport changes. */
+.map-embed {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 42vw, 440px);
+  overflow: hidden;
+}
+.map-embed iframe,
+.map-embed img,
+.map-embed object {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  border: 0;
+  display: block;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

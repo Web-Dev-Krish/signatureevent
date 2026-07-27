@@ -1,4 +1,5 @@
 import { Award, Users, Target, Shield } from 'lucide-react';
+import AchievementsTimeline from '../components/AchievementsTimeline';
 
 export default function About() {
   return (
@@ -54,6 +55,9 @@ export default function About() {
             <p className="text-gray-400">Integrity, Innovation, Elegance, and a relentless commitment to perfection in every detail.</p>
           </div>
         </div>
+
+        {/* Achievements Timeline */}
+        <AchievementsTimeline />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from '../Logo';
 
 const links = [
   { name: 'Home', path: '/' },
@@ -39,7 +40,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
         <Link to="/" className="text-2xl font-serif font-bold text-white tracking-wider flex items-center gap-2">
-          <span className="text-[#D4AF37]">M</span>
+          <Logo className="h-9 w-9 sm:h-10 sm:w-10 -my-2" />
           <span className="hidden sm:inline">ALHOTRA</span>
         </Link>
 

@@ -104,7 +104,7 @@ export default function Events() {
                   <label className="block text-sm text-gray-400 mb-1">Date</label>
                   <div className="grid grid-cols-3 gap-2">
                     <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? new Date(form.date).getDate() : ''} onChange={e => {
-                      const d = e.target.value;
+                      const d = Number(e.target.value);
                       const m = form.date ? new Date(form.date).getMonth() : 0;
                       const y = form.date ? new Date(form.date).getFullYear() : new Date().getFullYear();
                       setForm({...form, date: new Date(y, m, d).toISOString().split('T')[0]});
@@ -113,7 +113,7 @@ export default function Events() {
                       {Array.from({length: 31}, (_, i) => <option key={i+1} value={i+1}>{i+1}</option>)}
                     </select>
                     <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? new Date(form.date).getMonth() : ''} onChange={e => {
-                      const m = e.target.value;
+                      const m = Number(e.target.value);
                       const d = form.date ? new Date(form.date).getDate() : 1;
                       const y = form.date ? new Date(form.date).getFullYear() : new Date().getFullYear();
                       setForm({...form, date: new Date(y, m, d).toISOString().split('T')[0]});
@@ -122,7 +122,7 @@ export default function Events() {
                       {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((m, i) => <option key={i} value={i}>{m}</option>)}
                     </select>
                     <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? new Date(form.date).getFullYear() : ''} onChange={e => {
-                      const y = e.target.value;
+                      const y = Number(e.target.value);
                       const m = form.date ? new Date(form.date).getMonth() : 0;
                       const d = form.date ? new Date(form.date).getDate() : 1;
                       setForm({...form, date: new Date(y, m, d).toISOString().split('T')[0]});

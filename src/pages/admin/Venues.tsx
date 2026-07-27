@@ -341,7 +341,7 @@ export default function Venues() {
                   <label className="block text-sm text-gray-400 mb-1">Unavailable Date</label>
                   <div className="grid grid-cols-3 gap-2">
                     <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? new Date(availabilityForm.date).getDate() : ''} onChange={e => {
-                      const d = e.target.value;
+                      const d = Number(e.target.value);
                       const m = availabilityForm.date ? new Date(availabilityForm.date).getMonth() : 0;
                       const y = availabilityForm.date ? new Date(availabilityForm.date).getFullYear() : new Date().getFullYear();
                       setAvailabilityForm({...availabilityForm, date: new Date(y, m, d).toISOString().split('T')[0]});
@@ -350,7 +350,7 @@ export default function Venues() {
                       {Array.from({length: 31}, (_, i) => <option key={i+1} value={i+1}>{i+1}</option>)}
                     </select>
                     <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? new Date(availabilityForm.date).getMonth() : ''} onChange={e => {
-                      const m = e.target.value;
+                      const m = Number(e.target.value);
                       const d = availabilityForm.date ? new Date(availabilityForm.date).getDate() : 1;
                       const y = availabilityForm.date ? new Date(availabilityForm.date).getFullYear() : new Date().getFullYear();
                       setAvailabilityForm({...availabilityForm, date: new Date(y, m, d).toISOString().split('T')[0]});
@@ -359,7 +359,7 @@ export default function Venues() {
                       {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((m, i) => <option key={i} value={i}>{m}</option>)}
                     </select>
                     <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? new Date(availabilityForm.date).getFullYear() : ''} onChange={e => {
-                      const y = e.target.value;
+                      const y = Number(e.target.value);
                       const m = availabilityForm.date ? new Date(availabilityForm.date).getMonth() : 0;
                       const d = availabilityForm.date ? new Date(availabilityForm.date).getDate() : 1;
                       setAvailabilityForm({...availabilityForm, date: new Date(y, m, d).toISOString().split('T')[0]});

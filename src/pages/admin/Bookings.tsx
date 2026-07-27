@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Check, X, Trash2, Search } from 'lucide-react';
+import { formatDate } from '../../lib/date';
 
 export default function Bookings() {
   const [bookings, setBookings] = useState<any[]>([]);
@@ -87,7 +88,7 @@ export default function Bookings() {
                       <div className="text-xs text-gray-500">{b.email}</div>
                       {b.phone && <div className="text-xs text-gray-500">{b.phone}</div>}
                     </td>
-                    <td className="p-4 text-gray-300">{new Date(b.date).toLocaleDateString()}</td>
+                    <td className="p-4 text-gray-300">{formatDate(b.date)}</td>
                     <td className="p-4 text-gray-300">{b.guests}</td>
                     <td className="p-4">
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold ${

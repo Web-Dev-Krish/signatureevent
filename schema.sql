@@ -8,6 +8,7 @@ CREATE TABLE venues (
     rating NUMERIC DEFAULT 5.0,
     description TEXT,
     image_url TEXT,
+    map_html TEXT,
     facilities JSONB DEFAULT '[]'::jsonb,
     event_types JSONB DEFAULT '[]'::jsonb
 );

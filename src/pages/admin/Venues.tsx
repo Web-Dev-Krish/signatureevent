@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Plus, Edit2, Trash2, X, UploadCloud, Image as ImageIcon, Video, Calendar } from 'lucide-react';
+import { formatDateWithWeekday, toLocalDate, ymdToDateString } from '../../lib/date';
 
 export default function Venues() {
   const [venues, setVenues] = useState<any[]>([]);
@@ -340,29 +341,29 @@ export default function Venues() {
                 <div>
                   <label className="block text-sm text-gray-400 mb-1">Unavailable Date</label>
                   <div className="grid grid-cols-3 gap-2">
-                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? new Date(availabilityForm.date).getDate() : ''} onChange={e => {
+                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getDate() : ''} onChange={e => {
                       const d = Number(e.target.value);
-                      const m = availabilityForm.date ? new Date(availabilityForm.date).getMonth() : 0;
-                      const y = availabilityForm.date ? new Date(availabilityForm.date).getFullYear() : new Date().getFullYear();
-                      setAvailabilityForm({...availabilityForm, date: new Date(y, m, d).toISOString().split('T')[0]});
+                      const m = availabilityForm.date ? toLocalDate(availabilityForm.date).getMonth() : 0;
+                      const y = availabilityForm.date ? toLocalDate(availabilityForm.date).getFullYear() : new Date().getFullYear();
+                      setAvailabilityForm({...availabilityForm, date: ymdToDateString(y, m, d)});
                     }}>
                       <option value="">Day</option>
                       {Array.from({length: 31}, (_, i) => <option key={i+1} value={i+1}>{i+1}</option>)}
                     </select>
-                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? new Date(availabilityForm.date).getMonth() : ''} onChange={e => {
+                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getMonth() : ''} onChange={e => {
                       const m = Number(e.target.value);
-                      const d = availabilityForm.date ? new Date(availabilityForm.date).getDate() : 1;
-                      const y = availabilityForm.date ? new Date(availabilityForm.date).getFullYear() : new Date().getFullYear();
-                      setAvailabilityForm({...availabilityForm, date: new Date(y, m, d).toISOString().split('T')[0]});
+                      const d = availabilityForm.date ? toLocalDate(availabilityForm.date).getDate() : 1;
+                      const y = availabilityForm.date ? toLocalDate(availabilityForm.date).getFullYear() : new Date().getFullYear();
+                      setAvailabilityForm({...availabilityForm, date: ymdToDateString(y, m, d)});
                     }}>
                       <option value="">Month</option>
                       {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((m, i) => <option key={i} value={i}>{m}</option>)}
                     </select>
-                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? new Date(availabilityForm.date).getFullYear() : ''} onChange={e => {
+                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getFullYear() : ''} onChange={e => {
                       const y = Number(e.target.value);
-                      const m = availabilityForm.date ? new Date(availabilityForm.date).getMonth() : 0;
-                      const d = availabilityForm.date ? new Date(availabilityForm.date).getDate() : 1;
-                      setAvailabilityForm({...availabilityForm, date: new Date(y, m, d).toISOString().split('T')[0]});
+                      const m = availabilityForm.date ? toLocalDate(availabilityForm.date).getMonth() : 0;
+                      const d = availabilityForm.date ? toLocalDate(availabilityForm.date).getDate() : 1;
+                      setAvailabilityForm({...availabilityForm, date: ymdToDateString(y, m, d)});
                     }}>
                       <option value="">Year</option>
                       {Array.from({length: 5}, (_, i) => <option key={i} value={new Date().getFullYear() + i}>{new Date().getFullYear() + i}</option>)}
@@ -387,7 +388,7 @@ export default function Venues() {
                     {unavailableDates.map(date => (
                       <div key={date.id} className="flex justify-between items-center bg-[#0B0B0B] border border-white/10 rounded p-3">
                         <div>
-                          <p className="text-white font-semibold">{new Date(date.date).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</p>
+                          <p className="text-white font-semibold">{formatDateWithWeekday(date.date)}</p>
                           {date.reason && <p className="text-gray-400 text-sm">{date.reason}</p>}
                         </div>
                         <button onClick={() => deleteUnavailableDate(date.id)} className="p-2 text-red-400 hover:text-red-300"><Trash2 size={16} /></button>

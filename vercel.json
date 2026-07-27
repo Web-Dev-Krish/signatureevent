@@ -13,7 +13,7 @@
   "rewrites": [
     { "source": "/api/db-wake", "destination": "/api/db-wake.js" },
     { "source": "/api/upload", "destination": "/api/upload.js" },
-    { "source": "/api/(venues|events|catering|blogs|testimonials|contact|bookings|signature-events|gallery|videos|faqs)", "destination": "/api/main?table=$1" },
+    { "source": "/api/(venues|events|catering|blogs|testimonials|contact|bookings|signature-events|gallery|videos|faqs|venue-media|venue-availability|page-media)", "destination": "/api/main?table=$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "env": {

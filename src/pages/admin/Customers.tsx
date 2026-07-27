@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Search, Mail, Calendar } from 'lucide-react';
+import { formatDate } from '../../lib/date';
 
 export default function Customers() {
   const [customers, setCustomers] = useState<any[]>([]);
@@ -77,7 +78,7 @@ export default function Customers() {
                   <span className="bg-[#D4AF37]/10 text-[#D4AF37] px-3 py-1 rounded-full">{c.totalBookings}</span>
                 </td>
                 <td className="p-4 text-gray-400 text-sm flex items-center gap-2 mt-3">
-                  <Calendar size={14}/> {new Date(c.lastBookingDate).toLocaleDateString()}
+                  <Calendar size={14}/> {formatDate(c.lastBookingDate)}
                 </td>
                 <td className="p-4 text-right">
                   <button className="text-[#D4AF37] hover:text-white text-sm font-semibold">View History</button>

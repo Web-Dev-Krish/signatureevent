@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MapPin, Users, Star, CheckCircle, Calendar as CalendarIcon, DollarSign, Image as ImageIcon, Video, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ymdToDateString } from '../lib/date';
 
 export default function VenueDetails() {
   const { id } = useParams();
@@ -46,8 +47,8 @@ export default function VenueDetails() {
   const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
 
   const isDateUnavailable = (date: Date) => {
-    const dateStr = date.toISOString().split('T')[0];
-    return unavailableDates.some((d: any) => d.date === dateStr);
+    const dateStr = ymdToDateString(date.getFullYear(), date.getMonth(), date.getDate());
+    return unavailableDates.some((d: any) => (d.date || '').slice(0, 10) === dateStr);
   };
 
   const renderCalendar = () => {

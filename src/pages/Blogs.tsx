@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, User } from 'lucide-react';
+import { formatDate } from '../lib/date';
 
 export default function Blogs() {
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -38,7 +39,7 @@ export default function Blogs() {
                   <p className="text-gray-400 text-sm line-clamp-3 mb-4 flex-grow">{blog.content}</p>
                   <div className="flex justify-between items-center text-xs text-gray-500 border-t border-white/10 pt-4 mt-auto">
                     <div className="flex items-center gap-1"><User size={14} /> {blog.author}</div>
-                    <div className="flex items-center gap-1"><Calendar size={14} /> {new Date(blog.published_at).toLocaleDateString()}</div>
+                    <div className="flex items-center gap-1"><Calendar size={14} /> {formatDate(blog.published_at)}</div>
                   </div>
                 </div>
               </div>

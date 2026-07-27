@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, PlayCircle } from 'lucide-react';
+import { formatDate } from '../lib/date';
 
 export default function Events() {
   const [events, setEvents] = useState<any[]>([]);
@@ -71,7 +72,7 @@ export default function Events() {
                 <div className="p-6">
                   <h3 className="text-xl font-serif font-bold text-white mb-3">{event.title}</h3>
                   <div className="flex flex-col gap-2 text-sm text-gray-400 mb-4">
-                    <div className="flex items-center gap-2"><Calendar size={14} className="text-[#D4AF37]" /> {new Date(event.date).toLocaleDateString()}</div>
+                    <div className="flex items-center gap-2"><Calendar size={14} className="text-[#D4AF37]" /> {formatDate(event.date)}</div>
                     <div className="flex items-center gap-2"><MapPin size={14} className="text-[#D4AF37]" /> {event.venue_name || 'Premium Venue'}</div>
                   </div>
                   <p className="text-gray-300 text-sm line-clamp-3">{event.description}</p>

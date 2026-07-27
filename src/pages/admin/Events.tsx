@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X } from 'lucide-react';
+import { formatDate, toLocalDate, ymdToDateString } from '../../lib/date';
 
 export default function Events() {
   const [events, setEvents] = useState<any[]>([]);
@@ -67,7 +68,7 @@ export default function Events() {
               <h3 className="text-lg font-bold text-white truncate">{v.title}</h3>
               <p className="text-sm text-gray-400 mb-4 truncate">{v.venue_name}</p>
               <div className="flex justify-between items-center border-t border-white/10 pt-3">
-                <span className="text-sm text-gray-300">{new Date(v.date).toLocaleDateString()}</span>
+                <span className="text-sm text-gray-300">{formatDate(v.date)}</span>
                 <div className="flex gap-2">
                   <button onClick={() => editEvent(v)} className="p-2 text-gray-400 hover:text-white bg-white/5 rounded"><Edit2 size={16} /></button>
                   <button onClick={() => deleteEvent(v.id)} className="p-2 text-red-400 hover:text-red-300 bg-red-500/10 rounded"><Trash2 size={16} /></button>
@@ -103,29 +104,29 @@ export default function Events() {
                 <div>
                   <label className="block text-sm text-gray-400 mb-1">Date</label>
                   <div className="grid grid-cols-3 gap-2">
-                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? new Date(form.date).getDate() : ''} onChange={e => {
+                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? toLocalDate(form.date).getDate() : ''} onChange={e => {
                       const d = Number(e.target.value);
-                      const m = form.date ? new Date(form.date).getMonth() : 0;
-                      const y = form.date ? new Date(form.date).getFullYear() : new Date().getFullYear();
-                      setForm({...form, date: new Date(y, m, d).toISOString().split('T')[0]});
+                      const m = form.date ? toLocalDate(form.date).getMonth() : 0;
+                      const y = form.date ? toLocalDate(form.date).getFullYear() : new Date().getFullYear();
+                      setForm({...form, date: ymdToDateString(y, m, d)});
                     }}>
                       <option value="">Day</option>
                       {Array.from({length: 31}, (_, i) => <option key={i+1} value={i+1}>{i+1}</option>)}
                     </select>
-                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? new Date(form.date).getMonth() : ''} onChange={e => {
+                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? toLocalDate(form.date).getMonth() : ''} onChange={e => {
                       const m = Number(e.target.value);
-                      const d = form.date ? new Date(form.date).getDate() : 1;
-                      const y = form.date ? new Date(form.date).getFullYear() : new Date().getFullYear();
-                      setForm({...form, date: new Date(y, m, d).toISOString().split('T')[0]});
+                      const d = form.date ? toLocalDate(form.date).getDate() : 1;
+                      const y = form.date ? toLocalDate(form.date).getFullYear() : new Date().getFullYear();
+                      setForm({...form, date: ymdToDateString(y, m, d)});
                     }}>
                       <option value="">Month</option>
                       {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((m, i) => <option key={i} value={i}>{m}</option>)}
                     </select>
-                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? new Date(form.date).getFullYear() : ''} onChange={e => {
+                    <select required className="bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={form.date ? toLocalDate(form.date).getFullYear() : ''} onChange={e => {
                       const y = Number(e.target.value);
-                      const m = form.date ? new Date(form.date).getMonth() : 0;
-                      const d = form.date ? new Date(form.date).getDate() : 1;
-                      setForm({...form, date: new Date(y, m, d).toISOString().split('T')[0]});
+                      const m = form.date ? toLocalDate(form.date).getMonth() : 0;
+                      const d = form.date ? toLocalDate(form.date).getDate() : 1;
+                      setForm({...form, date: ymdToDateString(y, m, d)});
                     }}>
                       <option value="">Year</option>
                       {Array.from({length: 5}, (_, i) => <option key={i} value={new Date().getFullYear() + i}>{new Date().getFullYear() + i}</option>)}

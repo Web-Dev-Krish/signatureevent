@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, X } from 'lucide-react';
+import { formatDate } from '../../lib/date';
 
 export default function Blogs() {
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -72,7 +73,7 @@ export default function Blogs() {
               <tr key={b.id} className="hover:bg-white/5">
                 <td className="p-4 text-white font-semibold">{b.title}</td>
                 <td className="p-4 text-gray-300">{b.category}</td>
-                <td className="p-4 text-gray-400">{new Date(b.published_at).toLocaleDateString()}</td>
+                <td className="p-4 text-gray-400">{formatDate(b.published_at)}</td>
                 <td className="p-4 text-right flex justify-end gap-2">
                   <button onClick={() => editBlog(b)} className="p-2 bg-white/5 text-gray-400 rounded hover:text-white"><Edit2 size={16} /></button>
                   <button onClick={() => deleteBlog(b.id)} className="p-2 bg-red-500/10 text-red-500 rounded hover:bg-red-500/20"><Trash2 size={16} /></button>

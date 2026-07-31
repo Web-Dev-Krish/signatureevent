@@ -50,7 +50,6 @@ export default function About() {
             <img 
               src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/about%20us.jpeg" 
               alt="About Us" 
-              loading="lazy"
               className="w-full h-full object-cover rounded-2xl transform group-hover:scale-105 transition-transform duration-1000 ease-out" 
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10" />

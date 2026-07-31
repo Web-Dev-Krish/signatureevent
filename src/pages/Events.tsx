@@ -1,25 +1,26 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, PlayCircle, Sparkles } from 'lucide-react';
-import { formatDate } from '../lib/date';
+import { PlayCircle, Sparkles } from 'lucide-react';
 
 export default function Events() {
   const [events, setEvents] = useState<any[]>([]);
-  const [category, setCategory] = useState('All');
+  const [categories, setCategories] = useState<string[]>(['All']);
+  const [activeCategory, setActiveCategory] = useState('All');
   const [loading, setLoading] = useState(true);
 
-  const categories = ['All', 'Wedding', 'Reception', 'Birthday', 'Corporate', 'Anniversary'];
-
   useEffect(() => {
-    fetch('/api/events')
-      .then(res => res.json())
-      .then(data => {
-        setEvents(data);
-        setLoading(false);
-      });
+    Promise.all([
+      fetch('/api/events').then(r => r.json()),
+      fetch('/api/event-categories').then(r => r.json())
+    ]).then(([eventsData, categoriesData]) => {
+      setEvents(eventsData || []);
+      const dbCats = (categoriesData || []).map((c: any) => c.name);
+      setCategories(['All', ...dbCats]);
+      setLoading(false);
+    });
   }, []);
 
-  const filteredEvents = category === 'All' ? events : events.filter(e => e.type === category);
+  const filteredEvents = activeCategory === 'All' ? events : events.filter(e => e.type === activeCategory);
 
   return (
     <div className="pt-28 pb-24 min-h-screen relative overflow-hidden bg-[#050505]">
@@ -57,16 +58,16 @@ export default function Events() {
           {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => setCategory(cat)}
+              onClick={() => setActiveCategory(cat)}
               className={`relative px-6 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 ${
-                category === cat 
+                activeCategory === cat 
                   ? 'text-black shadow-[0_0_20px_rgba(212,175,55,0.4)]' 
                   : 'text-gray-400 hover:text-white bg-white/5 hover:bg-white/10'
               }`}
             >
-              {category === cat && (
+              {activeCategory === cat && (
                 <motion.div
-                  layoutId="activeCategory"
+                  layoutId="activeCategoryIndicator"
                   className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] rounded-full"
                   style={{ zIndex: -1 }}
                 />
@@ -81,53 +82,46 @@ export default function Events() {
             <div className="w-12 h-12 border-4 border-[#D4AF37]/30 border-t-[#D4AF37] rounded-full animate-spin"></div>
           </div>
         ) : (
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div layout className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
             <AnimatePresence mode="popLayout">
               {filteredEvents.map((event, idx) => (
                 <motion.div
                   layout
                   key={event.id}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                  initial={{ scale: 0.9, y: 20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  exit={{ scale: 0.9 }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  className="group relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-[#D4AF37]/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]"
+                  className="break-inside-avoid relative rounded-2xl overflow-hidden bg-[#111] border border-white/10 group cursor-pointer"
                 >
-                  <div className="relative h-80 overflow-hidden">
-                    <img 
-                      src={event.image_url} 
-                      alt={event.title} 
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    {event.video_url && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:bg-[#D4AF37] group-hover:border-[#D4AF37] transition-all duration-300 transform group-hover:scale-110 cursor-pointer shadow-xl">
-                          <PlayCircle size={32} className="text-white group-hover:text-black transition-colors" />
-                        </div>
-                      </div>
-                    )}
-                    
-                    <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-[#D4AF37] text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider border border-[#D4AF37]/30">
-                      {event.type}
-                    </div>
-                  </div>
+                  <img 
+                    src={event.image_url} 
+                    alt={event.title || 'Event Media'} 
+                    className="w-full h-auto object-cover" 
+                  />
                   
-                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <h3 className="text-2xl font-serif font-bold text-white mb-2 drop-shadow-lg">{event.title}</h3>
-                    
-                    <div className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                      <div className="flex items-center gap-4 text-sm text-gray-300">
-                        <div className="flex items-center gap-1.5"><Calendar size={14} className="text-[#D4AF37]" /> {formatDate(event.date)}</div>
-                        <div className="flex items-center gap-1.5"><MapPin size={14} className="text-[#D4AF37]" /> {event.venue_name || 'Premium Venue'}</div>
+                  {event.video_url && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:bg-[#D4AF37] group-hover:border-[#D4AF37] transition-all duration-300 transform group-hover:scale-110 shadow-xl">
+                        <PlayCircle size={32} className="text-white group-hover:text-black transition-colors" />
                       </div>
-                      
-                      <p className="text-gray-400 text-sm line-clamp-2 mt-2">
-                        {event.description}
-                      </p>
                     </div>
-                  </div>
+                  )}
+                  
+                  {(event.title || event.type) && (
+                    <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/95 via-black/60 to-transparent">
+                      <div className="flex flex-col items-start gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <div className="bg-[#D4AF37]/90 text-black text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">
+                          {event.type}
+                        </div>
+                        {event.title && (
+                          <h3 className="text-xl font-serif font-bold text-white drop-shadow-md">
+                            {event.title}
+                          </h3>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </AnimatePresence>

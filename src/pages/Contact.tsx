@@ -40,7 +40,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-xl font-bold text-white mb-1">Office Address</h4>
-                <p className="text-gray-400">123 Luxury Avenue, Golden Estate,<br/>New Delhi, India 110001</p>
+                <p className="text-gray-400">171 -2, 32 W-2, Damodar Nagar,<br/>Kanpur, Uttar Pradesh 208027</p>
               </div>
             </div>
 
@@ -50,7 +50,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-xl font-bold text-white mb-1">Phone</h4>
-                <p className="text-gray-400">+91 98765 43210<br/>+91 11 2345 6789</p>
+                <p className="text-gray-400">+91 93547 10637</p>
               </div>
             </div>
 

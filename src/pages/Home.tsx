@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Star, MapPin, Users, ArrowRight } from 'lucide-react';
+import { Star, MapPin, Users, ArrowRight, Sparkles } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
@@ -13,39 +13,53 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full">
-      {/* STRICTLY DEFINED HERO SECTION */}
+    <div className="w-full bg-[#050505] min-h-screen">
+      {/* HERO SECTION */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Luxury Background Image */}
-        <div 
+        <motion.div 
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: "easeOut" }}
           className="absolute inset-0 z-0 bg-cover bg-center"
           style={{ backgroundImage: 'url("https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/homehero.jpeg")' }}
         />
         {/* Overlay */}
-        <div className="absolute inset-0 z-10 bg-black/60 bg-gradient-to-b from-black/80 via-black/40 to-[#0B0B0B]" />
+        <div className="absolute inset-0 z-10 bg-black/60 bg-gradient-to-b from-black/80 via-black/40 to-[#050505]" />
+        
+        {/* Ambient Lights */}
+        <div className="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-[#D4AF37]/10 rounded-full blur-[150px] pointer-events-none z-10" />
+        <div className="absolute bottom-1/4 right-1/4 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none z-10" />
         
         <div className="relative z-20 container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight max-w-5xl mx-auto">
-              Where <span className="gold-gradient-text">Golden Moments</span> Become Timeless Celebrations
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#D4AF37] mb-8 backdrop-blur-md">
+              <Sparkles size={16} />
+              <span className="text-sm font-semibold tracking-widest uppercase">The Pinnacle of Luxury</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 leading-[1.1] max-w-5xl mx-auto tracking-tight">
+              Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37]">Golden Moments</span> Become Timeless Celebrations
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-light tracking-wide">
+            
+            <p className="text-lg md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto font-light tracking-wide leading-relaxed">
               Experience unparalleled luxury and flawless execution for your most cherished events.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link 
                 to="/contact" 
-                className="px-8 py-4 bg-[#D4AF37] text-black font-semibold uppercase tracking-widest hover:bg-[#F4D03F] transition-all duration-300"
+                className="px-10 py-5 bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-black font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300 rounded-sm"
               >
                 Plan Your Event
               </Link>
               <Link 
                 to="/venues" 
-                className="px-8 py-4 border border-[#D4AF37] text-[#D4AF37] font-semibold uppercase tracking-widest hover:bg-[#D4AF37]/10 transition-all duration-300 glass"
+                className="px-10 py-5 border border-[#D4AF37]/50 text-[#D4AF37] font-bold uppercase tracking-widest hover:bg-[#D4AF37]/10 transition-all duration-300 backdrop-blur-sm rounded-sm"
               >
                 Explore Venues
               </Link>
@@ -55,43 +69,45 @@ export default function Home() {
       </section>
 
       {/* Premium Venues */}
-      <section className="py-24 bg-[#0B0B0B]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Premium <span className="text-[#D4AF37]">Venues</span></h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Discover our exclusive selection of luxury venues designed to host your grandest celebrations.</p>
+      <section className="py-32 relative">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">Premium <span className="text-[#D4AF37]">Venues</span></h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto font-light">Discover our exclusive selection of luxury venues designed to host your grandest celebrations.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {venues.map((venue, idx) => (
               <motion.div 
                 key={venue.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.2 }}
-                className="glass-card group cursor-pointer overflow-hidden flex flex-col"
+                transition={{ delay: idx * 0.2, duration: 0.8 }}
+                className="bg-[#111] border border-white/5 rounded-xl group cursor-pointer overflow-hidden flex flex-col hover:border-[#D4AF37]/30 transition-colors shadow-2xl"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <img src={venue.image_url} alt={venue.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-3 py-1 flex items-center gap-1 text-[#D4AF37] text-sm font-semibold rounded">
+                <div className="relative h-72 overflow-hidden">
+                  <img src={venue.image_url} alt={venue.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] to-transparent opacity-80" />
+                  <div className="absolute top-6 right-6 bg-black/60 backdrop-blur-md px-4 py-2 flex items-center gap-1.5 text-[#D4AF37] text-sm font-bold rounded-full border border-[#D4AF37]/30">
                     <Star size={14} className="fill-current" /> {venue.rating}
                   </div>
                 </div>
-                <div className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-xl font-serif font-bold text-white mb-2">{venue.name}</h3>
-                  <div className="flex items-center gap-2 text-gray-400 text-sm mb-4">
-                    <MapPin size={14} className="text-[#D4AF37]" /> {venue.location}
+                <div className="p-8 flex-grow flex flex-col relative z-10 -mt-10">
+                  <h3 className="text-2xl font-serif font-bold text-white mb-3 drop-shadow-md">{venue.name}</h3>
+                  <div className="flex items-center gap-2 text-[#D4AF37] text-sm mb-6 font-medium">
+                    <MapPin size={16} /> {venue.location}
                   </div>
-                  <div className="flex justify-between items-center text-sm text-gray-300 mb-6 border-b border-white/10 pb-4">
+                  <div className="flex justify-between items-center text-sm text-gray-300 mb-8 border-t border-b border-white/10 py-5">
                     <div className="flex items-center gap-2">
-                      <Users size={16} className="text-[#D4AF37]" /> Up to {venue.capacity}
+                      <Users size={16} className="text-gray-500" /> Up to {venue.capacity}
                     </div>
-                    <div>
-                      Starts at <span className="text-[#D4AF37] font-semibold">${venue.price_per_day}</span>
+                    <div className="text-right">
+                      <div className="text-xs text-gray-500 uppercase tracking-widest">Starts at</div>
+                      <div className="text-[#D4AF37] font-bold text-lg">₹{venue.price_per_day}</div>
                     </div>
                   </div>
-                  <Link to={`/venues/${venue.id}`} className="mt-auto flex items-center justify-center gap-2 text-[#D4AF37] hover:text-[#F4D03F] transition-colors font-semibold uppercase tracking-wider text-sm">
+                  <Link to={`/venues/${venue.id}`} className="mt-auto flex items-center justify-center gap-2 text-white hover:text-[#D4AF37] transition-colors font-bold uppercase tracking-widest text-sm bg-white/5 hover:bg-white/10 py-4 rounded-lg">
                     View Details <ArrowRight size={16} />
                   </Link>
                 </div>
@@ -102,28 +118,29 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="py-24 bg-[#151515] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl" />
+      <section className="py-32 bg-[#0A0A0A] border-y border-white/5 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none" />
+        
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Our <span className="text-[#D4AF37]">Services</span></h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Comprehensive event solutions tailored to perfection.</p>
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">Our <span className="text-[#D4AF37]">Services</span></h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto font-light">Comprehensive event solutions tailored to perfection.</p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
             {['Wedding', 'Reception', 'Birthday', 'Engagement', 'Anniversary', 'Corporate', 'Baby Shower', 'Private Party'].map((service, idx) => (
               <motion.div
                 key={service}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="border border-white/10 bg-[#0B0B0B] p-6 text-center hover:border-[#D4AF37]/50 transition-colors group"
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="bg-white/5 border border-white/5 rounded-2xl p-8 text-center hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]/30 transition-all duration-300 group backdrop-blur-sm"
               >
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[#151515] border border-[#D4AF37]/30 flex items-center justify-center group-hover:bg-[#D4AF37] transition-colors">
-                  <Star size={20} className="text-[#D4AF37] group-hover:text-black transition-colors" />
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-black/50 border border-white/10 flex items-center justify-center group-hover:border-[#D4AF37] group-hover:scale-110 transition-all duration-300 shadow-lg">
+                  <Star size={24} className="text-[#D4AF37] group-hover:drop-shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all" />
                 </div>
-                <h3 className="text-white font-serif font-semibold">{service}</h3>
+                <h3 className="text-white font-serif text-lg font-bold tracking-wide">{service}</h3>
               </motion.div>
             ))}
           </div>
@@ -131,37 +148,64 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-[#0B0B0B]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Client <span className="text-[#D4AF37]">Experiences</span></h2>
+      <section className="py-32 relative">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">Client <span className="text-[#D4AF37]">Experiences</span></h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
             {testimonials.slice(0,3).map((t, idx) => (
-              <div key={t.id} className="glass-card p-8">
-                <div className="flex text-[#D4AF37] mb-4">
-                  {[...Array(t.rating)].map((_, i) => <Star key={i} size={16} className="fill-current" />)}
+              <motion.div 
+                key={t.id} 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.2, duration: 0.6 }}
+                className="bg-gradient-to-br from-[#111] to-[#0A0A0A] border border-white/10 rounded-2xl p-10 hover:border-[#D4AF37]/40 transition-colors shadow-2xl relative"
+              >
+                <div className="absolute -top-6 left-10 text-6xl text-[#D4AF37]/20 font-serif font-black">"</div>
+                <div className="flex text-[#D4AF37] mb-6 gap-1 relative z-10">
+                  {[...Array(t.rating)].map((_, i) => <Star key={i} size={18} className="fill-current" />)}
                 </div>
-                <p className="text-gray-300 italic mb-6">"{t.content}"</p>
-                <div>
-                  <h4 className="text-white font-semibold">{t.name}</h4>
-                  <p className="text-gray-500 text-sm">{t.role}</p>
+                <p className="text-gray-300 italic mb-8 leading-relaxed font-light text-lg relative z-10">"{t.content}"</p>
+                <div className="border-t border-white/10 pt-6 mt-auto">
+                  <h4 className="text-white font-bold text-lg">{t.name}</h4>
+                  <p className="text-[#D4AF37] text-sm font-medium uppercase tracking-wider mt-1">{t.role}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Luxury CTA */}
-      <section className="py-32 relative flex items-center justify-center bg-fixed bg-center bg-cover" style={{ backgroundImage: 'url("https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/home2.jpeg")' }}>
-        <div className="absolute inset-0 bg-black/70" />
-        <div className="relative z-10 text-center px-4">
-          <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">Ready to Create Magic?</h2>
-          <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Let our expert team craft an unforgettable experience for your next big event.</p>
-          <Link to="/contact" className="inline-block px-10 py-5 bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300">
-            Book a Consultation
-          </Link>
+      <section className="py-40 relative flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: 'url("https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/home2.jpeg")' }}
+        />
+        <div className="absolute inset-0 bg-black/80 bg-gradient-to-t from-[#050505] via-black/50 to-transparent" />
+        
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+          >
+            <h2 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight">
+              Ready to Create <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB]">Magic?</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-300 mb-12 font-light leading-relaxed">
+              Let our expert team craft an unforgettable experience for your next big event.
+            </p>
+            <Link 
+              to="/contact" 
+              className="inline-block px-12 py-6 bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-black font-bold uppercase tracking-widest hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-300 rounded-sm text-lg"
+            >
+              Book a Consultation
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>

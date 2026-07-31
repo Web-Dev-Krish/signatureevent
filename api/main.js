@@ -14,7 +14,9 @@ const tableMap = {
   'faqs': 'faqs',
   'venue-media': 'venue_media',
   'venue-availability': 'venue_availability',
-  'page-media': 'page_media'
+  'page-media': 'page_media',
+  'catering-packages': 'catering_packages',
+  'event-categories': 'event_categories'
 };
 
 export default async function handler(req, res) {
@@ -48,9 +50,9 @@ export default async function handler(req, res) {
         query = query.order('published_at', { ascending: false });
       } else if (endpoint === 'bookings') {
         query = query.order('created_at', { ascending: false });
-      } else if (endpoint === 'testimonials' || endpoint === 'faqs') {
+      } else if (endpoint === 'testimonials' || endpoint === 'faqs' || endpoint === 'event-categories') {
         query = query.order('id', { ascending: true });
-      } else if (endpoint === 'gallery' || endpoint === 'videos') {
+      } else if (endpoint === 'gallery' || endpoint === 'videos' || endpoint === 'catering-packages') {
         query = query.order('created_at', { ascending: false });
       } else if (endpoint === 'venue-media') {
         if (req.query.venue_id) {

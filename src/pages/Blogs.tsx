@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User } from 'lucide-react';
+import { Calendar, User, Sparkles } from 'lucide-react';
 import { formatDate } from '../lib/date';
+import { motion } from 'framer-motion';
 
 export default function Blogs() {
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -17,32 +18,64 @@ export default function Blogs() {
   }, []);
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-[#0B0B0B]">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Insights & <span className="text-[#D4AF37]">Inspiration</span></h1>
-          <p className="text-gray-400 max-w-2xl mx-auto">Discover trends, tips, and stories from the world of luxury events.</p>
-        </div>
+    <div className="bg-[#050505] min-h-screen pt-24 pb-20 relative overflow-hidden">
+      {/* Ambient Lights */}
+      <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2" />
 
+      {/* Header */}
+      <div className="relative z-10 py-20 bg-gradient-to-b from-transparent to-[#0A0A0A] border-b border-white/5">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#D4AF37] mb-6 backdrop-blur-md">
+              <Sparkles size={16} />
+              <span className="text-sm font-semibold tracking-widest uppercase">Our Journal</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 tracking-tight">Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB]">Inspiration</span></h1>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
+              Discover trends, tips, and stories from the world of luxury events and timeless celebrations.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-20 relative z-10">
         {loading ? (
-          <div className="text-center text-[#D4AF37]">Loading Articles...</div>
+          <div className="flex justify-center items-center h-64">
+            <div className="w-12 h-12 border-4 border-[#D4AF37]/30 border-t-[#D4AF37] rounded-full animate-spin" />
+          </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs.map(blog => (
-              <div key={blog.id} className="glass-card overflow-hidden group flex flex-col">
-                <div className="h-56 overflow-hidden">
-                  <img src={blog.image_url} alt={blog.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                </div>
-                <div className="p-6 flex-grow flex flex-col">
-                  <div className="text-[#D4AF37] text-xs font-bold uppercase tracking-wider mb-3">{blog.category}</div>
-                  <h3 className="text-xl font-serif font-bold text-white mb-3 line-clamp-2">{blog.title}</h3>
-                  <p className="text-gray-400 text-sm line-clamp-3 mb-4 flex-grow">{blog.content}</p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 border-t border-white/10 pt-4 mt-auto">
-                    <div className="flex items-center gap-1"><User size={14} /> {blog.author}</div>
-                    <div className="flex items-center gap-1"><Calendar size={14} /> {formatDate(blog.published_at)}</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+            {blogs.map((blog, idx) => (
+              <motion.div 
+                key={blog.id} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.6 }}
+                className="bg-[#111] border border-white/5 rounded-2xl overflow-hidden group flex flex-col hover:border-[#D4AF37]/30 transition-colors shadow-2xl relative"
+              >
+                <div className="h-64 overflow-hidden relative">
+                  <img src={blog.image_url} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-80" />
+                  <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 text-[#D4AF37] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
+                    {blog.category}
                   </div>
                 </div>
-              </div>
+                <div className="p-8 flex-grow flex flex-col relative z-10 -mt-10">
+                  <h3 className="text-2xl font-serif font-bold text-white mb-4 line-clamp-2 drop-shadow-md group-hover:text-[#D4AF37] transition-colors">{blog.title}</h3>
+                  <p className="text-gray-400 font-light text-sm leading-relaxed line-clamp-3 mb-8 flex-grow">{blog.content}</p>
+                  
+                  <div className="flex justify-between items-center text-xs text-gray-500 border-t border-white/10 pt-5 mt-auto uppercase tracking-widest font-semibold">
+                    <div className="flex items-center gap-2"><User size={14} className="text-[#D4AF37]" /> {blog.author}</div>
+                    <div className="flex items-center gap-2"><Calendar size={14} className="text-[#D4AF37]" /> {formatDate(blog.published_at)}</div>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         )}

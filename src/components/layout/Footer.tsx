@@ -45,11 +45,11 @@ export default function Footer() {
             <ul className="flex flex-col gap-4">
               <li className="flex items-start gap-3 text-gray-400">
                 <MapPin className="text-[#D4AF37] shrink-0 mt-1" size={18} />
-                <span>123 Luxury Avenue, Golden Estate, New Delhi, India 110001</span>
+                <span>171 -2, 32 W-2, Damodar Nagar, Kanpur, Uttar Pradesh 208027</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400">
                 <Phone className="text-[#D4AF37] shrink-0" size={18} />
-                <span>+91 98765 43210</span>
+                <span>+91 93547 10637</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400">
                 <Mail className="text-[#D4AF37] shrink-0" size={18} />

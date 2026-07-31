@@ -40,7 +40,7 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
         <Link to="/" className="text-2xl font-serif font-bold text-white tracking-wider flex items-center gap-2">
-          <Logo className="h-9 w-9 sm:h-10 sm:w-10 -my-2 opacity-0" />
+          <Logo className="h-9 w-9 sm:h-10 sm:w-10 -my-2" />
           <span className="hidden sm:inline">MALHOTRA</span>
         </Link>
 

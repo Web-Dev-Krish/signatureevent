@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, Users, Star, ArrowRight } from 'lucide-react';
+import { MapPin, Users, Star, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Venues() {
   const [venues, setVenues] = useState<any[]>([]);
@@ -17,54 +17,70 @@ export default function Venues() {
   }, []);
 
   return (
-    <div className="pt-24 pb-20 min-h-screen">
+    <div className="bg-[#050505] min-h-screen pt-24 pb-20 relative overflow-hidden">
+      {/* Ambient Background */}
+      <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none" />
+
       {/* Header */}
-      <div className="bg-[#151515] py-20 border-b border-white/5">
+      <div className="relative z-10 py-20 border-b border-white/5 bg-gradient-to-b from-transparent to-[#0A0A0A]">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6">Premium <span className="text-[#D4AF37]">Venues</span></h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Explore our curated collection of extraordinary spaces, perfect for your timeless celebrations.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#D4AF37] mb-6 backdrop-blur-md">
+              <Sparkles size={16} />
+              <span className="text-sm font-semibold tracking-widest uppercase">Luxury Locations</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 tracking-tight">Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB]">Venues</span></h1>
+            <p className="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
+              Explore our curated collection of extraordinary spaces, perfect for your timeless celebrations.
+            </p>
+          </motion.div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-20 relative z-10">
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="w-12 h-12 border-4 border-[#D4AF37] border-t-transparent rounded-full animate-spin" />
+            <div className="w-12 h-12 border-4 border-[#D4AF37]/30 border-t-[#D4AF37] rounded-full animate-spin" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {venues.map((venue, idx) => (
               <motion.div 
                 key={venue.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="glass-card group cursor-pointer overflow-hidden flex flex-col"
+                transition={{ delay: idx * 0.1, duration: 0.6 }}
+                className="bg-[#111] border border-white/5 rounded-2xl group cursor-pointer overflow-hidden flex flex-col hover:border-[#D4AF37]/40 transition-colors shadow-2xl relative"
               >
-                <div className="relative h-72 overflow-hidden">
-                  <img src={venue.image_url} alt={venue.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-3 py-1 flex items-center gap-1 text-[#D4AF37] text-sm font-semibold rounded">
+                <div className="relative h-80 overflow-hidden">
+                  <img src={venue.image_url} alt={venue.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
+                  <div className="absolute top-6 right-6 bg-black/60 backdrop-blur-md px-4 py-2 flex items-center gap-1.5 text-[#D4AF37] text-sm font-bold rounded-full border border-[#D4AF37]/30">
                     <Star size={14} className="fill-current" /> {venue.rating}
                   </div>
                 </div>
-                <div className="p-6 flex-grow flex flex-col">
-                  <h3 className="text-2xl font-serif font-bold text-white mb-2">{venue.name}</h3>
-                  <div className="flex items-center gap-2 text-gray-400 text-sm mb-4">
-                    <MapPin size={16} className="text-[#D4AF37]" /> {venue.location}
+                <div className="p-8 flex-grow flex flex-col relative z-10 -mt-16">
+                  <h3 className="text-3xl font-serif font-bold text-white mb-3 drop-shadow-md">{venue.name}</h3>
+                  <div className="flex items-center gap-2 text-[#D4AF37] text-sm mb-4 font-medium">
+                    <MapPin size={16} /> {venue.location}
                   </div>
-                  <p className="text-gray-400 text-sm mb-6 line-clamp-2">{venue.description}</p>
+                  <p className="text-gray-400 text-sm mb-8 line-clamp-3 leading-relaxed font-light">{venue.description}</p>
                   
-                  <div className="flex justify-between items-center text-sm text-gray-300 mb-6 border-t border-white/10 pt-4 mt-auto">
+                  <div className="flex justify-between items-center text-sm text-gray-300 mb-8 border-t border-b border-white/10 py-5 mt-auto">
                     <div className="flex items-center gap-2">
-                      <Users size={16} className="text-[#D4AF37]" /> Up to {venue.capacity}
+                      <Users size={16} className="text-gray-500" /> Up to {venue.capacity}
                     </div>
-                    <div>
-                      From <span className="text-[#D4AF37] font-semibold text-lg">${venue.price_per_day}</span>
+                    <div className="text-right">
+                      <div className="text-xs text-gray-500 uppercase tracking-widest">Starts at</div>
+                      <div className="text-[#D4AF37] font-bold text-lg">₹{venue.price_per_day}</div>
                     </div>
                   </div>
-                  <Link to={`/venues/${venue.id}`} className="w-full py-3 border border-[#D4AF37] text-[#D4AF37] flex items-center justify-center gap-2 hover:bg-[#D4AF37] hover:text-black transition-colors font-semibold uppercase tracking-wider text-sm">
+                  <Link to={`/venues/${venue.id}`} className="w-full py-4 bg-white/5 border border-[#D4AF37]/30 text-white flex items-center justify-center gap-2 hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#F3E5AB] hover:text-black hover:border-transparent transition-all duration-300 font-bold uppercase tracking-widest text-sm rounded-xl">
                     Explore Venue <ArrowRight size={16} />
                   </Link>
                 </div>

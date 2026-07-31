@@ -74,7 +74,7 @@ export default function SignatureEvents() {
               >
                 <Link to={event.path} className="group block bg-[#111] border border-white/5 rounded-2xl overflow-hidden hover:border-[#D4AF37]/40 transition-colors shadow-2xl">
                   <div className="relative h-80 overflow-hidden">
-                    <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <img src={event.image} alt={event.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
                     
                     <div className="absolute top-6 left-6 w-14 h-14 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center border border-white/10 text-[#D4AF37] group-hover:scale-110 transition-transform">

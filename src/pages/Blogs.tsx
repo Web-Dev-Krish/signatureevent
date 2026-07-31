@@ -60,7 +60,7 @@ export default function Blogs() {
                 className="bg-[#111] border border-white/5 rounded-2xl overflow-hidden group flex flex-col hover:border-[#D4AF37]/30 transition-colors shadow-2xl relative"
               >
                 <div className="h-64 overflow-hidden relative">
-                  <img src={blog.image_url} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                  <img src={blog.image_url} alt={blog.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-80" />
                   <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 text-[#D4AF37] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
                     {blog.category}

@@ -58,7 +58,7 @@ export default function Venues() {
                 className="bg-[#111] border border-white/5 rounded-2xl group cursor-pointer overflow-hidden flex flex-col hover:border-[#D4AF37]/40 transition-colors shadow-2xl relative"
               >
                 <div className="relative h-80 overflow-hidden">
-                  <img src={venue.image_url} alt={venue.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <img src={venue.image_url} alt={venue.name} loading="lazy" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-transparent to-transparent opacity-90" />
                   <div className="absolute top-6 right-6 bg-black/60 backdrop-blur-md px-4 py-2 flex items-center gap-1.5 text-[#D4AF37] text-sm font-bold rounded-full border border-[#D4AF37]/30">
                     <Star size={14} className="fill-current" /> {venue.rating}

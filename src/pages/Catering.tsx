@@ -70,7 +70,7 @@ export default function Catering() {
                 )}
                 {pkg.image_url && (
                   <div className="h-48 overflow-hidden">
-                    <img src={pkg.image_url} alt={pkg.name} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" />
+                    <img src={pkg.image_url} alt={pkg.name} loading="lazy" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" />
                   </div>
                 )}
                 <div className="p-8 flex-1 flex flex-col">
@@ -149,7 +149,7 @@ export default function Catering() {
                 className="bg-[#111] border border-white/5 rounded-2xl overflow-hidden group hover:border-[#D4AF37]/30 transition-colors"
               >
                 <div className="h-56 overflow-hidden relative">
-                  <img src={item.image_url} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                  <img src={item.image_url} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className={`absolute top-4 right-4 w-3 h-3 rounded-full shadow-lg ${item.type === 'Veg' ? 'bg-green-500 shadow-green-500/50' : item.type === 'Non-Veg' ? 'bg-red-500 shadow-red-500/50' : 'bg-transparent'}`} />
                 </div>

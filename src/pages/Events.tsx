@@ -97,6 +97,7 @@ export default function Events() {
                   <img 
                     src={event.image_url} 
                     alt={event.title || 'Event Media'} 
+                    loading="lazy"
                     className="w-full h-auto object-cover" 
                   />
                   

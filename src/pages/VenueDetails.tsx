@@ -157,7 +157,7 @@ export default function VenueDetails() {
                   {venueMedia.map((media) => (
                     <div key={media.id} className="rounded-2xl overflow-hidden group relative">
                       {media.media_type === 'image' ? (
-                        <img src={media.media_url} alt={media.caption || 'Gallery'} className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                        <img src={media.media_url} alt={media.caption || 'Gallery'} loading="lazy" className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-700" />
                       ) : (
                         <video src={media.media_url} controls className="w-full h-64 object-cover" poster={media.thumbnail_url} />
                       )}

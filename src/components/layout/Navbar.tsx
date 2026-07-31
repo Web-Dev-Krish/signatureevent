@@ -6,7 +6,7 @@ import Logo from '../Logo';
 
 const links = [
   { name: 'Home', path: '/' },
-  { name: 'Events', path: '/events' },
+  { name: 'Theme & Events', path: '/events' },
   { name: "Malhotra Catering's", path: '/catering' },
   { name: 'Signature Events', path: '/signature-events' },
   { name: 'Blogs', path: '/blogs' },
@@ -40,8 +40,8 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
         <Link to="/" className="text-2xl font-serif font-bold text-white tracking-wider flex items-center gap-2">
-          <Logo className="h-9 w-9 sm:h-10 sm:w-10 -my-2" />
-          <span className="hidden sm:inline">ALHOTRA</span>
+          <Logo className="h-9 w-9 sm:h-10 sm:w-10 -my-2 opacity-0" />
+          <span className="hidden sm:inline">MALHOTRA</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -57,12 +57,12 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/contact"
+          <a
+            href="tel:+919354710637"
             className="px-6 py-2 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 uppercase tracking-widest text-xs font-semibold"
           >
-            Book Now
-          </Link>
+            Call Now
+          </a>
         </nav>
 
         {/* Mobile Toggle */}
@@ -92,10 +92,10 @@ export default function Navbar() {
               </Link>
             ))}
             <a
-              href="tel:+919876543210"
+              href="tel:+919354710637"
               className="mt-4 px-6 py-3 bg-[#D4AF37] text-black text-center font-bold uppercase tracking-wider"
             >
-              +91 98765 43210
+              +91 93547 10637
             </a>
           </motion.nav>
         )}

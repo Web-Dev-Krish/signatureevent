@@ -73,24 +73,24 @@ export default function Gallery() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-serif font-bold text-gray-900">Media Gallery</h1>
-        <button onClick={() => setIsModalOpen(true)} className="bg-[#800000] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#9B111E]">
+        <h1 className="text-3xl font-serif font-bold text-slate-900">Media Gallery</h1>
+        <button onClick={() => setIsModalOpen(true)} className="bg-[#D4AF37] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#F3E5AB]">
           <Plus size={18} /> Add Media
         </button>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {loading ? <p className="text-gray-600">Loading...</p> : images.map(img => (
-          <div key={img.id} className="group relative rounded-xl overflow-hidden bg-[#FFFFFF] border border-black/5">
+        {loading ? <p className="text-slate-600">Loading...</p> : images.map(img => (
+          <div key={img.id} className="group relative rounded-xl overflow-hidden bg-[#FFFFFF] border border-slate-200">
             <img src={img.image_url} alt={img.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform" />
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-between p-4">
               <div className="flex justify-end gap-2">
-                <button onClick={() => copyUrl(img.image_url)} className="p-2 bg-blue-500/80 text-gray-900 rounded hover:bg-blue-500" title="Copy URL"><Copy size={16} /></button>
-                <button onClick={() => deleteImage(img.id)} className="p-2 bg-red-500/80 text-gray-900 rounded hover:bg-red-500" title="Delete"><Trash2 size={16} /></button>
+                <button onClick={() => copyUrl(img.image_url)} className="p-2 bg-blue-500/80 text-slate-900 rounded hover:bg-blue-500" title="Copy URL"><Copy size={16} /></button>
+                <button onClick={() => deleteImage(img.id)} className="p-2 bg-red-500/80 text-slate-900 rounded hover:bg-red-500" title="Delete"><Trash2 size={16} /></button>
               </div>
               <div>
-                <p className="text-xs text-[#800000] font-bold uppercase">{img.category}</p>
-                <p className="text-gray-900 font-semibold truncate">{img.title}</p>
+                <p className="text-xs text-[#D4AF37] font-bold uppercase">{img.category}</p>
+                <p className="text-slate-900 font-semibold truncate">{img.title}</p>
               </div>
             </div>
           </div>
@@ -99,31 +99,31 @@ export default function Gallery() {
 
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-black/5 rounded-xl w-full max-w-md">
-            <div className="p-6 border-b border-black/5 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">Add to Gallery</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-gray-600 hover:text-gray-900"><X size={24} /></button>
+          <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl w-full max-w-md">
+            <div className="p-6 border-b border-slate-200 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">Add to Gallery</h2>
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-600 hover:text-slate-900"><X size={24} /></button>
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm text-gray-600 mb-1">Title</label>
-                <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
+                <label className="block text-sm text-slate-600 mb-1">Title</label>
+                <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
               </div>
               <div>
-                <label className="block text-sm text-gray-600 mb-1">Category</label>
-                <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.category} onChange={e => setForm({...form, category: e.target.value})} placeholder="e.g. Wedding, Venue, Food" />
+                <label className="block text-sm text-slate-600 mb-1">Category</label>
+                <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.category} onChange={e => setForm({...form, category: e.target.value})} placeholder="e.g. Wedding, Venue, Food" />
               </div>
               <div>
-                <label className="block text-sm text-gray-600 mb-1">Image Upload</label>
+                <label className="block text-sm text-slate-600 mb-1">Image Upload</label>
                 <div className="flex gap-2">
                   <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleFileChange} />
-                  <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-[#FFFFFF] border border-[#800000] text-[#800000] px-4 py-2 rounded flex items-center gap-2 hover:bg-[#800000]/10">
+                  <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-[#FFFFFF] border border-[#D4AF37] text-[#D4AF37] px-4 py-2 rounded flex items-center gap-2 hover:bg-[#D4AF37]/10">
                     <UploadCloud size={18} /> {uploading ? 'Uploading...' : 'Choose File'}
                   </button>
-                  <input required className="flex-1 bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900 text-sm" value={form.image_url} onChange={e => setForm({...form, image_url: e.target.value})} placeholder="Or paste URL here" />
+                  <input required className="flex-1 bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900 text-sm" value={form.image_url} onChange={e => setForm({...form, image_url: e.target.value})} placeholder="Or paste URL here" />
                 </div>
               </div>
-              <button type="submit" disabled={uploading} className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E] disabled:opacity-50">
+              <button type="submit" disabled={uploading} className="w-full bg-[#D4AF37] text-white font-bold py-3 rounded-lg hover:bg-[#F3E5AB] disabled:opacity-50">
                 Save Image
               </button>
             </form>

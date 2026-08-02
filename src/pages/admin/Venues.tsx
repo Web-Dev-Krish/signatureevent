@@ -177,25 +177,25 @@ export default function Venues() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-serif font-bold text-gray-900">Manage Venues</h1>
-        <button onClick={openNew} className="bg-[#800000] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#9B111E]">
+        <h1 className="text-3xl font-serif font-bold text-slate-900">Manage Venues</h1>
+        <button onClick={openNew} className="bg-[#D4AF37] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#F3E5AB]">
           <Plus size={18} /> Add Venue
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {loading ? <p className="text-gray-600">Loading...</p> : venues.map(v => (
-          <div key={v.id} className="bg-[#FFFFFF] border border-black/5 rounded-xl overflow-hidden">
+        {loading ? <p className="text-slate-600">Loading...</p> : venues.map(v => (
+          <div key={v.id} className="bg-[#FFFFFF] border border-slate-200 rounded-xl overflow-hidden">
             <img src={v.image_url} alt={v.name} className="w-full h-48 object-cover" />
             <div className="p-4">
-              <h3 className="text-lg font-bold text-gray-900 truncate">{v.name}</h3>
-              <p className="text-sm text-gray-600 mb-4 truncate">{v.location}</p>
+              <h3 className="text-lg font-bold text-slate-900 truncate">{v.name}</h3>
+              <p className="text-sm text-slate-600 mb-4 truncate">{v.location}</p>
               <div className="flex justify-between items-center">
-                <span className="text-[#800000] font-semibold">${v.price_per_day}/day</span>
+                <span className="text-[#D4AF37] font-semibold">${v.price_per_day}/day</span>
                 <div className="flex gap-2">
-                  <button onClick={() => openMediaModal(v.id)} className="p-2 text-gray-600 hover:text-gray-900 bg-black/5 rounded" title="Manage Media"><ImageIcon size={16} /></button>
-                  <button onClick={() => openAvailabilityModal(v.id)} className="p-2 text-gray-600 hover:text-gray-900 bg-black/5 rounded" title="Manage Availability"><Calendar size={16} /></button>
-                  <button onClick={() => editVenue(v)} className="p-2 text-gray-600 hover:text-gray-900 bg-black/5 rounded"><Edit2 size={16} /></button>
+                  <button onClick={() => openMediaModal(v.id)} className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 rounded" title="Manage Media"><ImageIcon size={16} /></button>
+                  <button onClick={() => openAvailabilityModal(v.id)} className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 rounded" title="Manage Availability"><Calendar size={16} /></button>
+                  <button onClick={() => editVenue(v)} className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 rounded"><Edit2 size={16} /></button>
                   <button onClick={() => deleteVenue(v.id)} className="p-2 text-red-400 hover:text-red-300 bg-red-500/10 rounded"><Trash2 size={16} /></button>
                 </div>
               </div>
@@ -207,47 +207,47 @@ export default function Venues() {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-black/5 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-black/5 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">{editingId ? 'Edit Venue' : 'Add Venue'}</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-gray-600 hover:text-gray-900"><X size={24} /></button>
+          <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-slate-200 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">{editingId ? 'Edit Venue' : 'Add Venue'}</h2>
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-600 hover:text-slate-900"><X size={24} /></button>
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Name</label>
-                  <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Name</label>
+                  <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Location</label>
-                  <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.location} onChange={e => setForm({...form, location: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Location</label>
+                  <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.location} onChange={e => setForm({...form, location: e.target.value})} />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Capacity</label>
-                  <input required type="number" className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.capacity} onChange={e => setForm({...form, capacity: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Capacity</label>
+                  <input required type="number" className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.capacity} onChange={e => setForm({...form, capacity: e.target.value})} />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Price per day (₹)</label>
-                  <input required type="number" className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.price_per_day} onChange={e => setForm({...form, price_per_day: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Price per day (₹)</label>
+                  <input required type="number" className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.price_per_day} onChange={e => setForm({...form, price_per_day: e.target.value})} />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Rating</label>
-                  <input required type="number" step="0.1" className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.rating} onChange={e => setForm({...form, rating: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Rating</label>
+                  <input required type="number" step="0.1" className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.rating} onChange={e => setForm({...form, rating: e.target.value})} />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Image URL</label>
-                  <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.image_url} onChange={e => setForm({...form, image_url: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Image URL</label>
+                  <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.image_url} onChange={e => setForm({...form, image_url: e.target.value})} />
                 </div>
               </div>
               <div>
-                <label className="block text-sm text-gray-600 mb-1">Google Maps HTML (iframe)</label>
-                <textarea rows={2} className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.map_html} onChange={e => setForm({...form, map_html: e.target.value})} placeholder='<iframe src="..."></iframe>' />
+                <label className="block text-sm text-slate-600 mb-1">Google Maps HTML (iframe)</label>
+                <textarea rows={2} className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.map_html} onChange={e => setForm({...form, map_html: e.target.value})} placeholder='<iframe src="..."></iframe>' />
               </div>
               <div>
-                <label className="block text-sm text-gray-600 mb-1">Description</label>
-                <textarea required rows={4} className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={form.description} onChange={e => setForm({...form, description: e.target.value})} />
+                <label className="block text-sm text-slate-600 mb-1">Description</label>
+                <textarea required rows={4} className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.description} onChange={e => setForm({...form, description: e.target.value})} />
               </div>
-              <button type="submit" className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E]">
+              <button type="submit" className="w-full bg-[#D4AF37] text-white font-bold py-3 rounded-lg hover:bg-[#F3E5AB]">
                 {editingId ? 'Update Venue' : 'Create Venue'}
               </button>
             </form>
@@ -258,66 +258,66 @@ export default function Venues() {
       {/* Media Modal */}
       {mediaModalOpen && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-black/5 rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-black/5 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">Manage Venue Media</h2>
-              <button onClick={() => setMediaModalOpen(false)} className="text-gray-600 hover:text-gray-900"><X size={24} /></button>
+          <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-slate-200 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">Manage Venue Media</h2>
+              <button onClick={() => setMediaModalOpen(false)} className="text-slate-600 hover:text-slate-900"><X size={24} /></button>
             </div>
             <div className="p-6">
               <form onSubmit={handleMediaSubmit} className="space-y-4 mb-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm text-gray-600 mb-1">Media Type</label>
-                    <select className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.media_type} onChange={e => setMediaForm({...mediaForm, media_type: e.target.value})}>
+                    <label className="block text-sm text-slate-600 mb-1">Media Type</label>
+                    <select className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.media_type} onChange={e => setMediaForm({...mediaForm, media_type: e.target.value})}>
                       <option value="image">Image</option>
                       <option value="video">Video</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm text-gray-600 mb-1">Display Order</label>
-                    <input type="number" className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.display_order} onChange={e => setMediaForm({...mediaForm, display_order: parseInt(e.target.value)})} />
+                    <label className="block text-sm text-slate-600 mb-1">Display Order</label>
+                    <input type="number" className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.display_order} onChange={e => setMediaForm({...mediaForm, display_order: parseInt(e.target.value)})} />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Media Upload</label>
+                  <label className="block text-sm text-slate-600 mb-1">Media Upload</label>
                   <div className="flex gap-2">
                     <input type="file" accept={mediaForm.media_type === 'image' ? 'image/*' : 'video/*'} className="hidden" ref={fileInputRef} onChange={handleFileChange} />
-                    <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-[#FFFFFF] border border-[#800000] text-[#800000] px-4 py-2 rounded flex items-center gap-2 hover:bg-[#800000]/10">
+                    <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-[#FFFFFF] border border-[#D4AF37] text-[#D4AF37] px-4 py-2 rounded flex items-center gap-2 hover:bg-[#D4AF37]/10">
                       <UploadCloud size={18} /> {uploading ? 'Uploading...' : 'Choose File'}
                     </button>
-                    <input required className="flex-1 bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900 text-sm" value={mediaForm.media_url} onChange={e => setMediaForm({...mediaForm, media_url: e.target.value})} placeholder="Or paste URL here" />
+                    <input required className="flex-1 bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900 text-sm" value={mediaForm.media_url} onChange={e => setMediaForm({...mediaForm, media_url: e.target.value})} placeholder="Or paste URL here" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Thumbnail URL (for videos)</label>
-                  <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.thumbnail_url} onChange={e => setMediaForm({...mediaForm, thumbnail_url: e.target.value})} placeholder="Optional thumbnail for videos" />
+                  <label className="block text-sm text-slate-600 mb-1">Thumbnail URL (for videos)</label>
+                  <input className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.thumbnail_url} onChange={e => setMediaForm({...mediaForm, thumbnail_url: e.target.value})} placeholder="Optional thumbnail for videos" />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Caption</label>
-                  <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.caption} onChange={e => setMediaForm({...mediaForm, caption: e.target.value})} placeholder="Optional caption" />
+                  <label className="block text-sm text-slate-600 mb-1">Caption</label>
+                  <input className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.caption} onChange={e => setMediaForm({...mediaForm, caption: e.target.value})} placeholder="Optional caption" />
                 </div>
-                <button type="submit" disabled={uploading} className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E] disabled:opacity-50">
+                <button type="submit" disabled={uploading} className="w-full bg-[#D4AF37] text-white font-bold py-3 rounded-lg hover:bg-[#F3E5AB] disabled:opacity-50">
                   Add Media
                 </button>
               </form>
 
-              <div className="border-t border-black/5 pt-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Current Media</h3>
+              <div className="border-t border-slate-200 pt-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">Current Media</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {venueMedia.map(media => (
-                    <div key={media.id} className="group relative rounded-xl overflow-hidden bg-[#F9F6F0] border border-black/5">
+                    <div key={media.id} className="group relative rounded-xl overflow-hidden bg-[#FAFAFA] border border-slate-200">
                       {media.media_type === 'image' ? (
                         <img src={media.media_url} alt={media.caption || 'Media'} className="w-full h-32 object-cover" />
                       ) : (
-                        <div className="w-full h-32 flex items-center justify-center bg-[#F9F6F0]">
-                          <Video size={32} className="text-[#800000]" />
+                        <div className="w-full h-32 flex items-center justify-center bg-[#FAFAFA]">
+                          <Video size={32} className="text-[#D4AF37]" />
                         </div>
                       )}
                       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <button onClick={() => deleteMedia(media.id)} className="p-2 bg-red-500/80 text-gray-900 rounded hover:bg-red-500"><Trash2 size={16} /></button>
+                        <button onClick={() => deleteMedia(media.id)} className="p-2 bg-red-500/80 text-slate-900 rounded hover:bg-red-500"><Trash2 size={16} /></button>
                       </div>
                       <div className="p-2">
-                        <p className="text-xs text-gray-600 truncate">{media.caption || 'No caption'}</p>
+                        <p className="text-xs text-slate-600 truncate">{media.caption || 'No caption'}</p>
                       </div>
                     </div>
                   ))}
@@ -331,17 +331,17 @@ export default function Venues() {
       {/* Availability Modal */}
       {availabilityModalOpen && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-black/5 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-black/5 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">Manage Venue Availability</h2>
-              <button onClick={() => setAvailabilityModalOpen(false)} className="text-gray-600 hover:text-gray-900"><X size={24} /></button>
+          <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-slate-200 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">Manage Venue Availability</h2>
+              <button onClick={() => setAvailabilityModalOpen(false)} className="text-slate-600 hover:text-slate-900"><X size={24} /></button>
             </div>
             <div className="p-6">
               <form onSubmit={handleAvailabilitySubmit} className="space-y-4 mb-6">
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Unavailable Date</label>
+                  <label className="block text-sm text-slate-600 mb-1">Unavailable Date</label>
                   <div className="grid grid-cols-3 gap-2">
-                    <select required className="bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getDate() : ''} onChange={e => {
+                    <select required className="bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getDate() : ''} onChange={e => {
                       const d = Number(e.target.value);
                       const m = availabilityForm.date ? toLocalDate(availabilityForm.date).getMonth() : 0;
                       const y = availabilityForm.date ? toLocalDate(availabilityForm.date).getFullYear() : new Date().getFullYear();
@@ -350,7 +350,7 @@ export default function Venues() {
                       <option value="">Day</option>
                       {Array.from({length: 31}, (_, i) => <option key={i+1} value={i+1}>{i+1}</option>)}
                     </select>
-                    <select required className="bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getMonth() : ''} onChange={e => {
+                    <select required className="bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getMonth() : ''} onChange={e => {
                       const m = Number(e.target.value);
                       const d = availabilityForm.date ? toLocalDate(availabilityForm.date).getDate() : 1;
                       const y = availabilityForm.date ? toLocalDate(availabilityForm.date).getFullYear() : new Date().getFullYear();
@@ -359,7 +359,7 @@ export default function Venues() {
                       <option value="">Month</option>
                       {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].map((m, i) => <option key={i} value={i}>{m}</option>)}
                     </select>
-                    <select required className="bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getFullYear() : ''} onChange={e => {
+                    <select required className="bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={availabilityForm.date ? toLocalDate(availabilityForm.date).getFullYear() : ''} onChange={e => {
                       const y = Number(e.target.value);
                       const m = availabilityForm.date ? toLocalDate(availabilityForm.date).getMonth() : 0;
                       const d = availabilityForm.date ? toLocalDate(availabilityForm.date).getDate() : 1;
@@ -371,25 +371,25 @@ export default function Venues() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Reason (optional)</label>
-                  <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={availabilityForm.reason} onChange={e => setAvailabilityForm({...availabilityForm, reason: e.target.value})} placeholder="e.g. Private event, Maintenance" />
+                  <label className="block text-sm text-slate-600 mb-1">Reason (optional)</label>
+                  <input className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={availabilityForm.reason} onChange={e => setAvailabilityForm({...availabilityForm, reason: e.target.value})} placeholder="e.g. Private event, Maintenance" />
                 </div>
-                <button type="submit" className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E]">
+                <button type="submit" className="w-full bg-[#D4AF37] text-white font-bold py-3 rounded-lg hover:bg-[#F3E5AB]">
                   Mark as Unavailable
                 </button>
               </form>
 
-              <div className="border-t border-black/5 pt-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Unavailable Dates</h3>
+              <div className="border-t border-slate-200 pt-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-4">Unavailable Dates</h3>
                 {unavailableDates.length === 0 ? (
-                  <p className="text-gray-600 text-center py-4">No unavailable dates set</p>
+                  <p className="text-slate-600 text-center py-4">No unavailable dates set</p>
                 ) : (
                   <div className="space-y-2">
                     {unavailableDates.map(date => (
-                      <div key={date.id} className="flex justify-between items-center bg-[#F9F6F0] border border-black/5 rounded p-3">
+                      <div key={date.id} className="flex justify-between items-center bg-[#FAFAFA] border border-slate-200 rounded p-3">
                         <div>
-                          <p className="text-gray-900 font-semibold">{formatDateWithWeekday(date.date)}</p>
-                          {date.reason && <p className="text-gray-600 text-sm">{date.reason}</p>}
+                          <p className="text-slate-900 font-semibold">{formatDateWithWeekday(date.date)}</p>
+                          {date.reason && <p className="text-slate-600 text-sm">{date.reason}</p>}
                         </div>
                         <button onClick={() => deleteUnavailableDate(date.id)} className="p-2 text-red-400 hover:text-red-300"><Trash2 size={16} /></button>
                       </div>

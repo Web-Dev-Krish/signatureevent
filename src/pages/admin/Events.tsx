@@ -97,17 +97,17 @@ export default function Events() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-serif font-bold text-gray-900">Manage Theme & Events</h1>
-        <div className="flex bg-[#FFFFFF] rounded-lg p-1 border border-black/5">
+        <h1 className="text-3xl font-serif font-bold text-slate-900">Manage Theme & Events</h1>
+        <div className="flex bg-[#FFFFFF] rounded-lg p-1 border border-slate-200">
           <button 
             onClick={() => setActiveTab('media')}
-            className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors ${activeTab === 'media' ? 'bg-[#800000] text-white' : 'text-gray-600 hover:text-gray-900'}`}
+            className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors ${activeTab === 'media' ? 'bg-[#D4AF37] text-white' : 'text-slate-600 hover:text-slate-900'}`}
           >
             <ImageIcon size={18} /> Media
           </button>
           <button 
             onClick={() => setActiveTab('categories')}
-            className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors ${activeTab === 'categories' ? 'bg-[#800000] text-white' : 'text-gray-600 hover:text-gray-900'}`}
+            className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors ${activeTab === 'categories' ? 'bg-[#D4AF37] text-white' : 'text-slate-600 hover:text-slate-900'}`}
           >
             <Tags size={18} /> Categories
           </button>
@@ -117,20 +117,20 @@ export default function Events() {
       {activeTab === 'media' && (
         <div className="space-y-6">
           <div className="flex justify-end">
-            <button onClick={() => openMediaModal()} className="bg-[#800000] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#9B111E]">
+            <button onClick={() => openMediaModal()} className="bg-[#D4AF37] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#F3E5AB]">
               <Plus size={18} /> Add Media
             </button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {loading ? <p className="text-gray-600">Loading...</p> : events.map(v => (
-              <div key={v.id} className="bg-[#FFFFFF] border border-black/5 rounded-xl overflow-hidden">
+            {loading ? <p className="text-slate-600">Loading...</p> : events.map(v => (
+              <div key={v.id} className="bg-[#FFFFFF] border border-slate-200 rounded-xl overflow-hidden">
                 <img src={v.image_url} alt={v.title} className="w-full h-48 object-cover" />
                 <div className="p-4">
-                  <div className="text-xs text-[#800000] uppercase tracking-wider mb-1">{v.type}</div>
-                  <h3 className="text-lg font-bold text-gray-900 truncate">{v.title || 'Untitled'}</h3>
-                  <div className="flex justify-end gap-2 mt-4 border-t border-black/5 pt-3">
-                    <button onClick={() => openMediaModal(v)} className="p-2 text-gray-600 hover:text-gray-900 bg-black/5 rounded"><Edit2 size={16} /></button>
+                  <div className="text-xs text-[#D4AF37] uppercase tracking-wider mb-1">{v.type}</div>
+                  <h3 className="text-lg font-bold text-slate-900 truncate">{v.title || 'Untitled'}</h3>
+                  <div className="flex justify-end gap-2 mt-4 border-t border-slate-200 pt-3">
+                    <button onClick={() => openMediaModal(v)} className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 rounded"><Edit2 size={16} /></button>
                     <button onClick={() => deleteEvent(v.id)} className="p-2 text-red-400 hover:text-red-300 bg-red-500/10 rounded"><Trash2 size={16} /></button>
                   </div>
                 </div>
@@ -143,17 +143,17 @@ export default function Events() {
       {activeTab === 'categories' && (
         <div className="space-y-6">
           <div className="flex justify-end">
-            <button onClick={() => openCategoryModal()} className="bg-[#800000] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#9B111E]">
+            <button onClick={() => openCategoryModal()} className="bg-[#D4AF37] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#F3E5AB]">
               <Plus size={18} /> Add Category
             </button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {loading ? <p className="text-gray-600">Loading...</p> : categories.map(cat => (
-              <div key={cat.id} className="bg-[#FFFFFF] border border-black/5 rounded-xl p-4 flex justify-between items-center">
-                <span className="text-gray-900 font-medium">{cat.name}</span>
+            {loading ? <p className="text-slate-600">Loading...</p> : categories.map(cat => (
+              <div key={cat.id} className="bg-[#FFFFFF] border border-slate-200 rounded-xl p-4 flex justify-between items-center">
+                <span className="text-slate-900 font-medium">{cat.name}</span>
                 <div className="flex gap-2">
-                  <button onClick={() => openCategoryModal(cat)} className="p-2 text-gray-600 hover:text-gray-900 bg-black/5 rounded"><Edit2 size={16} /></button>
+                  <button onClick={() => openCategoryModal(cat)} className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 rounded"><Edit2 size={16} /></button>
                   <button onClick={() => deleteCategory(cat.id)} className="p-2 text-red-400 hover:text-red-300 bg-red-500/10 rounded"><Trash2 size={16} /></button>
                 </div>
               </div>
@@ -165,34 +165,34 @@ export default function Events() {
       {/* Media Modal */}
       {isMediaModalOpen && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-black/5 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-black/5 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">{editingId ? 'Edit Media' : 'Add Media'}</h2>
-              <button onClick={() => setIsMediaModalOpen(false)} className="text-gray-600 hover:text-gray-900"><X size={24} /></button>
+          <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-slate-200 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">{editingId ? 'Edit Media' : 'Add Media'}</h2>
+              <button onClick={() => setIsMediaModalOpen(false)} className="text-slate-600 hover:text-slate-900"><X size={24} /></button>
             </div>
             <form onSubmit={handleMediaSubmit} className="p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Title (Optional)</label>
-                  <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.title} onChange={e => setMediaForm({...mediaForm, title: e.target.value})} placeholder="e.g. Royal Wedding Setup" />
+                  <label className="block text-sm text-slate-600 mb-1">Title (Optional)</label>
+                  <input className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.title} onChange={e => setMediaForm({...mediaForm, title: e.target.value})} placeholder="e.g. Royal Wedding Setup" />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-600 mb-1">Category</label>
-                  <select required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.type} onChange={e => setMediaForm({...mediaForm, type: e.target.value})}>
+                  <label className="block text-sm text-slate-600 mb-1">Category</label>
+                  <select required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.type} onChange={e => setMediaForm({...mediaForm, type: e.target.value})}>
                     <option value="" disabled>Select Category</option>
                     {categories.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
                   </select>
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-sm text-gray-600 mb-1">Image URL</label>
-                  <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.image_url} onChange={e => setMediaForm({...mediaForm, image_url: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Image URL</label>
+                  <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.image_url} onChange={e => setMediaForm({...mediaForm, image_url: e.target.value})} />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-sm text-gray-600 mb-1">Video URL (Optional)</label>
-                  <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.video_url} onChange={e => setMediaForm({...mediaForm, video_url: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Video URL (Optional)</label>
+                  <input className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.video_url} onChange={e => setMediaForm({...mediaForm, video_url: e.target.value})} />
                 </div>
               </div>
-              <button type="submit" className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E]">
+              <button type="submit" className="w-full bg-[#D4AF37] text-white font-bold py-3 rounded-lg hover:bg-[#F3E5AB]">
                 {editingId ? 'Update Media' : 'Add Media'}
               </button>
             </form>
@@ -203,17 +203,17 @@ export default function Events() {
       {/* Category Modal */}
       {isCategoryModalOpen && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#FFFFFF] border border-black/5 rounded-xl w-full max-w-md">
-            <div className="p-6 border-b border-black/5 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">{editingId ? 'Edit Category' : 'Add Category'}</h2>
-              <button onClick={() => setIsCategoryModalOpen(false)} className="text-gray-600 hover:text-gray-900"><X size={24} /></button>
+          <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl w-full max-w-md">
+            <div className="p-6 border-b border-slate-200 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-slate-900">{editingId ? 'Edit Category' : 'Add Category'}</h2>
+              <button onClick={() => setIsCategoryModalOpen(false)} className="text-slate-600 hover:text-slate-900"><X size={24} /></button>
             </div>
             <form onSubmit={handleCategorySubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm text-gray-600 mb-1">Category Name</label>
-                <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={categoryForm.name} onChange={e => setCategoryForm({...categoryForm, name: e.target.value})} placeholder="e.g. Pre-Wedding" />
+                <label className="block text-sm text-slate-600 mb-1">Category Name</label>
+                <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={categoryForm.name} onChange={e => setCategoryForm({...categoryForm, name: e.target.value})} placeholder="e.g. Pre-Wedding" />
               </div>
-              <button type="submit" className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E]">
+              <button type="submit" className="w-full bg-[#D4AF37] text-white font-bold py-3 rounded-lg hover:bg-[#F3E5AB]">
                 {editingId ? 'Update Category' : 'Add Category'}
               </button>
             </form>

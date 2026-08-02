@@ -86,13 +86,13 @@ export default function PageMedia() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-serif font-bold text-gray-900">Manage Page Media</h1>
+        <h1 className="text-3xl font-serif font-bold text-slate-900">Manage Page Media</h1>
       </div>
 
-      <div className="bg-[#FFFFFF] border border-black/5 rounded-xl p-6">
-        <label className="block text-sm text-gray-600 mb-2">Select Page</label>
+      <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl p-6">
+        <label className="block text-sm text-slate-600 mb-2">Select Page</label>
         <select
-          className="w-full bg-[#F9F6F0] border border-black/5 rounded p-3 text-gray-900"
+          className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-3 text-slate-900"
           value={selectedPage}
           onChange={(e) => setSelectedPage(e.target.value)}
         >
@@ -102,67 +102,67 @@ export default function PageMedia() {
         </select>
       </div>
 
-      <div className="bg-[#FFFFFF] border border-black/5 rounded-xl p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Add New Media</h2>
+      <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl p-6">
+        <h2 className="text-xl font-bold text-slate-900 mb-4">Add New Media</h2>
         <form onSubmit={handleMediaSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm text-gray-600 mb-1">Media Type</label>
-              <select className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.media_type} onChange={e => setMediaForm({...mediaForm, media_type: e.target.value})}>
+              <label className="block text-sm text-slate-600 mb-1">Media Type</label>
+              <select className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.media_type} onChange={e => setMediaForm({...mediaForm, media_type: e.target.value})}>
                 <option value="image">Image</option>
                 <option value="video">Video</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm text-gray-600 mb-1">Display Order</label>
-              <input type="number" className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.display_order} onChange={e => setMediaForm({...mediaForm, display_order: parseInt(e.target.value)})} />
+              <label className="block text-sm text-slate-600 mb-1">Display Order</label>
+              <input type="number" className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.display_order} onChange={e => setMediaForm({...mediaForm, display_order: parseInt(e.target.value)})} />
             </div>
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Media Upload</label>
+            <label className="block text-sm text-slate-600 mb-1">Media Upload</label>
             <div className="flex gap-2">
               <input type="file" accept={mediaForm.media_type === 'image' ? 'image/*' : 'video/*'} className="hidden" ref={fileInputRef} onChange={handleFileChange} />
-              <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-[#FFFFFF] border border-[#800000] text-[#800000] px-4 py-2 rounded flex items-center gap-2 hover:bg-[#800000]/10">
+              <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-[#FFFFFF] border border-[#D4AF37] text-[#D4AF37] px-4 py-2 rounded flex items-center gap-2 hover:bg-[#D4AF37]/10">
                 <UploadCloud size={18} /> {uploading ? 'Uploading...' : 'Choose File'}
               </button>
-              <input required className="flex-1 bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900 text-sm" value={mediaForm.media_url} onChange={e => setMediaForm({...mediaForm, media_url: e.target.value})} placeholder="Or paste URL here" />
+              <input required className="flex-1 bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900 text-sm" value={mediaForm.media_url} onChange={e => setMediaForm({...mediaForm, media_url: e.target.value})} placeholder="Or paste URL here" />
             </div>
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Thumbnail URL (for videos)</label>
-            <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.thumbnail_url} onChange={e => setMediaForm({...mediaForm, thumbnail_url: e.target.value})} placeholder="Optional thumbnail for videos" />
+            <label className="block text-sm text-slate-600 mb-1">Thumbnail URL (for videos)</label>
+            <input className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.thumbnail_url} onChange={e => setMediaForm({...mediaForm, thumbnail_url: e.target.value})} placeholder="Optional thumbnail for videos" />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Caption</label>
-            <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={mediaForm.caption} onChange={e => setMediaForm({...mediaForm, caption: e.target.value})} placeholder="Optional caption" />
+            <label className="block text-sm text-slate-600 mb-1">Caption</label>
+            <input className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={mediaForm.caption} onChange={e => setMediaForm({...mediaForm, caption: e.target.value})} placeholder="Optional caption" />
           </div>
-          <button type="submit" disabled={uploading} className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E] disabled:opacity-50">
+          <button type="submit" disabled={uploading} className="w-full bg-[#D4AF37] text-white font-bold py-3 rounded-lg hover:bg-[#F3E5AB] disabled:opacity-50">
             Add Media
           </button>
         </form>
       </div>
 
-      <div className="bg-[#FFFFFF] border border-black/5 rounded-xl p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Current Media</h2>
+      <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl p-6">
+        <h2 className="text-xl font-bold text-slate-900 mb-4">Current Media</h2>
         {pageMedia.length === 0 ? (
-          <p className="text-gray-600 text-center py-8">No media uploaded yet</p>
+          <p className="text-slate-600 text-center py-8">No media uploaded yet</p>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {pageMedia.map(media => (
-              <div key={media.id} className="group relative rounded-xl overflow-hidden bg-[#F9F6F0] border border-black/5">
+              <div key={media.id} className="group relative rounded-xl overflow-hidden bg-[#FAFAFA] border border-slate-200">
                 {media.media_type === 'image' ? (
                   <img src={media.media_url} alt={media.caption || 'Media'} className="w-full h-40 object-cover" />
                 ) : (
-                  <div className="w-full h-40 flex items-center justify-center bg-[#F9F6F0]">
-                    <Video size={32} className="text-[#800000]" />
+                  <div className="w-full h-40 flex items-center justify-center bg-[#FAFAFA]">
+                    <Video size={32} className="text-[#D4AF37]" />
                   </div>
                 )}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button onClick={() => deleteMedia(media.id)} className="p-2 bg-red-500/80 text-gray-900 rounded hover:bg-red-500"><Trash2 size={16} /></button>
+                  <button onClick={() => deleteMedia(media.id)} className="p-2 bg-red-500/80 text-slate-900 rounded hover:bg-red-500"><Trash2 size={16} /></button>
                 </div>
                 <div className="p-2">
-                  <p className="text-xs text-gray-600 truncate">{media.caption || 'No caption'}</p>
-                  <p className="text-xs text-gray-600">Order: {media.display_order}</p>
+                  <p className="text-xs text-slate-600 truncate">{media.caption || 'No caption'}</p>
+                  <p className="text-xs text-slate-600">Order: {media.display_order}</p>
                 </div>
               </div>
             ))}

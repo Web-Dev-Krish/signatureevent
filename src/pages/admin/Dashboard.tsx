@@ -28,46 +28,46 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-serif font-bold text-gray-900">Dashboard Overview</h1>
+      <h1 className="text-3xl font-serif font-bold text-slate-900">Dashboard Overview</h1>
       
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-[#FFFFFF] border border-black/5 p-6 rounded-xl flex items-center justify-between">
+        <div className="bg-[#FFFFFF] border border-slate-200 p-6 rounded-xl flex items-center justify-between">
           <div>
-            <p className="text-gray-600 text-sm mb-1">Total Bookings</p>
-            <h3 className="text-3xl font-bold text-gray-900">{stats.bookings}</h3>
+            <p className="text-slate-600 text-sm mb-1">Total Bookings</p>
+            <h3 className="text-3xl font-bold text-slate-900">{stats.bookings}</h3>
           </div>
-          <div className="w-12 h-12 rounded-full bg-[#800000]/10 flex items-center justify-center text-[#800000]">
+          <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37]">
             <CalendarCheck size={24} />
           </div>
         </div>
         
-        <div className="bg-[#FFFFFF] border border-black/5 p-6 rounded-xl flex items-center justify-between">
+        <div className="bg-[#FFFFFF] border border-slate-200 p-6 rounded-xl flex items-center justify-between">
           <div>
-            <p className="text-gray-600 text-sm mb-1">Total Venues</p>
-            <h3 className="text-3xl font-bold text-gray-900">{stats.venues}</h3>
+            <p className="text-slate-600 text-sm mb-1">Total Venues</p>
+            <h3 className="text-3xl font-bold text-slate-900">{stats.venues}</h3>
           </div>
-          <div className="w-12 h-12 rounded-full bg-[#800000]/10 flex items-center justify-center text-[#800000]">
+          <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37]">
             <MapPin size={24} />
           </div>
         </div>
 
-        <div className="bg-[#FFFFFF] border border-black/5 p-6 rounded-xl flex items-center justify-between">
+        <div className="bg-[#FFFFFF] border border-slate-200 p-6 rounded-xl flex items-center justify-between">
           <div>
-            <p className="text-gray-600 text-sm mb-1">Published Blogs</p>
-            <h3 className="text-3xl font-bold text-gray-900">{stats.blogs}</h3>
+            <p className="text-slate-600 text-sm mb-1">Published Blogs</p>
+            <h3 className="text-3xl font-bold text-slate-900">{stats.blogs}</h3>
           </div>
-          <div className="w-12 h-12 rounded-full bg-[#800000]/10 flex items-center justify-center text-[#800000]">
+          <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37]">
             <FileText size={24} />
           </div>
         </div>
 
-        <div className="bg-[#FFFFFF] border border-black/5 p-6 rounded-xl flex items-center justify-between">
+        <div className="bg-[#FFFFFF] border border-slate-200 p-6 rounded-xl flex items-center justify-between">
           <div>
-            <p className="text-gray-600 text-sm mb-1">Total Visitors</p>
-            <h3 className="text-3xl font-bold text-gray-900">12.5k</h3>
+            <p className="text-slate-600 text-sm mb-1">Total Visitors</p>
+            <h3 className="text-3xl font-bold text-slate-900">12.5k</h3>
           </div>
-          <div className="w-12 h-12 rounded-full bg-[#800000]/10 flex items-center justify-center text-[#800000]">
+          <div className="w-12 h-12 rounded-full bg-[#D4AF37]/10 flex items-center justify-center text-[#D4AF37]">
             <Users size={24} />
           </div>
         </div>
@@ -75,31 +75,31 @@ export default function Dashboard() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-[#FFFFFF] border border-black/5 p-6 rounded-xl">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Revenue Overview</h3>
+        <div className="bg-[#FFFFFF] border border-slate-200 p-6 rounded-xl">
+          <h3 className="text-lg font-semibold text-slate-900 mb-6">Revenue Overview</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={revenueData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#333" />
                 <XAxis dataKey="name" stroke="#888" />
                 <YAxis stroke="#888" />
-                <Tooltip contentStyle={{ backgroundColor: '#F9F6F0', borderColor: '#333' }} />
-                <Line type="monotone" dataKey="value" stroke="#800000" strokeWidth={3} dot={{ fill: '#800000' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#FAFAFA', borderColor: '#333' }} />
+                <Line type="monotone" dataKey="value" stroke="#D4AF37" strokeWidth={3} dot={{ fill: '#D4AF37' }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        <div className="bg-[#FFFFFF] border border-black/5 p-6 rounded-xl">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Bookings by Month</h3>
+        <div className="bg-[#FFFFFF] border border-slate-200 p-6 rounded-xl">
+          <h3 className="text-lg font-semibold text-slate-900 mb-6">Bookings by Month</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={revenueData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#333" />
                 <XAxis dataKey="name" stroke="#888" />
                 <YAxis stroke="#888" />
-                <Tooltip contentStyle={{ backgroundColor: '#F9F6F0', borderColor: '#333' }} />
-                <Bar dataKey="value" fill="#800000" radius={[4, 4, 0, 0]} />
+                <Tooltip contentStyle={{ backgroundColor: '#FAFAFA', borderColor: '#333' }} />
+                <Bar dataKey="value" fill="#D4AF37" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

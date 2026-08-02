@@ -42,22 +42,22 @@ export default function Customers() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-serif font-bold text-gray-900">Customer CRM</h1>
+        <h1 className="text-3xl font-serif font-bold text-slate-900">Customer CRM</h1>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-600" size={18} />
           <input 
             type="text" 
             placeholder="Search customers..." 
-            className="bg-[#FFFFFF] border border-black/5 rounded-lg pl-10 pr-4 py-2 text-gray-900 focus:border-[#800000] outline-none"
+            className="bg-[#FFFFFF] border border-slate-200 rounded-lg pl-10 pr-4 py-2 text-slate-900 focus:border-[#D4AF37] outline-none"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
         </div>
       </div>
 
-      <div className="bg-[#FFFFFF] border border-black/5 rounded-xl overflow-hidden">
+      <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl overflow-hidden">
         <table className="w-full text-left">
-          <thead className="bg-[#F9F6F0] text-gray-600 text-sm uppercase tracking-wider">
+          <thead className="bg-[#FAFAFA] text-slate-600 text-sm uppercase tracking-wider">
             <tr>
               <th className="p-4">Customer Details</th>
               <th className="p-4">Total Bookings</th>
@@ -66,22 +66,22 @@ export default function Customers() {
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
-            {loading ? <tr><td colSpan={4} className="p-8 text-center text-gray-600">Loading...</td></tr> : 
-             filtered.length === 0 ? <tr><td colSpan={4} className="p-8 text-center text-gray-600">No customers found</td></tr> :
+            {loading ? <tr><td colSpan={4} className="p-8 text-center text-slate-600">Loading...</td></tr> : 
+             filtered.length === 0 ? <tr><td colSpan={4} className="p-8 text-center text-slate-600">No customers found</td></tr> :
              filtered.map((c, i) => (
-              <tr key={i} className="hover:bg-black/5">
+              <tr key={i} className="hover:bg-slate-50">
                 <td className="p-4">
-                  <div className="font-bold text-gray-900">{c.name}</div>
-                  <div className="text-sm text-gray-600 flex items-center gap-1 mt-1"><Mail size={12}/> {c.email}</div>
+                  <div className="font-bold text-slate-900">{c.name}</div>
+                  <div className="text-sm text-slate-600 flex items-center gap-1 mt-1"><Mail size={12}/> {c.email}</div>
                 </td>
-                <td className="p-4 text-gray-900 font-semibold">
-                  <span className="bg-[#800000]/10 text-[#800000] px-3 py-1 rounded-full">{c.totalBookings}</span>
+                <td className="p-4 text-slate-900 font-semibold">
+                  <span className="bg-[#D4AF37]/10 text-[#D4AF37] px-3 py-1 rounded-full">{c.totalBookings}</span>
                 </td>
-                <td className="p-4 text-gray-600 text-sm flex items-center gap-2 mt-3">
+                <td className="p-4 text-slate-600 text-sm flex items-center gap-2 mt-3">
                   <Calendar size={14}/> {formatDate(c.lastBookingDate)}
                 </td>
                 <td className="p-4 text-right">
-                  <button className="text-[#800000] hover:text-gray-900 text-sm font-semibold">View History</button>
+                  <button className="text-[#D4AF37] hover:text-slate-900 text-sm font-semibold">View History</button>
                 </td>
               </tr>
             ))}

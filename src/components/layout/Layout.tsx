@@ -12,7 +12,7 @@ export default function Layout() {
   }, [pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0B0B0B]">
+    <div className="min-h-screen flex flex-col bg-[#F9F6F0]">
       <Navbar />
       <main className="flex-grow">
         <Outlet />

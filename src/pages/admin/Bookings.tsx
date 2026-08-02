@@ -50,23 +50,23 @@ export default function Bookings() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-serif font-bold text-white">Manage Bookings</h1>
+        <h1 className="text-3xl font-serif font-bold text-gray-900">Manage Bookings</h1>
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" size={18} />
           <input 
             type="text" 
             placeholder="Search bookings..." 
-            className="bg-[#151515] border border-white/10 rounded-lg pl-10 pr-4 py-2 text-white focus:border-[#D4AF37] outline-none"
+            className="bg-[#FFFFFF] border border-black/5 rounded-lg pl-10 pr-4 py-2 text-gray-900 focus:border-[#800000] outline-none"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
         </div>
       </div>
 
-      <div className="bg-[#151515] border border-white/5 rounded-xl overflow-hidden">
+      <div className="bg-[#FFFFFF] border border-black/5 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
-            <thead className="bg-[#0B0B0B] text-gray-400 text-sm uppercase tracking-wider">
+            <thead className="bg-[#F9F6F0] text-gray-600 text-sm uppercase tracking-wider">
               <tr>
                 <th className="p-4">Customer</th>
                 <th className="p-4">Event Date</th>
@@ -77,19 +77,19 @@ export default function Bookings() {
             </thead>
             <tbody className="divide-y divide-white/5">
               {loading ? (
-                <tr><td colSpan={5} className="p-8 text-center text-gray-500">Loading...</td></tr>
+                <tr><td colSpan={5} className="p-8 text-center text-gray-600">Loading...</td></tr>
               ) : filtered.length === 0 ? (
-                <tr><td colSpan={5} className="p-8 text-center text-gray-500">No bookings found</td></tr>
+                <tr><td colSpan={5} className="p-8 text-center text-gray-600">No bookings found</td></tr>
               ) : (
                 filtered.map(b => (
-                  <tr key={b.id} className="hover:bg-white/5 transition-colors">
+                  <tr key={b.id} className="hover:bg-black/5 transition-colors">
                     <td className="p-4">
-                      <div className="font-semibold text-white">{b.name}</div>
-                      <div className="text-xs text-gray-500">{b.email}</div>
-                      {b.phone && <div className="text-xs text-gray-500">{b.phone}</div>}
+                      <div className="font-semibold text-gray-900">{b.name}</div>
+                      <div className="text-xs text-gray-600">{b.email}</div>
+                      {b.phone && <div className="text-xs text-gray-600">{b.phone}</div>}
                     </td>
-                    <td className="p-4 text-gray-300">{formatDate(b.date)}</td>
-                    <td className="p-4 text-gray-300">{b.guests}</td>
+                    <td className="p-4 text-gray-600">{formatDate(b.date)}</td>
+                    <td className="p-4 text-gray-600">{b.guests}</td>
                     <td className="p-4">
                       <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                         b.status === 'approved' ? 'bg-green-500/10 text-green-500' :
@@ -106,7 +106,7 @@ export default function Bookings() {
                       <button onClick={() => updateStatus(b.id, 'rejected')} className="p-2 bg-red-500/10 text-red-500 rounded hover:bg-red-500/20" title="Reject">
                         <X size={16} />
                       </button>
-                      <button onClick={() => deleteBooking(b.id)} className="p-2 bg-gray-500/10 text-gray-500 rounded hover:bg-gray-500/20 hover:text-red-500" title="Delete">
+                      <button onClick={() => deleteBooking(b.id)} className="p-2 bg-gray-500/10 text-gray-600 rounded hover:bg-gray-500/20 hover:text-red-500" title="Delete">
                         <Trash2 size={16} />
                       </button>
                     </td>

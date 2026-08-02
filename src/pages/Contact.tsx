@@ -22,74 +22,74 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-[#0B0B0B] min-h-screen pt-24 pb-20">
+    <div className="bg-[#F9F6F0] min-h-screen pt-24 pb-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Get in <span className="text-[#D4AF37]">Touch</span></h1>
-          <p className="text-gray-400 max-w-2xl mx-auto">Let's discuss how we can make your next event truly unforgettable.</p>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">Get in <span className="text-[#800000]">Touch</span></h1>
+          <p className="text-gray-600 max-w-2xl mx-auto">Let's discuss how we can make your next event truly unforgettable.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Info */}
           <div className="space-y-8">
-            <h2 className="text-3xl font-serif font-bold text-white mb-8">Contact Information</h2>
+            <h2 className="text-3xl font-serif font-bold text-gray-900 mb-8">Contact Information</h2>
             
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#151515] border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
-                <MapPin className="text-[#D4AF37]" size={24} />
+              <div className="w-12 h-12 rounded-full bg-[#FFFFFF] border border-[#800000]/30 flex items-center justify-center shrink-0">
+                <MapPin className="text-[#800000]" size={24} />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-white mb-1">Office Address</h4>
-                <p className="text-gray-400">171 -2, 32 W-2, Damodar Nagar,<br/>Kanpur, Uttar Pradesh 208027</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-1">Office Address</h4>
+                <p className="text-gray-600">171 -2, 32 W-2, Damodar Nagar,<br/>Kanpur, Uttar Pradesh 208027</p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#151515] border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
-                <Phone className="text-[#D4AF37]" size={24} />
+              <div className="w-12 h-12 rounded-full bg-[#FFFFFF] border border-[#800000]/30 flex items-center justify-center shrink-0">
+                <Phone className="text-[#800000]" size={24} />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-white mb-1">Phone</h4>
-                <p className="text-gray-400">+91 93547 10637</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-1">Phone</h4>
+                <p className="text-gray-600">+91 93547 10637</p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#151515] border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
-                <Mail className="text-[#D4AF37]" size={24} />
+              <div className="w-12 h-12 rounded-full bg-[#FFFFFF] border border-[#800000]/30 flex items-center justify-center shrink-0">
+                <Mail className="text-[#800000]" size={24} />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-white mb-1">Email</h4>
-                <p className="text-gray-400">contact@malhotraevents.com<br/>bookings@malhotraevents.com</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-1">Email</h4>
+                <p className="text-gray-600">contact@malhotraevents.com<br/>bookings@malhotraevents.com</p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#151515] border border-[#D4AF37]/30 flex items-center justify-center shrink-0">
-                <Clock className="text-[#D4AF37]" size={24} />
+              <div className="w-12 h-12 rounded-full bg-[#FFFFFF] border border-[#800000]/30 flex items-center justify-center shrink-0">
+                <Clock className="text-[#800000]" size={24} />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-white mb-1">Business Hours</h4>
-                <p className="text-gray-400">Monday - Saturday: 10:00 AM - 7:00 PM<br/>Sunday: Closed</p>
+                <h4 className="text-xl font-bold text-gray-900 mb-1">Business Hours</h4>
+                <p className="text-gray-600">Monday - Saturday: 10:00 AM - 7:00 PM<br/>Sunday: Closed</p>
               </div>
             </div>
           </div>
 
           {/* Form */}
           <div className="glass-card p-8 md:p-10">
-            <h3 className="text-2xl font-serif font-bold text-white mb-6">Send us a Message</h3>
+            <h3 className="text-2xl font-serif font-bold text-gray-900 mb-6">Send us a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <input required type="text" placeholder="Your Name" className="w-full bg-[#0B0B0B] border border-white/10 p-4 text-white focus:border-[#D4AF37] outline-none transition-colors" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
+                <input required type="text" placeholder="Your Name" className="w-full bg-[#F9F6F0] border border-black/5 p-4 text-gray-900 focus:border-[#800000] outline-none transition-colors" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
               </div>
               <div className="grid md:grid-cols-2 gap-6">
-                <input required type="email" placeholder="Email Address" className="w-full bg-[#0B0B0B] border border-white/10 p-4 text-white focus:border-[#D4AF37] outline-none transition-colors" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
-                <input required type="tel" placeholder="Phone Number" className="w-full bg-[#0B0B0B] border border-white/10 p-4 text-white focus:border-[#D4AF37] outline-none transition-colors" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} />
+                <input required type="email" placeholder="Email Address" className="w-full bg-[#F9F6F0] border border-black/5 p-4 text-gray-900 focus:border-[#800000] outline-none transition-colors" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
+                <input required type="tel" placeholder="Phone Number" className="w-full bg-[#F9F6F0] border border-black/5 p-4 text-gray-900 focus:border-[#800000] outline-none transition-colors" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} />
               </div>
               <div>
-                <textarea required placeholder="Tell us about your event..." rows={5} className="w-full bg-[#0B0B0B] border border-white/10 p-4 text-white focus:border-[#D4AF37] outline-none transition-colors resize-none" value={form.message} onChange={e => setForm({...form, message: e.target.value})}></textarea>
+                <textarea required placeholder="Tell us about your event..." rows={5} className="w-full bg-[#F9F6F0] border border-black/5 p-4 text-gray-900 focus:border-[#800000] outline-none transition-colors resize-none" value={form.message} onChange={e => setForm({...form, message: e.target.value})}></textarea>
               </div>
-              <button type="submit" disabled={status === 'sending'} className="w-full py-4 bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#F4D03F] transition-colors disabled:opacity-50">
+              <button type="submit" disabled={status === 'sending'} className="w-full py-4 bg-[#800000] text-white font-bold uppercase tracking-widest hover:bg-[#9B111E] transition-colors disabled:opacity-50">
                 {status === 'sending' ? 'Sending...' : 'Send Message'}
               </button>
               {status === 'success' && <p className="text-green-500 text-center mt-4">Message sent successfully! We will contact you soon.</p>}

@@ -35,7 +35,7 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="flex h-screen bg-[#0B0B0B] text-gray-300 font-sans">
+    <div className="flex h-screen bg-[#F9F6F0] text-gray-600 font-sans">
       {/* Mobile Sidebar Overlay */}
       {isMobileOpen && (
         <div 
@@ -45,12 +45,12 @@ export default function AdminLayout() {
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed lg:static inset-y-0 left-0 w-64 bg-[#151515] border-r border-white/10 flex flex-col z-50 transform transition-transform duration-300 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
-        <div className="p-6 border-b border-white/10 flex justify-between items-center">
-          <Link to="/admin" className="text-xl font-serif font-bold text-white tracking-wider flex items-center gap-2">
-            <span className="text-[#D4AF37]">M</span>ALHOTRA <span className="text-xs text-[#D4AF37] ml-2">CMS</span>
+      <aside className={`fixed lg:static inset-y-0 left-0 w-64 bg-[#FFFFFF] border-r border-black/5 flex flex-col z-50 transform transition-transform duration-300 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+        <div className="p-6 border-b border-black/5 flex justify-between items-center">
+          <Link to="/admin" className="text-xl font-serif font-bold text-gray-900 tracking-wider flex items-center gap-2">
+            <span className="text-[#800000]">M</span>ALHOTRA <span className="text-xs text-[#800000] ml-2">CMS</span>
           </Link>
-          <button className="lg:hidden text-gray-400 hover:text-white" onClick={() => setIsMobileOpen(false)}>
+          <button className="lg:hidden text-gray-600 hover:text-gray-900" onClick={() => setIsMobileOpen(false)}>
             <X size={20} />
           </button>
         </div>
@@ -66,11 +66,11 @@ export default function AdminLayout() {
                   onClick={() => setIsMobileOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm ${
                     isActive 
-                      ? 'bg-[#D4AF37]/10 text-[#D4AF37] font-semibold' 
-                      : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                      ? 'bg-[#800000]/10 text-[#800000] font-semibold' 
+                      : 'text-gray-600 hover:bg-black/5 hover:text-gray-900'
                   }`}
                 >
-                  <link.icon size={18} className={isActive ? 'text-[#D4AF37]' : 'text-gray-500'} />
+                  <link.icon size={18} className={isActive ? 'text-[#800000]' : 'text-gray-600'} />
                   {link.name}
                 </Link>
               );
@@ -78,7 +78,7 @@ export default function AdminLayout() {
           </nav>
         </div>
 
-        <div className="p-4 border-t border-white/10">
+        <div className="p-4 border-t border-black/5">
           <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-3 w-full text-left text-sm text-red-400 hover:bg-red-500/10 rounded-lg transition-colors">
             <LogOut size={18} />
             Logout
@@ -89,14 +89,14 @@ export default function AdminLayout() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top Header */}
-        <header className="h-16 bg-[#151515] border-b border-white/10 flex items-center justify-between px-4 lg:px-8 shrink-0">
-          <button className="lg:hidden text-gray-400 hover:text-white" onClick={() => setIsMobileOpen(true)}>
+        <header className="h-16 bg-[#FFFFFF] border-b border-black/5 flex items-center justify-between px-4 lg:px-8 shrink-0">
+          <button className="lg:hidden text-gray-600 hover:text-gray-900" onClick={() => setIsMobileOpen(true)}>
             <Menu size={24} />
           </button>
           
           <div className="flex-1 flex justify-end items-center gap-4">
-            <a href="/" target="_blank" className="text-sm text-[#D4AF37] hover:underline">View Live Site</a>
-            <div className="w-8 h-8 rounded-full bg-[#D4AF37] text-black flex items-center justify-center font-bold text-sm">
+            <a href="/" target="_blank" className="text-sm text-[#800000] hover:underline">View Live Site</a>
+            <div className="w-8 h-8 rounded-full bg-[#800000] text-white flex items-center justify-center font-bold text-sm">
               A
             </div>
           </div>

@@ -101,17 +101,17 @@ export default function Catering() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-serif font-bold text-white">Catering Management</h1>
-        <div className="flex bg-[#151515] rounded-lg p-1 border border-white/10">
+        <h1 className="text-3xl font-serif font-bold text-gray-900">Catering Management</h1>
+        <div className="flex bg-[#FFFFFF] rounded-lg p-1 border border-black/5">
           <button 
             onClick={() => setActiveTab('menu')}
-            className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors ${activeTab === 'menu' ? 'bg-[#D4AF37] text-black' : 'text-gray-400 hover:text-white'}`}
+            className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors ${activeTab === 'menu' ? 'bg-[#800000] text-white' : 'text-gray-600 hover:text-gray-900'}`}
           >
             <Utensils size={18} /> Menu
           </button>
           <button 
             onClick={() => setActiveTab('packages')}
-            className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors ${activeTab === 'packages' ? 'bg-[#D4AF37] text-black' : 'text-gray-400 hover:text-white'}`}
+            className={`px-4 py-2 rounded-md font-semibold flex items-center gap-2 transition-colors ${activeTab === 'packages' ? 'bg-[#800000] text-white' : 'text-gray-600 hover:text-gray-900'}`}
           >
             <Package size={18} /> Packages
           </button>
@@ -121,23 +121,23 @@ export default function Catering() {
       {activeTab === 'menu' && (
         <div className="space-y-6">
           <div className="flex justify-end">
-            <button onClick={() => openItemModal()} className="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#F4D03F]">
+            <button onClick={() => openItemModal()} className="bg-[#800000] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#9B111E]">
               <Plus size={18} /> Add Dish
             </button>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {loading ? <p className="text-gray-500">Loading...</p> : items.map(v => (
-              <div key={v.id} className="bg-[#151515] border border-white/10 rounded-xl overflow-hidden group">
+            {loading ? <p className="text-gray-600">Loading...</p> : items.map(v => (
+              <div key={v.id} className="bg-[#FFFFFF] border border-black/5 rounded-xl overflow-hidden group">
                 <div className="relative h-40">
                   <img src={v.image_url} alt={v.name} className="w-full h-full object-cover" />
                   <div className={`absolute top-2 right-2 w-3 h-3 rounded-full ${v.type === 'Veg' ? 'bg-green-500' : 'bg-red-500'}`} />
                 </div>
                 <div className="p-4">
-                  <h3 className="text-sm font-bold text-white truncate">{v.name}</h3>
-                  <p className="text-xs text-gray-400 mb-3">{v.category}</p>
+                  <h3 className="text-sm font-bold text-gray-900 truncate">{v.name}</h3>
+                  <p className="text-xs text-gray-600 mb-3">{v.category}</p>
                   <div className="flex justify-end gap-2">
-                    <button onClick={() => openItemModal(v)} className="p-1.5 text-gray-400 hover:text-white bg-white/5 rounded"><Edit2 size={14} /></button>
+                    <button onClick={() => openItemModal(v)} className="p-1.5 text-gray-600 hover:text-gray-900 bg-black/5 rounded"><Edit2 size={14} /></button>
                     <button onClick={() => deleteItem(v.id)} className="p-1.5 text-red-400 hover:text-red-300 bg-red-500/10 rounded"><Trash2 size={14} /></button>
                   </div>
                 </div>
@@ -150,22 +150,22 @@ export default function Catering() {
       {activeTab === 'packages' && (
         <div className="space-y-6">
           <div className="flex justify-end">
-            <button onClick={() => openPackageModal()} className="bg-[#D4AF37] text-black px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#F4D03F]">
+            <button onClick={() => openPackageModal()} className="bg-[#800000] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#9B111E]">
               <Plus size={18} /> Add Package
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {loading ? <p className="text-gray-500">Loading...</p> : packages.map(pkg => (
-              <div key={pkg.id} className="bg-[#151515] border border-white/10 rounded-xl overflow-hidden flex flex-col">
+            {loading ? <p className="text-gray-600">Loading...</p> : packages.map(pkg => (
+              <div key={pkg.id} className="bg-[#FFFFFF] border border-black/5 rounded-xl overflow-hidden flex flex-col">
                 {pkg.image_url && <img src={pkg.image_url} alt={pkg.name} className="w-full h-40 object-cover" />}
                 <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-white mb-2">{pkg.name}</h3>
-                  <p className="text-2xl font-serif text-[#D4AF37] mb-4">₹{pkg.price}</p>
-                  <p className="text-sm text-gray-400 mb-4">{pkg.description}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
+                  <p className="text-2xl font-serif text-[#800000] mb-4">₹{pkg.price}</p>
+                  <p className="text-sm text-gray-600 mb-4">{pkg.description}</p>
                   
-                  <div className="mt-auto pt-4 border-t border-white/10 flex justify-end gap-2">
-                    <button onClick={() => openPackageModal(pkg)} className="p-2 text-gray-400 hover:text-white bg-white/5 rounded"><Edit2 size={16} /></button>
+                  <div className="mt-auto pt-4 border-t border-black/5 flex justify-end gap-2">
+                    <button onClick={() => openPackageModal(pkg)} className="p-2 text-gray-600 hover:text-gray-900 bg-black/5 rounded"><Edit2 size={16} /></button>
                     <button onClick={() => deletePackage(pkg.id)} className="p-2 text-red-400 hover:text-red-300 bg-red-500/10 rounded"><Trash2 size={16} /></button>
                   </div>
                 </div>
@@ -178,34 +178,34 @@ export default function Catering() {
       {/* Item Modal */}
       {isItemModalOpen && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#151515] border border-white/10 rounded-xl w-full max-w-lg">
-            <div className="p-6 border-b border-white/10 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-white">{editingId ? 'Edit Dish' : 'Add Dish'}</h2>
-              <button onClick={() => setIsItemModalOpen(false)} className="text-gray-400 hover:text-white"><X size={24} /></button>
+          <div className="bg-[#FFFFFF] border border-black/5 rounded-xl w-full max-w-lg">
+            <div className="p-6 border-b border-black/5 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-gray-900">{editingId ? 'Edit Dish' : 'Add Dish'}</h2>
+              <button onClick={() => setIsItemModalOpen(false)} className="text-gray-600 hover:text-gray-900"><X size={24} /></button>
             </div>
             <form onSubmit={handleItemSubmit} className="p-6 space-y-4">
               <div>
-                <label className="block text-sm text-gray-400 mb-1">Dish Name</label>
-                <input required className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={itemForm.name} onChange={e => setItemForm({...itemForm, name: e.target.value})} />
+                <label className="block text-sm text-gray-600 mb-1">Dish Name</label>
+                <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={itemForm.name} onChange={e => setItemForm({...itemForm, name: e.target.value})} />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-gray-400 mb-1">Category (e.g. Indian)</label>
-                  <input required className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={itemForm.category} onChange={e => setItemForm({...itemForm, category: e.target.value})} />
+                  <label className="block text-sm text-gray-600 mb-1">Category (e.g. Indian)</label>
+                  <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={itemForm.category} onChange={e => setItemForm({...itemForm, category: e.target.value})} />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-400 mb-1">Type</label>
-                  <select className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={itemForm.type} onChange={e => setItemForm({...itemForm, type: e.target.value})}>
+                  <label className="block text-sm text-gray-600 mb-1">Type</label>
+                  <select className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={itemForm.type} onChange={e => setItemForm({...itemForm, type: e.target.value})}>
                     <option value="Veg">Veg</option>
                     <option value="Non-Veg">Non-Veg</option>
                   </select>
                 </div>
               </div>
               <div>
-                <label className="block text-sm text-gray-400 mb-1">Image URL</label>
-                <input required className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={itemForm.image_url} onChange={e => setItemForm({...itemForm, image_url: e.target.value})} />
+                <label className="block text-sm text-gray-600 mb-1">Image URL</label>
+                <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={itemForm.image_url} onChange={e => setItemForm({...itemForm, image_url: e.target.value})} />
               </div>
-              <button type="submit" className="w-full bg-[#D4AF37] text-black font-bold py-3 rounded-lg hover:bg-[#F4D03F]">
+              <button type="submit" className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E]">
                 {editingId ? 'Update Dish' : 'Add Dish'}
               </button>
             </form>
@@ -216,35 +216,35 @@ export default function Catering() {
       {/* Package Modal */}
       {isPackageModalOpen && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-[#151515] border border-white/10 rounded-xl w-full max-w-2xl">
-            <div className="p-6 border-b border-white/10 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-white">{editingId ? 'Edit Package' : 'Add Package'}</h2>
-              <button onClick={() => setIsPackageModalOpen(false)} className="text-gray-400 hover:text-white"><X size={24} /></button>
+          <div className="bg-[#FFFFFF] border border-black/5 rounded-xl w-full max-w-2xl">
+            <div className="p-6 border-b border-black/5 flex justify-between items-center">
+              <h2 className="text-xl font-bold text-gray-900">{editingId ? 'Edit Package' : 'Add Package'}</h2>
+              <button onClick={() => setIsPackageModalOpen(false)} className="text-gray-600 hover:text-gray-900"><X size={24} /></button>
             </div>
             <form onSubmit={handlePackageSubmit} className="p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-gray-400 mb-1">Package Name (e.g. Silver Package (Veg))</label>
-                  <input required className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={packageForm.name} onChange={e => setPackageForm({...packageForm, name: e.target.value})} />
+                  <label className="block text-sm text-gray-600 mb-1">Package Name (e.g. Silver Package (Veg))</label>
+                  <input required className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={packageForm.name} onChange={e => setPackageForm({...packageForm, name: e.target.value})} />
                 </div>
                 <div>
-                  <label className="block text-sm text-gray-400 mb-1">Price</label>
-                  <input required type="number" className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={packageForm.price} onChange={e => setPackageForm({...packageForm, price: e.target.value})} />
+                  <label className="block text-sm text-gray-600 mb-1">Price</label>
+                  <input required type="number" className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={packageForm.price} onChange={e => setPackageForm({...packageForm, price: e.target.value})} />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-sm text-gray-400 mb-1">Description (Optional)</label>
-                  <input className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={packageForm.description} onChange={e => setPackageForm({...packageForm, description: e.target.value})} />
+                  <label className="block text-sm text-gray-600 mb-1">Description (Optional)</label>
+                  <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={packageForm.description} onChange={e => setPackageForm({...packageForm, description: e.target.value})} />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-sm text-gray-400 mb-1">Features (One per line)</label>
-                  <textarea required rows={4} className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={packageForm.features} onChange={e => setPackageForm({...packageForm, features: e.target.value})} placeholder="Feature 1&#10;Feature 2&#10;Feature 3" />
+                  <label className="block text-sm text-gray-600 mb-1">Features (One per line)</label>
+                  <textarea required rows={4} className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={packageForm.features} onChange={e => setPackageForm({...packageForm, features: e.target.value})} placeholder="Feature 1&#10;Feature 2&#10;Feature 3" />
                 </div>
                 <div className="col-span-2">
-                  <label className="block text-sm text-gray-400 mb-1">Image URL (Optional)</label>
-                  <input className="w-full bg-[#0B0B0B] border border-white/10 rounded p-2 text-white" value={packageForm.image_url} onChange={e => setPackageForm({...packageForm, image_url: e.target.value})} />
+                  <label className="block text-sm text-gray-600 mb-1">Image URL (Optional)</label>
+                  <input className="w-full bg-[#F9F6F0] border border-black/5 rounded p-2 text-gray-900" value={packageForm.image_url} onChange={e => setPackageForm({...packageForm, image_url: e.target.value})} />
                 </div>
               </div>
-              <button type="submit" className="w-full bg-[#D4AF37] text-black font-bold py-3 rounded-lg hover:bg-[#F4D03F]">
+              <button type="submit" className="w-full bg-[#800000] text-white font-bold py-3 rounded-lg hover:bg-[#9B111E]">
                 {editingId ? 'Update Package' : 'Add Package'}
               </button>
             </form>

@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #D4AF37;
-  --color-gold-light: #F4D03F;
-  --color-dark-bg: #0B0B0B;
-  --color-dark-surface: #151515;
-  --color-dark-surface-hover: #1f1f1f;
+  --color-gold: #800000;
+  --color-gold-light: #9B111E;
+  --color-dark-bg: #F9F6F0;
+  --color-dark-surface: #FFFFFF;
+  --color-dark-surface-hover: #F2EDE4;
 
   /* Aliases used by the Signature Events pages — mapped to the same
      palette as the rest of the site so the theme stays consistent. */
-  --color-obsidian: #0B0B0B;
-  --color-charcoal: #151515;
-  --color-brightGold: #F4D03F;
+  --color-obsidian: #F9F6F0;
+  --color-charcoal: #FFFFFF;
+  --color-brightGold: #9B111E;
   --font-display: 'Playfair Display', Georgia, serif;
 
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -20,10 +20,10 @@
 
 @layer utilities {
   .glass {
-    @apply bg-black/40 backdrop-blur-md border border-white/10;
+    @apply bg-white/70 backdrop-blur-md border border-black/5;
   }
   .glass-card {
-    @apply bg-[#151515]/80 backdrop-blur-lg border border-white/5;
+    @apply bg-white/90 backdrop-blur-lg border border-black/5 shadow-sm;
   }
   .gold-gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)];
@@ -37,7 +37,7 @@
 }
 
 body {
-  @apply bg-[var(--color-dark-bg)] text-white font-sans antialiased selection:bg-[var(--color-gold)] selection:text-black;
+  @apply bg-[var(--color-dark-bg)] text-gray-900 font-sans antialiased selection:bg-[var(--color-gold)] selection:text-white;
   overflow-x: hidden;
 }
 

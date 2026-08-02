@@ -19,7 +19,7 @@ export default function Calendar() {
 
   const days = [];
   for (let i = 0; i < firstDayOfMonth; i++) {
-    days.push(<div key={`empty-${i}`} className="p-2 border border-white/5 opacity-50 bg-[#0B0B0B]"></div>);
+    days.push(<div key={`empty-${i}`} className="p-2 border border-black/5 opacity-50 bg-[#F9F6F0]"></div>);
   }
 
   for (let d = 1; d <= daysInMonth; d++) {
@@ -27,8 +27,8 @@ export default function Calendar() {
     const dayBookings = bookings.filter(b => b.date.startsWith(dateStr));
     
     days.push(
-      <div key={`day-${d}`} className="min-h-[100px] p-2 border border-white/5 bg-[#151515] hover:bg-white/5 transition-colors">
-        <div className="font-bold text-gray-500 mb-2">{d}</div>
+      <div key={`day-${d}`} className="min-h-[100px] p-2 border border-black/5 bg-[#FFFFFF] hover:bg-black/5 transition-colors">
+        <div className="font-bold text-gray-600 mb-2">{d}</div>
         <div className="space-y-1">
           {dayBookings.map(b => (
             <div key={b.id} className={`text-xs px-2 py-1 rounded truncate ${b.status === 'approved' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}`}>
@@ -43,20 +43,20 @@ export default function Calendar() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-serif font-bold text-white">Booking Calendar</h1>
-        <div className="flex items-center gap-4 bg-[#151515] rounded-lg p-2 border border-white/10">
-          <button onClick={prevMonth} className="p-1 hover:bg-white/10 rounded text-gray-400"><ChevronLeft size={20} /></button>
-          <span className="text-white font-bold min-w-[120px] text-center">
+        <h1 className="text-3xl font-serif font-bold text-gray-900">Booking Calendar</h1>
+        <div className="flex items-center gap-4 bg-[#FFFFFF] rounded-lg p-2 border border-black/5">
+          <button onClick={prevMonth} className="p-1 hover:bg-black/5 rounded text-gray-600"><ChevronLeft size={20} /></button>
+          <span className="text-gray-900 font-bold min-w-[120px] text-center">
             {currentDate.toLocaleString('default', { month: 'long', year: 'numeric' })}
           </span>
-          <button onClick={nextMonth} className="p-1 hover:bg-white/10 rounded text-gray-400"><ChevronRight size={20} /></button>
+          <button onClick={nextMonth} className="p-1 hover:bg-black/5 rounded text-gray-600"><ChevronRight size={20} /></button>
         </div>
       </div>
 
-      <div className="bg-[#151515] border border-white/10 rounded-xl overflow-hidden">
-        <div className="grid grid-cols-7 bg-[#0B0B0B] border-b border-white/10">
+      <div className="bg-[#FFFFFF] border border-black/5 rounded-xl overflow-hidden">
+        <div className="grid grid-cols-7 bg-[#F9F6F0] border-b border-black/5">
           {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-            <div key={day} className="p-3 text-center text-sm font-bold text-[#D4AF37] uppercase tracking-wider">
+            <div key={day} className="p-3 text-center text-sm font-bold text-[#800000] uppercase tracking-wider">
               {day}
             </div>
           ))}

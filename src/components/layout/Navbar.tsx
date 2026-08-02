@@ -35,11 +35,11 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#0B0B0B]/95 backdrop-blur-md py-4 shadow-lg shadow-black/50' : 'bg-transparent py-6'
+        isScrolled ? 'bg-[#F9F6F0]/95 backdrop-blur-md py-4 shadow-lg shadow-black/50' : 'bg-transparent py-6'
       }`}
     >
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-serif font-bold text-white tracking-wider flex items-center gap-2">
+        <Link to="/" className="text-2xl font-serif font-bold text-gray-900 tracking-wider flex items-center gap-2">
           <Logo className="h-9 w-9 sm:h-10 sm:w-10 -my-2" />
           <span className="hidden sm:inline">MALHOTRA</span>
         </Link>
@@ -50,8 +50,8 @@ export default function Navbar() {
             <Link
               key={link.name}
               to={link.path}
-              className={`text-sm tracking-wide transition-colors hover:text-[#D4AF37] ${
-                location.pathname === link.path ? 'text-[#D4AF37]' : 'text-gray-300'
+              className={`text-sm tracking-wide transition-colors hover:text-[#800000] ${
+                location.pathname === link.path ? 'text-[#800000]' : 'text-gray-600'
               }`}
             >
               {link.name}
@@ -59,14 +59,14 @@ export default function Navbar() {
           ))}
           <a
             href="tel:+919354710637"
-            className="px-6 py-2 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 uppercase tracking-widest text-xs font-semibold"
+            className="px-6 py-2 border border-[#800000] text-[#800000] hover:bg-[#800000] hover:text-white transition-all duration-300 uppercase tracking-widest text-xs font-semibold"
           >
             Call Now
           </a>
         </nav>
 
         {/* Mobile Toggle */}
-        <button className="lg:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-gray-900" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -78,14 +78,14 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-[#0B0B0B] border-t border-white/10 py-4 px-4 flex flex-col gap-4 lg:hidden shadow-2xl"
+            className="absolute top-full left-0 right-0 bg-[#F9F6F0] border-t border-black/5 py-4 px-4 flex flex-col gap-4 lg:hidden shadow-2xl"
           >
             {links.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-lg transition-colors hover:text-[#D4AF37] ${
-                  location.pathname === link.path ? 'text-[#D4AF37]' : 'text-gray-300'
+                className={`text-lg transition-colors hover:text-[#800000] ${
+                  location.pathname === link.path ? 'text-[#800000]' : 'text-gray-600'
                 }`}
               >
                 {link.name}
@@ -93,7 +93,7 @@ export default function Navbar() {
             ))}
             <a
               href="tel:+919354710637"
-              className="mt-4 px-6 py-3 bg-[#D4AF37] text-black text-center font-bold uppercase tracking-wider"
+              className="mt-4 px-6 py-3 bg-[#800000] text-white text-center font-bold uppercase tracking-wider"
             >
               +91 93547 10637
             </a>

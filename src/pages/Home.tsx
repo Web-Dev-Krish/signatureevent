@@ -42,11 +42,11 @@ export default function Home() {
               <span className="text-xs md:text-sm font-semibold tracking-widest uppercase">The Pinnacle of Luxury</span>
             </div>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-4 md:mb-6 leading-[1.2] max-w-4xl mx-auto tracking-tight px-2">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white mb-4 md:mb-6 leading-tight md:leading-[1.2] max-w-4xl mx-auto tracking-tight px-4 mt-16 md:mt-0">
               Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37]">Golden Moments</span> Become Timeless Celebrations
             </h1>
             
-            <p className="text-base sm:text-lg md:text-2xl text-gray-300 mb-10 md:mb-12 max-w-3xl mx-auto font-light tracking-wide leading-relaxed px-4">
+            <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto font-light tracking-wide leading-relaxed px-4">
               Experience unparalleled luxury and flawless execution for your most cherished events.
             </p>
             

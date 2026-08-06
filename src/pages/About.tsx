@@ -19,7 +19,7 @@ export default function About() {
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F2440] border border-[#1A3A5C] text-[#F5C518] mb-6 backdrop-blur-md">
               <Sparkles size={16} />
-              <span className="text-sm font-semibold tracking-widest uppercase">Our Story</span>
+              <span className="text-sm font-semibold tracking-widest uppercase">Malhotra Events</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#E8F4FD] mb-8 leading-tight tracking-tight">
@@ -98,12 +98,7 @@ export default function About() {
           ))}
         </div>
 
-        {/* Achievements Timeline */}
         <div className="relative">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#E8F4FD] mb-4">Our <span className="text-[#F5C518]">Journey</span></h2>
-            <p className="text-[#94B8D4] max-w-2xl mx-auto font-light text-lg">A timeline of our most prestigious achievements and milestones.</p>
-          </div>
           <AchievementsTimeline />
         </div>
       </div>

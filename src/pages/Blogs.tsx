@@ -33,7 +33,7 @@ export default function Blogs() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F2440] border border-[#1A3A5C] text-[#F5C518] mb-6 backdrop-blur-md">
               <Sparkles size={16} />
-              <span className="text-sm font-semibold tracking-widest uppercase">Our Journal</span>
+              <span className="text-sm font-semibold tracking-widest uppercase">Malhotra Events</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-[#E8F4FD] mb-6 tracking-tight">Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5C518] to-[#FFE066]">Inspiration</span></h1>
             <p className="text-[#94B8D4] max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">

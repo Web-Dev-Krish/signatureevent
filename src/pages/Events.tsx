@@ -38,7 +38,7 @@ export default function Events() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5C518]/10 border border-[#F5C518]/20 text-[#F5C518] mb-6">
             <Sparkles size={16} />
-            <span className="text-sm font-semibold tracking-widest uppercase">Exquisite Experiences</span>
+            <span className="text-sm font-semibold tracking-widest uppercase">Malhotra Events</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-serif font-bold text-[#E8F4FD] mb-6 tracking-tight">
             Theme & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5C518] to-[#FFE066]">Events</span>

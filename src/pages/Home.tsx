@@ -41,7 +41,7 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-[#0F2440] border border-[#1A3A5C] text-[#F5C518] mb-4 md:mb-6 backdrop-blur-md">
               <Sparkles size={16} />
-              <span className="text-xs md:text-sm font-semibold tracking-widest uppercase">The Pinnacle of Luxury</span>
+              <span className="text-xs md:text-sm font-semibold tracking-widest uppercase">Malhotra Events</span>
             </div>
             
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white mb-3 md:mb-5 leading-tight md:leading-[1.2] max-w-4xl mx-auto tracking-tight px-2">
@@ -55,9 +55,9 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 md:gap-5 justify-center items-stretch sm:items-center w-full max-w-sm sm:max-w-none px-4">
               <Link 
                 to="/contact" 
-                className="px-8 py-3.5 sm:px-10 sm:py-4 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(245,197,24,0.4)] transition-all duration-300 rounded-sm text-sm text-center"
+                className="px-8 py-3.5 sm:px-10 sm:py-4 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold tracking-wider hover:shadow-[0_0_30px_rgba(245,197,24,0.4)] transition-all duration-300 rounded-sm text-sm text-center"
               >
-                Plan Your Event
+                ✨ E-निमंत्रण ✨
               </Link>
               <Link 
                 to="/venues" 
@@ -74,7 +74,7 @@ export default function Home() {
       <section className="py-20 md:py-32 relative">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-3xl md:text-6xl font-serif font-bold text-[#E8F4FD] mb-4 md:mb-6">Premium <span className="text-[#F5C518]">Venues</span></h2>
+            <h2 className="text-3xl md:text-6xl font-serif font-bold text-[#E8F4FD] mb-4 md:mb-6">Our <span className="text-[#F5C518]">Venue's</span></h2>
             <p className="text-[#94B8D4] text-base md:text-lg max-w-2xl mx-auto font-light">Discover our exclusive selection of luxury venues designed to host your grandest celebrations.</p>
           </div>
           

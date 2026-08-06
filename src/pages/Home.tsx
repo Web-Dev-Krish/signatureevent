@@ -53,12 +53,14 @@ export default function Home() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-5 justify-center items-stretch sm:items-center w-full max-w-sm sm:max-w-none px-4">
-              <Link 
-                to="/contact" 
+              <a 
+                href="https://e-nimantaran.vercel.app/" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-3.5 sm:px-10 sm:py-4 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold tracking-wider hover:shadow-[0_0_30px_rgba(245,197,24,0.4)] transition-all duration-300 rounded-sm text-sm text-center"
               >
                 ✨ E-निमंत्रण ✨
-              </Link>
+              </a>
               <Link 
                 to="/venues" 
                 className="px-8 py-3.5 sm:px-10 sm:py-4 border border-[#F5C518]/50 text-[#E8F4FD] font-bold uppercase tracking-widest hover:bg-[#F5C518]/10 transition-all duration-300 backdrop-blur-sm rounded-sm text-sm text-center"

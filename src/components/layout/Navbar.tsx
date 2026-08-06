@@ -11,7 +11,6 @@ const links = [
   { name: 'Signature Events', path: '/signature-events' },
   { name: 'Blogs', path: '/blogs' },
   { name: 'About Us', path: '/about' },
-  { name: 'Contact Us', path: '/contact' },
 ];
 
 export default function Navbar() {
@@ -60,9 +59,17 @@ export default function Navbar() {
           ))}
           <a
             href="tel:+919354710637"
-            className="ml-2 px-5 py-2.5 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold tracking-wider text-xs rounded-full flex items-center gap-2 hover:shadow-[0_0_20px_rgba(245,197,24,0.3)] transition-all duration-300 whitespace-nowrap"
+            className="ml-2 px-4 py-2 border border-[#F5C518] text-[#F5C518] font-bold tracking-wider text-xs rounded-full flex items-center gap-2 hover:bg-[#F5C518] hover:text-[#0B1929] transition-all duration-300 whitespace-nowrap"
           >
             <Phone size={13} /> +91 93547 10637
+          </a>
+          <a
+            href="https://e-nimantaran.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-2 px-5 py-2.5 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold tracking-wider text-xs rounded-full hover:shadow-[0_0_20px_rgba(245,197,24,0.3)] transition-all duration-300 whitespace-nowrap"
+          >
+            DG Cards - Malhotra Events
           </a>
         </nav>
 
@@ -96,8 +103,16 @@ export default function Navbar() {
               </Link>
             ))}
             <a
-              href="tel:+919354710637"
+              href="https://e-nimantaran.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-4 px-6 py-3.5 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] text-center font-bold uppercase tracking-wider rounded-full text-sm"
+            >
+              DG Cards - Malhotra Events
+            </a>
+            <a
+              href="tel:+919354710637"
+              className="mt-2 px-6 py-3 border border-[#F5C518] text-[#F5C518] text-center font-bold uppercase tracking-wider rounded-full text-sm hover:bg-[#F5C518] hover:text-[#0B1929] transition-all duration-300"
             >
               +91 93547 10637
             </a>

@@ -3,8 +3,8 @@ import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { 
   LayoutDashboard, CalendarCheck, MapPin, PartyPopper, 
-  Sparkles, UtensilsCrossed, FileText, Image as ImageIcon, 
-  Video, Calendar, Star, Users, HelpCircle, Settings, LogOut, Menu, X
+  UtensilsCrossed, FileText, Image as ImageIcon, 
+  Video, Star, Users, HelpCircle, Settings, LogOut, Menu, X
 } from 'lucide-react';
 
 const sidebarLinks = [
@@ -12,12 +12,10 @@ const sidebarLinks = [
   { name: 'Bookings', path: '/admin/bookings', icon: CalendarCheck },
   { name: 'Venues', path: '/admin/venues', icon: MapPin },
   { name: 'Events', path: '/admin/events', icon: PartyPopper },
-  { name: 'Signature Events', path: '/admin/signature-events', icon: Sparkles },
   { name: 'Malhotra Catering', path: '/admin/catering', icon: UtensilsCrossed },
   { name: 'Blogs', path: '/admin/blogs', icon: FileText },
   { name: 'Gallery', path: '/admin/gallery', icon: ImageIcon },
   { name: 'Videos', path: '/admin/videos', icon: Video },
-  { name: 'Booking Calendar', path: '/admin/calendar', icon: Calendar },
   { name: 'Reviews', path: '/admin/reviews', icon: Star },
   { name: 'Customers', path: '/admin/customers', icon: Users },
   { name: 'FAQs', path: '/admin/faqs', icon: HelpCircle },

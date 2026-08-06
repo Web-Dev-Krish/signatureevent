@@ -190,8 +190,20 @@ export default function Catering() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm text-slate-600 mb-1">Category (e.g. Indian)</label>
-                  <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={itemForm.category} onChange={e => setItemForm({...itemForm, category: e.target.value})} />
+                  <label className="block text-sm text-slate-600 mb-1">Category</label>
+                  <select required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={itemForm.category} onChange={e => setItemForm({...itemForm, category: e.target.value})}>
+                    <option value="" disabled>Select Category</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Continental">Continental</option>
+                    <option value="Desserts">Desserts</option>
+                    <option value="Beverages">Beverages</option>
+                    <option value="Street Food">Street Food</option>
+                    <option value="Starters">Starters</option>
+                    <option value="Breads">Breads</option>
+                    <option value="Rice & Biryani">Rice & Biryani</option>
+                  </select>
                 </div>
                 <div>
                   <label className="block text-sm text-slate-600 mb-1">Type</label>

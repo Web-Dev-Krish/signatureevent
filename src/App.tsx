@@ -35,10 +35,8 @@ const AdminCatering = lazy(() => import('./pages/admin/Catering'));
 const AdminBlogs = lazy(() => import('./pages/admin/Blogs'));
 const AdminReviews = lazy(() => import('./pages/admin/Reviews'));
 const AdminSettings = lazy(() => import('./pages/admin/Settings'));
-const AdminSignatureEvents = lazy(() => import('./pages/admin/SignatureEvents'));
 const AdminGallery = lazy(() => import('./pages/admin/Gallery'));
 const AdminVideos = lazy(() => import('./pages/admin/Videos'));
-const AdminCalendar = lazy(() => import('./pages/admin/Calendar'));
 const AdminCustomers = lazy(() => import('./pages/admin/Customers'));
 const AdminFaqs = lazy(() => import('./pages/admin/Faqs'));
 const AdminPageMedia = lazy(() => import('./pages/admin/PageMedia'));
@@ -81,10 +79,8 @@ function App() {
               <Route path="reviews" element={<AdminReviews />} />
               <Route path="settings" element={<AdminSettings />} />
               
-              <Route path="signature-events" element={<AdminSignatureEvents />} />
               <Route path="gallery" element={<AdminGallery />} />
               <Route path="videos" element={<AdminVideos />} />
-              <Route path="calendar" element={<AdminCalendar />} />
               <Route path="customers" element={<AdminCustomers />} />
               <Route path="faqs" element={<AdminFaqs />} />
               <Route path="page-media" element={<AdminPageMedia />} />

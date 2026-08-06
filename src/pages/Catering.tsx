@@ -8,8 +8,6 @@ export default function Catering() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('All');
 
-  const tabs = ['All', 'Veg', 'Non-Veg', 'Chinese', 'Italian', 'Desserts'];
-
   useEffect(() => {
     Promise.all([
       fetch('/api/catering').then(r => r.json()),
@@ -20,6 +18,9 @@ export default function Catering() {
       setLoading(false);
     });
   }, []);
+
+  // Build tabs dynamically from actual categories in data
+  const tabs = ['All', 'Veg', 'Non-Veg', ...Array.from(new Set((items || []).map((i: any) => i.category).filter(Boolean)))];
 
   const filteredItems = activeTab === 'All' ? items : items.filter(i => i.category === activeTab || i.type === activeTab);
 

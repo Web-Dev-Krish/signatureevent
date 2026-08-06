@@ -59,6 +59,7 @@ export default function Navbar() {
           ))}
           <a
             href="tel:+919354710637"
+            onClick={(e) => { window.location.href = 'tel:+919354710637'; }}
             className="ml-2 px-4 py-2 border border-[#F5C518] text-[#F5C518] font-bold tracking-wider text-xs rounded-full flex items-center gap-2 hover:bg-[#F5C518] hover:text-[#0B1929] transition-all duration-300 whitespace-nowrap"
           >
             <Phone size={13} /> +91 93547 10637
@@ -112,6 +113,7 @@ export default function Navbar() {
             </a>
             <a
               href="tel:+919354710637"
+              onClick={(e) => { window.location.href = 'tel:+919354710637'; }}
               className="mt-2 px-6 py-3 border border-[#F5C518] text-[#F5C518] text-center font-bold uppercase tracking-wider rounded-full text-sm hover:bg-[#F5C518] hover:text-[#0B1929] transition-all duration-300"
             >
               +91 93547 10637

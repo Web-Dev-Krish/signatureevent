@@ -31,7 +31,7 @@ export default function Home() {
         <div className="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-[#F5C518]/10 rounded-full blur-[150px] pointer-events-none z-10" />
         <div className="absolute bottom-1/4 right-1/4 w-[40rem] h-[40rem] bg-[#F5C518]/5 rounded-full blur-[150px] pointer-events-none z-10" />
         
-        <div className="relative z-20 container mx-auto px-4 text-center">
+        <div className="relative z-20 container mx-auto px-4 text-center pt-24 md:pt-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

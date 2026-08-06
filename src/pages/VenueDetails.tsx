@@ -228,7 +228,7 @@ export default function VenueDetails() {
               {venue.map_html ? (
                 <div className="map-embed rounded-2xl border border-[#1A3A5C] overflow-hidden shadow-2xl" dangerouslySetInnerHTML={{ __html: venue.map_html }} />
               ) : (
-                <div className="map-embed bg-[#0B1929] border border-[#1A3A5C] flex items-center justify-center text-[#94B8D4] rounded-2xl shadow-2xl">
+                <div className="rounded-2xl border border-[#1A3A5C] bg-[#0B1929] flex items-center justify-center text-[#94B8D4] shadow-2xl min-h-[300px]">
                   <div className="text-center px-4">
                     <MapPin size={40} className="mx-auto mb-4 text-[#F5C518] opacity-50" />
                     <p className="uppercase tracking-widest font-bold text-sm mb-2">Map coming soon</p>

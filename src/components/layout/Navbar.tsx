@@ -41,9 +41,8 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-serif font-bold text-[#E8F4FD] tracking-wider flex items-center gap-2.5 group">
-          <Logo className="h-9 w-9 sm:h-10 sm:w-10 -my-2 transition-transform duration-300 group-hover:scale-110" />
-          <span className="hidden sm:inline">MALHOTRA</span>
+        <Link to="/" className="flex items-center group">
+          <Logo className="h-10 w-10 sm:h-12 sm:w-12 transition-transform duration-300 group-hover:scale-110" />
         </Link>
 
         {/* Desktop Nav */}
@@ -61,9 +60,9 @@ export default function Navbar() {
           ))}
           <a
             href="tel:+919354710637"
-            className="ml-2 px-5 py-2.5 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold uppercase tracking-widest text-xs rounded-full flex items-center gap-2 hover:shadow-[0_0_20px_rgba(245,197,24,0.3)] transition-all duration-300"
+            className="ml-2 px-5 py-2.5 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold tracking-wider text-xs rounded-full flex items-center gap-2 hover:shadow-[0_0_20px_rgba(245,197,24,0.3)] transition-all duration-300 whitespace-nowrap"
           >
-            <Phone size={13} /> Call Now
+            <Phone size={13} /> +91 93547 10637
           </a>
         </nav>
 

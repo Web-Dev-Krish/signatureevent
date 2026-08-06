@@ -3,14 +3,13 @@ interface LogoProps {
 }
 
 /**
- * Malhotra Events brand mark — the gold "M" glyph used site-wide
- * (navbar, footer, achievement timeline, etc). Rendered as a real
- * .svg asset so it stays crisp at any size.
+ * Malhotra Events brand mark — the PNG logo used site-wide
+ * (navbar, footer, achievement timeline, etc).
  */
 export default function Logo({ className = 'h-10 w-10' }: LogoProps) {
   return (
     <img
-      src="/logo.svg"
+      src="/logo.png"
       alt="Malhotra Events"
       className={`${className} object-contain select-none`}
       draggable={false}

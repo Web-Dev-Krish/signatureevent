@@ -31,35 +31,37 @@ export default function Home() {
         <div className="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-[#F5C518]/10 rounded-full blur-[150px] pointer-events-none z-10" />
         <div className="absolute bottom-1/4 right-1/4 w-[40rem] h-[40rem] bg-[#F5C518]/5 rounded-full blur-[150px] pointer-events-none z-10" />
         
-        <div className="relative z-20 container mx-auto px-4 text-center pt-24 md:pt-20">
+        {/* Hero Content — pt-16 clears the fixed navbar on all screen sizes */}
+        <div className="relative z-20 w-full container mx-auto px-4 text-center pt-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2 }}
+            className="flex flex-col items-center"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-[#0F2440] border border-[#1A3A5C] text-[#F5C518] mb-6 md:mb-8 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-[#0F2440] border border-[#1A3A5C] text-[#F5C518] mb-4 md:mb-6 backdrop-blur-md">
               <Sparkles size={16} />
               <span className="text-xs md:text-sm font-semibold tracking-widest uppercase">The Pinnacle of Luxury</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white mb-4 md:mb-6 leading-tight md:leading-[1.2] max-w-4xl mx-auto tracking-tight px-4 mt-16 md:mt-0">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-bold text-white mb-3 md:mb-5 leading-tight md:leading-[1.2] max-w-4xl mx-auto tracking-tight px-2">
               Where <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5C518] via-[#FFE066] to-[#F5C518]">Golden Moments</span> Become Timeless Celebrations
             </h1>
             
-            <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-[#B0D4EC] mb-8 md:mb-12 max-w-3xl mx-auto font-light tracking-wide leading-relaxed px-4">
+            <p className="text-sm sm:text-base md:text-xl text-[#B0D4EC] mb-6 md:mb-10 max-w-2xl mx-auto font-light tracking-wide leading-relaxed px-4">
               Experience unparalleled luxury and flawless execution for your most cherished events.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center px-4">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-5 justify-center items-stretch sm:items-center w-full max-w-sm sm:max-w-none px-4">
               <Link 
                 to="/contact" 
-                className="w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(245,197,24,0.4)] transition-all duration-300 rounded-sm text-sm sm:text-base"
+                className="px-8 py-3.5 sm:px-10 sm:py-4 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold uppercase tracking-widest hover:shadow-[0_0_30px_rgba(245,197,24,0.4)] transition-all duration-300 rounded-sm text-sm text-center"
               >
                 Plan Your Event
               </Link>
               <Link 
                 to="/venues" 
-                className="w-full sm:w-auto px-8 py-4 sm:px-10 sm:py-5 border border-[#F5C518]/50 text-[#E8F4FD] font-bold uppercase tracking-widest hover:bg-[#F5C518]/10 transition-all duration-300 backdrop-blur-sm rounded-sm text-sm sm:text-base"
+                className="px-8 py-3.5 sm:px-10 sm:py-4 border border-[#F5C518]/50 text-[#E8F4FD] font-bold uppercase tracking-widest hover:bg-[#F5C518]/10 transition-all duration-300 backdrop-blur-sm rounded-sm text-sm text-center"
               >
                 Explore Venues
               </Link>

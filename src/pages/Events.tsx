@@ -23,10 +23,10 @@ export default function Events() {
   const filteredEvents = activeCategory === 'All' ? events : events.filter(e => e.type === activeCategory);
 
   return (
-    <div className="pt-28 pb-24 min-h-screen relative overflow-hidden bg-[#FAFAFA]">
+    <div className="pt-28 pb-24 min-h-screen relative overflow-hidden bg-[#061120]">
       {/* Background ambient lights */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#F5C518]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-[#F5C518]/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         {/* Header Section */}
@@ -36,14 +36,14 @@ export default function Events() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/20 text-[#D4AF37] mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5C518]/10 border border-[#F5C518]/20 text-[#F5C518] mb-6">
             <Sparkles size={16} />
             <span className="text-sm font-semibold tracking-widest uppercase">Exquisite Experiences</span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-slate-900 mb-6 tracking-tight">
-            Theme & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB]">Events</span>
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-[#E8F4FD] mb-6 tracking-tight">
+            Theme & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5C518] to-[#FFE066]">Events</span>
           </h1>
-          <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#94B8D4] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Discover a curated collection of our most breathtaking celebrations, where every detail is a masterpiece of design and execution.
           </p>
         </motion.div>
@@ -61,14 +61,14 @@ export default function Events() {
               onClick={() => setActiveCategory(cat)}
               className={`relative px-6 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 ${
                 activeCategory === cat 
-                  ? 'text-white shadow-[0_0_20px_rgba(212,175,55,0.4)]' 
-                  : 'text-slate-600 hover:text-slate-900 bg-slate-50 hover:bg-slate-50'
+                  ? 'text-white shadow-[0_0_20px_rgba(245,197,24,0.4)]' 
+                  : 'text-[#94B8D4] hover:text-[#E8F4FD] bg-[#0F2440] hover:bg-[#0F2440]'
               }`}
             >
               {activeCategory === cat && (
                 <motion.div
                   layoutId="activeCategoryIndicator"
-                  className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] rounded-full"
+                  className="absolute inset-0 bg-gradient-to-r from-[#F5C518] to-[#FFE066] rounded-full"
                   style={{ zIndex: -1 }}
                 />
               )}
@@ -79,7 +79,7 @@ export default function Events() {
 
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="w-12 h-12 border-4 border-[#D4AF37]/30 border-t-[#D4AF37] rounded-full animate-spin"></div>
+            <div className="w-12 h-12 border-4 border-[#F5C518]/30 border-t-[#F5C518] rounded-full animate-spin"></div>
           </div>
         ) : (
           <motion.div layout className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
@@ -92,7 +92,7 @@ export default function Events() {
                   animate={{ scale: 1, y: 0 }}
                   exit={{ scale: 0.9 }}
                   transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  className="break-inside-avoid relative rounded-2xl overflow-hidden bg-[#FFFFFF] border border-slate-200 group cursor-pointer"
+                  className="break-inside-avoid relative rounded-2xl overflow-hidden bg-[#0B1929] border border-[#1A3A5C] group cursor-pointer"
                 >
                   <img 
                     src={event.image_url} 
@@ -103,8 +103,8 @@ export default function Events() {
                   
                   {event.video_url && (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-black/10 group-hover:bg-[#D4AF37] group-hover:border-[#D4AF37] transition-all duration-300 transform group-hover:scale-110 shadow-xl">
-                        <PlayCircle size={32} className="text-slate-900 group-hover:text-white transition-colors" />
+                      <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center border border-white/10 group-hover:bg-[#F5C518] group-hover:border-[#F5C518] transition-all duration-300 transform group-hover:scale-110 shadow-xl">
+                        <PlayCircle size={32} className="text-[#E8F4FD] group-hover:text-white transition-colors" />
                       </div>
                     </div>
                   )}
@@ -112,11 +112,11 @@ export default function Events() {
                   {(event.title || event.type) && (
                     <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/95 via-black/60 to-transparent">
                       <div className="flex flex-col items-start gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <div className="bg-[#D4AF37]/90 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">
+                        <div className="bg-[#F5C518]/90 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">
                           {event.type}
                         </div>
                         {event.title && (
-                          <h3 className="text-xl font-serif font-bold text-slate-900 drop-shadow-md">
+                          <h3 className="text-xl font-serif font-bold text-[#E8F4FD] drop-shadow-md">
                             {event.title}
                           </h3>
                         )}

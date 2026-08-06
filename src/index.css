@@ -1,81 +1,87 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #D4AF37;
-  --color-gold-light: #F3E5AB;
-  --color-dark-bg: #FAFAFA;
-  --color-dark-surface: #FFFFFF;
-  --color-dark-surface-hover: #F8F9FA;
+  /* ── Navy Blue & Yellow Palette ── */
+  --color-gold: #F5C518;
+  --color-gold-light: #FFE066;
+  --color-dark-bg: #0B1929;
+  --color-dark-surface: #0F2440;
+  --color-dark-surface-hover: #163356;
 
-  /* Aliases used by the Signature Events pages — mapped to the same
-     palette as the rest of the site so the theme stays consistent. */
-  --color-obsidian: #FAFAFA;
-  --color-charcoal: #FFFFFF;
-  --color-brightGold: #F3E5AB;
+  /* Semantic aliases */
+  --color-obsidian: #0B1929;
+  --color-charcoal: #0F2440;
+  --color-brightYellow: #FFE066;
+  --color-navy: #061120;
+  --color-navy-mid: #0F2440;
+  --color-yellow: #F5C518;
+
+  /* Typography */
   --font-display: 'Playfair Display', Georgia, serif;
-
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/80 backdrop-blur-md border border-slate-200;
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/[0.06];
   }
   .glass-card {
-    @apply bg-white/95 backdrop-blur-lg border border-slate-200 shadow-sm;
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.06] shadow-2xl shadow-black/40;
   }
   .gold-gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#F5C518] to-[#FFE066];
   }
   .gold-gradient-bg {
-    @apply bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)];
+    @apply bg-gradient-to-r from-[#F5C518] to-[#FFE066];
   }
   .section-padding {
-    @apply py-16 md:py-20 lg:py-24;
+    @apply py-20 md:py-28 lg:py-32;
+  }
+  .venue-glow {
+    @apply shadow-[0_0_60px_-15px_rgba(245,197,24,0.25)];
   }
 }
 
 body {
-  @apply bg-[var(--color-dark-bg)] text-slate-900 font-sans antialiased selection:bg-[var(--color-gold)] selection:text-slate-900;
+  @apply bg-[#0B1929] text-[#E8F4FD] font-sans antialiased;
+  @apply selection:bg-[#F5C518]/30 selection:text-white;
   overflow-x: hidden;
 }
 
 /* Responsive map / iframe embed wrapper.
    Google Maps (and other) embed codes usually come with hard-coded
    width/height attributes on the <iframe>. This wrapper forces any
-   iframe/img dropped into it (via dangerouslySetInnerHTML) to fill
-   the container fluidly, while the height itself scales smoothly
-   between a sensible min and max as the viewport changes. */
-.map-embed {
+   nested <iframe> to fill its parent while keeping a pleasant 16 / 9
+   aspect-ratio. */
+.responsive-map-container {
   position: relative;
   width: 100%;
-  height: clamp(260px, 42vw, 440px);
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
   overflow: hidden;
+  border-radius: 1rem;
 }
-.map-embed iframe,
-.map-embed img,
-.map-embed object {
+.responsive-map-container iframe {
   position: absolute;
-  inset: 0;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border: 0;
-  display: block;
 }
 
-/* Custom Scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-dark-bg);
+  background: #0B1929;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gold);
-  border-radius: 4px;
+  background: #163356;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gold-light);
+  background: #F5C518;
 }

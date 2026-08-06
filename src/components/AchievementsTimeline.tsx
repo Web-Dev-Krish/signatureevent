@@ -44,11 +44,11 @@ const milestones: Milestone[] = [
 function MilestoneCard({ m }: { m: Milestone }) {
   return (
     <div className="glass-card w-full p-6 md:p-8">
-      <span className="inline-block mb-3 rounded-full bg-[#D4AF37] px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">
+      <span className="inline-block mb-3 rounded-full bg-[#F5C518] px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">
         {m.year}
       </span>
-      <h3 className="mb-2 text-xl font-serif font-bold text-slate-900 md:text-2xl">{m.title}</h3>
-      <p className="text-sm leading-relaxed text-slate-600 md:text-base">{m.description}</p>
+      <h3 className="mb-2 text-xl font-serif font-bold text-[#E8F4FD] md:text-2xl">{m.title}</h3>
+      <p className="text-sm leading-relaxed text-[#94B8D4] md:text-base">{m.description}</p>
     </div>
   );
 }
@@ -64,9 +64,9 @@ export default function AchievementsTimeline() {
   return (
     <div className="mb-24">
       <div className="mx-auto mb-16 max-w-2xl text-center">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-[#D4AF37]">Our Journey</p>
-        <h2 className="font-serif text-3xl font-bold text-slate-900 md:text-5xl">Achievements Timeline</h2>
-        <p className="mt-4 text-slate-600">Two decades of milestones, built one unforgettable event at a time.</p>
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-[#F5C518]">Our Journey</p>
+        <h2 className="font-serif text-3xl font-bold text-[#E8F4FD] md:text-5xl">Achievements Timeline</h2>
+        <p className="mt-4 text-[#94B8D4]">Two decades of milestones, built one unforgettable event at a time.</p>
       </div>
 
       <div ref={containerRef} className="relative">
@@ -75,7 +75,7 @@ export default function AchievementsTimeline() {
         {/* Animated gold line that draws downward as you scroll */}
         <motion.div
           style={{ scaleY: lineScale }}
-          className="absolute left-6 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-[#D4AF37] to-[#F3E5AB] md:left-1/2"
+          className="absolute left-6 top-0 bottom-0 w-px origin-top bg-gradient-to-b from-[#F5C518] to-[#FFE066] md:left-1/2"
         />
 
         <div className="space-y-14 md:space-y-0">
@@ -88,7 +88,7 @@ export default function AchievementsTimeline() {
               >
                 {/* Middle dot — carries the site's SVG logo */}
                 <div className="absolute left-6 top-0 z-10 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2">
-                  <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-[#D4AF37] bg-[#FAFAFA] p-1.5 shadow-lg shadow-black/50">
+                  <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-[#F5C518] bg-[#061120] p-1.5 shadow-lg shadow-black/50">
                     <Logo className="h-full w-full rounded-full" />
                   </div>
                 </div>

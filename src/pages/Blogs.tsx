@@ -18,25 +18,25 @@ export default function Blogs() {
   }, []);
 
   return (
-    <div className="bg-[#FAFAFA] min-h-screen pt-24 pb-20 relative overflow-hidden">
+    <div className="bg-[#061120] min-h-screen pt-24 pb-20 relative overflow-hidden">
       {/* Ambient Lights */}
-      <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-1/2 left-0 w-[40rem] h-[40rem] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-[#F5C518]/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-[40rem] h-[40rem] bg-[#F5C518]/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2" />
 
       {/* Header */}
-      <div className="relative z-10 py-20 bg-gradient-to-b from-transparent to-[#FAFAFA] border-b border-slate-200">
+      <div className="relative z-10 py-20 bg-gradient-to-b from-transparent to-[#061120] border-b border-[#1A3A5C]">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 text-[#D4AF37] mb-6 backdrop-blur-md">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0F2440] border border-[#1A3A5C] text-[#F5C518] mb-6 backdrop-blur-md">
               <Sparkles size={16} />
               <span className="text-sm font-semibold tracking-widest uppercase">Our Journal</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-slate-900 mb-6 tracking-tight">Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB]">Inspiration</span></h1>
-            <p className="text-slate-600 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
+            <h1 className="text-5xl md:text-7xl font-serif font-bold text-[#E8F4FD] mb-6 tracking-tight">Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5C518] to-[#FFE066]">Inspiration</span></h1>
+            <p className="text-[#94B8D4] max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
               Discover trends, tips, and stories from the world of luxury events and timeless celebrations.
             </p>
           </motion.div>
@@ -46,7 +46,7 @@ export default function Blogs() {
       <div className="container mx-auto px-4 py-20 relative z-10">
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="w-12 h-12 border-4 border-[#D4AF37]/30 border-t-[#D4AF37] rounded-full animate-spin" />
+            <div className="w-12 h-12 border-4 border-[#F5C518]/30 border-t-[#F5C518] rounded-full animate-spin" />
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
@@ -57,22 +57,22 @@ export default function Blogs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.6 }}
-                className="bg-[#FFFFFF] border border-slate-200 rounded-2xl overflow-hidden group flex flex-col hover:border-[#D4AF37]/30 transition-colors shadow-2xl relative"
+                className="bg-[#0B1929] border border-[#1A3A5C] rounded-2xl overflow-hidden group flex flex-col hover:border-[#F5C518]/30 transition-colors shadow-2xl relative"
               >
                 <div className="h-64 overflow-hidden relative">
                   <img src={blog.image_url} alt={blog.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-transparent to-transparent opacity-80" />
-                  <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-slate-200 text-[#D4AF37] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1929] via-transparent to-transparent opacity-80" />
+                  <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-[#1A3A5C] text-[#F5C518] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
                     {blog.category}
                   </div>
                 </div>
                 <div className="p-8 flex-grow flex flex-col relative z-10 -mt-10">
-                  <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 line-clamp-2 drop-shadow-md group-hover:text-[#D4AF37] transition-colors">{blog.title}</h3>
-                  <p className="text-slate-600 font-light text-sm leading-relaxed line-clamp-3 mb-8 flex-grow">{blog.content}</p>
+                  <h3 className="text-2xl font-serif font-bold text-[#E8F4FD] mb-4 line-clamp-2 drop-shadow-md group-hover:text-[#F5C518] transition-colors">{blog.title}</h3>
+                  <p className="text-[#94B8D4] font-light text-sm leading-relaxed line-clamp-3 mb-8 flex-grow">{blog.content}</p>
                   
-                  <div className="flex justify-between items-center text-xs text-slate-600 border-t border-slate-200 pt-5 mt-auto uppercase tracking-widest font-semibold">
-                    <div className="flex items-center gap-2"><User size={14} className="text-[#D4AF37]" /> {blog.author}</div>
-                    <div className="flex items-center gap-2"><Calendar size={14} className="text-[#D4AF37]" /> {formatDate(blog.published_at)}</div>
+                  <div className="flex justify-between items-center text-xs text-[#94B8D4] border-t border-[#1A3A5C] pt-5 mt-auto uppercase tracking-widest font-semibold">
+                    <div className="flex items-center gap-2"><User size={14} className="text-[#F5C518]" /> {blog.author}</div>
+                    <div className="flex items-center gap-2"><Calendar size={14} className="text-[#F5C518]" /> {formatDate(blog.published_at)}</div>
                   </div>
                 </div>
               </motion.div>

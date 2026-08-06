@@ -6,8 +6,8 @@ import Layout from './components/layout/Layout';
 
 // Loading fallback
 const PageLoader = () => (
-  <div className="min-h-screen bg-[#FAFAFA] flex items-center justify-center">
-    <div className="w-12 h-12 border-4 border-[#D4AF37]/30 border-t-[#D4AF37] rounded-full animate-spin" />
+  <div className="min-h-screen bg-[#061120] flex items-center justify-center">
+    <div className="w-12 h-12 border-4 border-[#F5C518]/30 border-t-[#F5C518] rounded-full animate-spin" />
   </div>
 );
 

@@ -6,11 +6,22 @@ import { useState, useEffect } from 'react';
 export default function Home() {
   const [venues, setVenues] = useState<any[]>([]);
   const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [visibleCount, setVisibleCount] = useState<string>('5');
 
   useEffect(() => {
-    fetch('/api/venues?limit=3').then(res => res.json()).then(setVenues);
+    const savedLimit = localStorage.getItem('homepage_venue_limit') || '5';
+    setVisibleCount(savedLimit);
+    fetch('/api/venues').then(res => res.json()).then(setVenues);
     fetch('/api/testimonials').then(res => res.json()).then(setTestimonials);
   }, []);
+
+  const getDisplayedVenues = () => {
+    if (visibleCount === 'all') return venues;
+    const limit = parseInt(visibleCount, 10);
+    return venues.slice(0, isNaN(limit) ? 5 : limit);
+  };
+
+  const displayedVenues = getDisplayedVenues();
 
   return (
     <div className="w-full bg-[#061120] min-h-screen">
@@ -75,19 +86,37 @@ export default function Home() {
       {/* Premium Venues */}
       <section className="py-20 md:py-32 relative">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-3xl md:text-6xl font-serif font-bold text-[#E8F4FD] mb-4 md:mb-6">Our <span className="text-[#F5C518]">Venue's</span></h2>
-            <p className="text-[#94B8D4] text-base md:text-lg max-w-2xl mx-auto font-light">Discover our exclusive selection of luxury venues designed to host your grandest celebrations.</p>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-6xl font-serif font-bold text-[#E8F4FD] mb-4 md:mb-6">Our <span className="text-[#F5C518]">Venues</span></h2>
+            <p className="text-[#94B8D4] text-base md:text-lg max-w-2xl mx-auto font-light mb-6">Discover our exclusive selection of luxury venues designed to host your grandest celebrations.</p>
+
+            {/* Adjustable View Controls */}
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+              <span className="text-xs uppercase tracking-widest text-[#94B8D4] font-medium mr-1">Display:</span>
+              {['3', '4', '5', '6', 'all'].map((countVal) => (
+                <button
+                  key={countVal}
+                  onClick={() => setVisibleCount(countVal)}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 ${
+                    visibleCount === countVal
+                      ? 'bg-[#F5C518] text-[#061120] shadow-[0_0_15px_rgba(245,197,24,0.4)]'
+                      : 'bg-[#0F2440] border border-[#1A3A5C] text-[#B0D4EC] hover:border-[#F5C518]/50'
+                  }`}
+                >
+                  {countVal === 'all' ? 'All Venues' : `${countVal} Venues`}
+                </button>
+              ))}
+            </div>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {venues.map((venue, idx) => (
+            {displayedVenues.map((venue, idx) => (
               <motion.div 
                 key={venue.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.2, duration: 0.8 }}
+                transition={{ delay: idx * 0.1, duration: 0.6 }}
                 className="bg-[#0B1929] border border-[#1A3A5C] rounded-xl group cursor-pointer overflow-hidden flex flex-col hover:border-[#F5C518]/30 transition-colors shadow-2xl"
               >
                 <div className="relative h-64 md:h-72 overflow-hidden">
@@ -118,6 +147,28 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          {/* Show All / Show Default Buttons */}
+          {venues.length > displayedVenues.length && (
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => setVisibleCount('all')}
+                className="px-8 py-3.5 bg-[#0F2440] border border-[#F5C518]/40 text-[#E8F4FD] font-bold uppercase tracking-widest hover:bg-[#F5C518] hover:text-[#061120] transition-all duration-300 rounded-lg text-sm inline-flex items-center gap-2"
+              >
+                Show All ({venues.length}) Venues <ArrowRight size={16} />
+              </button>
+            </div>
+          )}
+          {visibleCount === 'all' && venues.length > 5 && (
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => setVisibleCount('5')}
+                className="px-8 py-3.5 bg-[#0F2440] border border-[#1A3A5C] text-[#94B8D4] font-bold uppercase tracking-widest hover:border-[#F5C518]/40 hover:text-[#E8F4FD] transition-all duration-300 rounded-lg text-sm"
+              >
+                Show Top 5 Venues
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

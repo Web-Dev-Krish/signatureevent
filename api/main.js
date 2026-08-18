@@ -43,7 +43,7 @@ export default async function handler(req, res) {
           return res.status(200).json(data);
         }
         if (req.query.limit) query = query.limit(parseInt(req.query.limit));
-        query = query.order('rating', { ascending: false });
+        query = query.order('display_order', { ascending: true }).order('id', { ascending: true });
       } else if (endpoint === 'events') {
         query = query.order('date', { ascending: false });
       } else if (endpoint === 'blogs') {

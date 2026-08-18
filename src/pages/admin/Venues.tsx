@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Plus, Edit2, Trash2, X, UploadCloud, Image as ImageIcon, Video, Calendar } from 'lucide-react';
+import { Plus, Edit2, Trash2, X, UploadCloud, Image as ImageIcon, Video, Calendar, ArrowUp, ArrowDown } from 'lucide-react';
 import { formatDateWithWeekday, toLocalDate, ymdToDateString } from '../../lib/date';
 
 export default function Venues() {
@@ -16,7 +16,7 @@ export default function Venues() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const [form, setForm] = useState({
-    name: '', location: '', capacity: '', price_per_day: '', rating: '', description: '', image_url: '', map_html: ''
+    name: '', location: '', capacity: '', price_per_day: '', rating: '', description: '', image_url: '', map_html: '', display_order: '0'
   });
   
   const [mediaForm, setMediaForm] = useState({
@@ -43,7 +43,13 @@ export default function Venues() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const payload = { ...form, capacity: parseInt(form.capacity), price_per_day: parseFloat(form.price_per_day), rating: parseFloat(form.rating) };
+    const payload = { 
+      ...form, 
+      capacity: parseInt(form.capacity), 
+      price_per_day: parseFloat(form.price_per_day), 
+      rating: parseFloat(form.rating),
+      display_order: parseInt(form.display_order || '0')
+    };
     
     if (editingId) {
       await fetch('/api/venues', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: editingId, ...payload }) });
@@ -56,9 +62,34 @@ export default function Venues() {
   };
 
   const editVenue = (v: any) => {
-    setForm({ name: v.name, location: v.location, capacity: v.capacity, price_per_day: v.price_per_day, rating: v.rating, description: v.description, image_url: v.image_url, map_html: v.map_html || '' });
+    setForm({ name: v.name, location: v.location, capacity: v.capacity, price_per_day: v.price_per_day, rating: v.rating, description: v.description, image_url: v.image_url, map_html: v.map_html || '', display_order: String(v.display_order ?? 0) });
     setEditingId(v.id);
     setIsModalOpen(true);
+  };
+
+  const moveVenue = async (index: number, direction: 'up' | 'down') => {
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= venues.length) return;
+
+    const currentVenue = venues[index];
+    const targetVenue = venues[targetIndex];
+
+    const currentOrder = targetIndex;
+    const targetOrder = index;
+
+    await Promise.all([
+      fetch('/api/venues', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: currentVenue.id, display_order: currentOrder })
+      }),
+      fetch('/api/venues', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: targetVenue.id, display_order: targetOrder })
+      })
+    ]);
+    fetchVenues();
   };
 
   const deleteVenue = async (id: number) => {
@@ -68,7 +99,7 @@ export default function Venues() {
   };
 
   const openNew = () => {
-    setForm({ name: '', location: '', capacity: '', price_per_day: '', rating: '', description: '', image_url: '', map_html: '' });
+    setForm({ name: '', location: '', capacity: '', price_per_day: '', rating: '', description: '', image_url: '', map_html: '', display_order: String(venues.length) });
     setEditingId(null);
     setIsModalOpen(true);
   };
@@ -184,20 +215,29 @@ export default function Venues() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {loading ? <p className="text-slate-600">Loading...</p> : venues.map(v => (
-          <div key={v.id} className="bg-[#FFFFFF] border border-slate-200 rounded-xl overflow-hidden">
-            <img src={v.image_url} alt={v.name} className="w-full h-48 object-cover" />
-            <div className="p-4">
-              <h3 className="text-lg font-bold text-slate-900 truncate">{v.name}</h3>
-              <p className="text-sm text-slate-600 mb-4 truncate">{v.location}</p>
-              <div className="flex justify-between items-center">
-                <span className="text-[#D4AF37] font-semibold">${v.price_per_day}/day</span>
-                <div className="flex gap-2">
-                  <button onClick={() => openMediaModal(v.id)} className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 rounded" title="Manage Media"><ImageIcon size={16} /></button>
-                  <button onClick={() => openAvailabilityModal(v.id)} className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 rounded" title="Manage Availability"><Calendar size={16} /></button>
-                  <button onClick={() => editVenue(v)} className="p-2 text-slate-600 hover:text-slate-900 bg-slate-50 rounded"><Edit2 size={16} /></button>
-                  <button onClick={() => deleteVenue(v.id)} className="p-2 text-red-400 hover:text-red-300 bg-red-500/10 rounded"><Trash2 size={16} /></button>
+        {loading ? <p className="text-slate-600">Loading...</p> : venues.map((v, idx) => (
+          <div key={v.id} className="bg-[#FFFFFF] border border-slate-200 rounded-xl overflow-hidden shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="relative">
+                <img src={v.image_url} alt={v.name} className="w-full h-48 object-cover" />
+                <div className="absolute top-2 left-2 bg-slate-900/80 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm font-semibold">
+                  Order #{idx + 1}
                 </div>
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-bold text-slate-900 truncate">{v.name}</h3>
+                <p className="text-sm text-slate-600 mb-4 truncate">{v.location}</p>
+              </div>
+            </div>
+            <div className="p-4 pt-0 border-t border-slate-100 flex justify-between items-center mt-auto">
+              <span className="text-[#D4AF37] font-semibold">₹{v.price_per_day}/day</span>
+              <div className="flex gap-1.5 items-center">
+                <button onClick={() => moveVenue(idx, 'up')} disabled={idx === 0} className="p-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 disabled:opacity-30 rounded" title="Move Up"><ArrowUp size={16} /></button>
+                <button onClick={() => moveVenue(idx, 'down')} disabled={idx === venues.length - 1} className="p-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 disabled:opacity-30 rounded" title="Move Down"><ArrowDown size={16} /></button>
+                <button onClick={() => openMediaModal(v.id)} className="p-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 rounded" title="Manage Media"><ImageIcon size={16} /></button>
+                <button onClick={() => openAvailabilityModal(v.id)} className="p-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 rounded" title="Manage Availability"><Calendar size={16} /></button>
+                <button onClick={() => editVenue(v)} className="p-1.5 text-slate-600 hover:text-slate-900 bg-slate-100 rounded" title="Edit"><Edit2 size={16} /></button>
+                <button onClick={() => deleteVenue(v.id)} className="p-1.5 text-red-500 hover:text-red-700 bg-red-50 rounded" title="Delete"><Trash2 size={16} /></button>
               </div>
             </div>
           </div>
@@ -235,6 +275,10 @@ export default function Venues() {
                   <input required type="number" step="0.1" className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.rating} onChange={e => setForm({...form, rating: e.target.value})} />
                 </div>
                 <div>
+                  <label className="block text-sm text-slate-600 mb-1">Display Order</label>
+                  <input required type="number" className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.display_order} onChange={e => setForm({...form, display_order: e.target.value})} />
+                </div>
+                <div className="col-span-2">
                   <label className="block text-sm text-slate-600 mb-1">Image URL</label>
                   <input required className="w-full bg-[#FAFAFA] border border-slate-200 rounded p-2 text-slate-900" value={form.image_url} onChange={e => setForm({...form, image_url: e.target.value})} />
                 </div>

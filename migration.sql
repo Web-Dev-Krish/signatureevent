@@ -15,6 +15,7 @@
 --    in, because the app tries to write a column that doesn't
 --    exist yet.
 ALTER TABLE venues ADD COLUMN IF NOT EXISTS map_html TEXT;
+ALTER TABLE venues ADD COLUMN IF NOT EXISTS display_order INTEGER DEFAULT 0;
 
 -- 2. Venue media (multiple images/videos per venue).
 --    Needed for the "Manage Media" button in the admin Venues

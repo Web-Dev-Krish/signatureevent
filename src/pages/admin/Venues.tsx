@@ -14,6 +14,7 @@ export default function Venues() {
   const [unavailableDates, setUnavailableDates] = useState<any[]>([]);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [homepageLimit, setHomepageLimit] = useState<string>('5');
   
   const [form, setForm] = useState({
     name: '', location: '', capacity: '', price_per_day: '', rating: '', description: '', image_url: '', map_html: '', display_order: '0'
@@ -39,7 +40,16 @@ export default function Venues() {
     setLoading(false);
   };
 
-  useEffect(() => { fetchVenues(); }, []);
+  useEffect(() => { 
+    fetchVenues(); 
+    const saved = localStorage.getItem('homepage_venue_limit');
+    if (saved) setHomepageLimit(saved);
+  }, []);
+
+  const changeHomepageLimit = (val: string) => {
+    setHomepageLimit(val);
+    localStorage.setItem('homepage_venue_limit', val);
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -212,6 +222,30 @@ export default function Venues() {
         <button onClick={openNew} className="bg-[#D4AF37] text-white px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-[#F3E5AB]">
           <Plus size={18} /> Add Venue
         </button>
+      </div>
+
+      {/* Homepage Display Limit Control */}
+      <div className="bg-[#FFFFFF] border border-slate-200 rounded-xl p-5 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-base font-bold text-slate-900">Homepage Preview Venues Limit</h2>
+          <p className="text-xs text-slate-500">Select how many venue cards visitors will see after the hero section on the homepage.</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          {['3', '4', '5', '6', 'all'].map((val) => (
+            <button
+              key={val}
+              type="button"
+              onClick={() => changeHomepageLimit(val)}
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all border ${
+                homepageLimit === val
+                  ? 'bg-[#D4AF37] text-white border-[#D4AF37] shadow-sm'
+                  : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-[#D4AF37]'
+              }`}
+            >
+              {val === 'all' ? 'All Venues' : `${val} Venues`}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

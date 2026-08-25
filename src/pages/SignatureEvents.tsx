@@ -6,7 +6,7 @@ const signatureEvents = [
   {
     title: "Birthday's at Mankameshwar",
     path: '/signature-events/birthday-mankameshwar',
-    image: 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg',
+    image: 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/1786027633294-Mankameshwar.jpeg',
     icon: Cake,
     price: 'Starting ₹85,000',
     text: 'Royal birthday celebrations with luxury cake styling, themed decor, DJ, catering, photo booth, and premium guest service.'

@@ -25,7 +25,7 @@ export default function PoolVatika() {
   return (
     <section className="min-h-screen bg-obsidian pt-24">
       <div className="relative overflow-hidden px-5 py-24 lg:px-8">
-        <img src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg" alt="Pool party at Vatika Resort" className="absolute inset-0 h-full w-full object-cover opacity-55" />
+        <img src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/wedding-mandap1.jpeg" alt="Pool party at Vatika Resort" className="absolute inset-0 h-full w-full object-cover opacity-55" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/70 to-obsidian" />
         <Reveal className="relative z-10 mx-auto max-w-5xl text-center">
           <p className="mb-4 text-sm font-bold uppercase tracking-[0.45em] text-gold">Signature Pool Experience</p>

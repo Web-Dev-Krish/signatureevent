@@ -28,7 +28,7 @@ export default function Catering() {
     <div className="bg-[#061120] min-h-screen">
       {/* Hero */}
       <div className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/imageb.jpeg')] bg-cover bg-center opacity-30" />
+        <div className="absolute inset-0 bg-[url('https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/catering.png')] bg-cover bg-center opacity-30" />
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#F5C518]/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-[#F5C518]/5 rounded-full blur-[150px] pointer-events-none" />
         

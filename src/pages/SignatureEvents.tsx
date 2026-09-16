@@ -14,7 +14,7 @@ const signatureEvents = [
   {
     title: 'Pool Parties at Vatika Resort',
     path: '/signature-events/pool-vatika',
-    image: 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg',
+    image: 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/wedding-mandap1.jpeg',
     icon: Waves,
     price: 'Starting ₹1,10,000',
     text: 'Resort-style pool parties with cabana setup, mocktail bar, live snacks, music, lighting, and safety-managed poolside service.'

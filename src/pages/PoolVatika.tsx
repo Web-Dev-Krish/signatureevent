@@ -47,7 +47,7 @@ export default function PoolVatika() {
         <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-3 lg:px-8">
           {images.length > 0 ? images.slice(0, 3).map((media) => (
             <img key={media.id} src={media.media_url} alt={media.caption || 'Pool party gallery'} loading="lazy" className="h-72 w-full rounded-[2rem] object-cover" />
-          )) : ['https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/birthday.jpeg', 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/about%20us.jpeg', 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/homehero.jpeg'].map((img, i) => (
+          )) : ['https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/1789732366033-WhatsApp%20Image%202026-09-18%20at%205.18.26%20PM.jpeg', 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/1789732138596-WhatsApp%20Image%202026-09-18%20at%205.18.27%20PM.jpeg', 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/1789732127162-WhatsApp%20Image%202026-09-18%20at%205.18.26%20PM%20(1).jpeg'].map((img, i) => (
             <img key={i} src={img} alt="Pool party gallery" loading="lazy" className="h-72 w-full rounded-[2rem] object-cover" />
           ))}
         </div>
@@ -56,8 +56,8 @@ export default function PoolVatika() {
             <video key={media.id} src={media.media_url} controls muted loop className="h-72 w-full rounded-[2rem] object-cover" poster={media.thumbnail_url} />
           )) : (
             <>
-              <video src="/videos/pool-party.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
-              <video src="/videos/luxury-event.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
+              <video src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/vatika.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
+              <video src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/vatika2.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
             </>
           )}
         </div>

@@ -47,7 +47,7 @@ export default function BirthdayMankameshwar() {
         <div className="mx-auto grid max-w-7xl gap-5 px-5 md:grid-cols-3 lg:px-8">
           {images.length > 0 ? images.slice(0, 3).map((media) => (
             <img key={media.id} src={media.media_url} alt={media.caption || 'Birthday celebration gallery'} className="h-72 w-full rounded-[2rem] object-cover" />
-          )) : ['https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/4X9A0970.JPG', 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/4X9A0971.JPG', 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/4X9A0973.JPG'].map((img, i) => (
+          )) : ['https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/1789731650246-WhatsApp%20Image%202026-09-18%20at%205.09.29%20PM.jpeg', 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/4X9A0971.JPG', 'https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/1789731614720-WhatsApp%20Image%202026-09-18%20at%205.09.30%20PM.jpeg'].map((img, i) => (
             <img key={i} src={img} alt="Birthday celebration gallery" className="h-72 w-full rounded-[2rem] object-cover" />
           ))}
         </div>
@@ -56,8 +56,8 @@ export default function BirthdayMankameshwar() {
             <video key={media.id} src={media.media_url} controls muted loop className="h-72 w-full rounded-[2rem] object-cover" poster={media.thumbnail_url} />
           )) : (
             <>
-              <video src="/videos/birthday-party.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
-              <video src="/videos/luxury-event.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
+              <video src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/mankameshwarbirthday1.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
+              <video src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/mankameshwarbirthday2.mp4" controls muted loop className="h-72 w-full rounded-[2rem] object-cover" />
             </>
           )}
         </div>

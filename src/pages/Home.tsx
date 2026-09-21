@@ -206,7 +206,7 @@ export default function Home() {
       <section className="py-24 md:py-40 relative flex items-center justify-center overflow-hidden px-4">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: 'url("https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/home2.jpeg")' }}
+          style={{ backgroundImage: 'url("https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/catering.jpeg")' }}
         />
         <div className="absolute inset-0 bg-black/80 bg-gradient-to-t from-[#061120] via-black/50 to-transparent" />
         

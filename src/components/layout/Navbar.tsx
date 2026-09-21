@@ -3,8 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Calendar, Phone, Instagram, Facebook, Youtube, Play, Pause, Volume2, VolumeX, Building2, Ticket, Image as ImageIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../Logo';
-import ThemeToggle from '../ThemeToggle';
-import BackgroundMusic from '../BackgroundMusic';
 
 const links = [
   { name: 'Home', path: '/' },

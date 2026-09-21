@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, Users, Star, CheckCircle, Image as ImageIcon, Video, ChevronLeft, ChevronRight, Phone, MessageCircle } from 'lucide-react';
+import { MapPin, Users, Star, CheckCircle, Image as ImageIcon, Video, ChevronLeft, ChevronRight, Phone, MessageCircle, X } from 'lucide-react';
 import { ymdToDateString } from '../lib/date';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function VenueDetails() {
   const { id } = useParams();
@@ -11,6 +11,8 @@ export default function VenueDetails() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [unavailableDates, setUnavailableDates] = useState<any[]>([]);
   const [venueMedia, setVenueMedia] = useState<any[]>([]);
+  const [selectedMedia, setSelectedMedia] = useState<any>(null);
+
 
   useEffect(() => {
     fetch(`/api/venues?id=${id}`)
@@ -123,7 +125,18 @@ export default function VenueDetails() {
             <section>
               <h2 className="text-4xl font-serif font-bold text-[#E8F4FD] mb-8 border-b border-[#1A3A5C] pb-4">Facilities & Amenities</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {venue.facilities?.map((fac: any, i: number) => (
+                {[
+                  "2 Spacious Lawns",
+                  "2 Fully Air-Conditioned Halls",
+                  "8 Air-Conditioned Rooms",
+                  "Table & Chairs Dining & Seating Arrangement in Lawn",
+                  "Stage Setup & VIP Seating",
+                  "Catering Infrastructure",
+                  "Service Staff Support",
+                  "Power Backup Facility",
+                  "Parking space for 50-60 cars with dedicated guards for hassle-free vehicle management",
+                  "2 Entry / Exit points of the Venue"
+                ].map((fac: string, i: number) => (
                   <div key={i} className="flex items-center gap-4 text-[#94B8D4] bg-[#0F2440] p-4 rounded-xl border border-[#1A3A5C] hover:border-[#F5C518]/30 transition-colors">
                     <CheckCircle size={20} className="text-[#F5C518] shrink-0" /> 
                     <span className="font-light">{fac}</span>
@@ -135,7 +148,13 @@ export default function VenueDetails() {
             <section>
               <h2 className="text-4xl font-serif font-bold text-[#E8F4FD] mb-8 border-b border-[#1A3A5C] pb-4">Available Events</h2>
               <div className="flex flex-wrap gap-4">
-                {venue.event_types?.map((type: any, i: number) => (
+                {[
+                  "💍 Weddings",
+                  "💑 Engagements",
+                  "🎉 Birthdays",
+                  "🥂 Anniversaries",
+                  "🏢 Corporate Events"
+                ].map((type: string, i: number) => (
                   <span key={i} className="px-6 py-3 bg-[#0B1929] border border-[#1A3A5C] text-[#94B8D4] rounded-full text-sm uppercase tracking-wider font-semibold hover:border-[#F5C518]/50 transition-colors cursor-default">
                     {type}
                   </span>
@@ -155,11 +174,15 @@ export default function VenueDetails() {
               {venueMedia.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {venueMedia.map((media) => (
-                    <div key={media.id} className="rounded-2xl overflow-hidden group relative">
+                    <div 
+                      key={media.id} 
+                      className="rounded-2xl overflow-hidden group relative cursor-pointer"
+                      onClick={() => setSelectedMedia(media)}
+                    >
                       {media.media_type === 'image' ? (
                         <img src={media.media_url} alt={media.caption || 'Gallery'} loading="lazy" className="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-700" />
                       ) : (
-                        <video src={media.media_url} controls className="w-full h-64 object-cover" poster={media.thumbnail_url} />
+                        <video src={media.media_url} className="w-full h-64 object-cover" poster={media.thumbnail_url} muted loop playsInline />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {media.caption && (
@@ -167,13 +190,20 @@ export default function VenueDetails() {
                           {media.caption}
                         </p>
                       )}
+                      {media.media_type === 'video' && (
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <div className="w-16 h-16 bg-black/50 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/20">
+                            <Video size={24} className="text-white" />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="rounded-2xl overflow-hidden">
-                    <img src={venue.image_url} className="w-full h-64 object-cover" alt="Gallery 1" />
+                  <div className="rounded-2xl overflow-hidden cursor-pointer" onClick={() => setSelectedMedia({ media_type: 'image', media_url: venue.image_url })}>
+                    <img src={venue.image_url} className="w-full h-64 object-cover transform hover:scale-105 transition-transform duration-700" alt="Gallery 1" />
                   </div>
                   <div className="bg-[#0B1929] flex items-center justify-center h-64 rounded-2xl border border-[#1A3A5C]">
                     <span className="text-[#94B8D4] uppercase tracking-widest text-sm">More images coming soon</span>
@@ -181,6 +211,52 @@ export default function VenueDetails() {
                 </div>
               )}
             </section>
+
+            {/* Lightbox Modal */}
+            <AnimatePresence>
+              {selectedMedia && (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 md:p-12"
+                  onClick={() => setSelectedMedia(null)}
+                >
+                  <button 
+                    className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+                    onClick={() => setSelectedMedia(null)}
+                  >
+                    <X size={32} />
+                  </button>
+                  <div 
+                    className="w-full h-full max-w-6xl max-h-screen flex items-center justify-center relative"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {selectedMedia.media_type === 'image' ? (
+                      <img 
+                        src={selectedMedia.media_url} 
+                        alt={selectedMedia.caption || 'Full screen'} 
+                        className="max-w-full max-h-full object-contain rounded-lg"
+                      />
+                    ) : (
+                      <video 
+                        src={selectedMedia.media_url} 
+                        controls 
+                        autoPlay 
+                        className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                      />
+                    )}
+                    {selectedMedia.caption && (
+                      <div className="absolute bottom-4 left-0 right-0 text-center">
+                        <span className="bg-black/60 text-white px-4 py-2 rounded-lg text-sm backdrop-blur-md">
+                          {selectedMedia.caption}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* Availability Calendar */}
             <section>

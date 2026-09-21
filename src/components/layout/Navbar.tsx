@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Calendar, Phone, Instagram, Facebook, Youtube, Play, Pause, Volume2, VolumeX, Building2, Ticket, Image as ImageIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '../Logo';
+import ThemeToggle from '../ThemeToggle';
+import BackgroundMusic from '../BackgroundMusic';
 
 const links = [
   { name: 'Home', path: '/' },
@@ -70,7 +72,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="ml-2 px-5 py-2.5 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] font-bold tracking-wider text-xs rounded-full hover:shadow-[0_0_20px_rgba(245,197,24,0.3)] transition-all duration-300 whitespace-nowrap"
           >
-            DG Cards - Malhotra Events
+            Digi Cards - Malhotra Events
           </a>
         </nav>
 
@@ -109,7 +111,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="mt-4 px-6 py-3.5 bg-gradient-to-r from-[#F5C518] to-[#FFE066] text-[#0B1929] text-center font-bold uppercase tracking-wider rounded-full text-sm"
             >
-              DG Cards - Malhotra Events
+            Digi Cards - Malhotra Events
             </a>
             <a
               href="tel:+919354710637"

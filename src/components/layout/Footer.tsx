@@ -84,6 +84,12 @@ export default function Footer() {
             <a href="#" className="text-[#94B8D4] hover:text-[#E8F4FD] transition-colors">Terms of Service</a>
           </div>
         </div>
+        
+        <div className="mt-8 text-center">
+          <p className="text-[#94B8D4] text-sm">
+            Powered by <a href="https://devsiy.in" target="_blank" rel="noopener noreferrer" className="text-[#F5C518] hover:text-[#FFE066] font-semibold tracking-wide transition-colors">Devsiy</a>
+          </p>
+        </div>
       </div>
     </footer>
   );

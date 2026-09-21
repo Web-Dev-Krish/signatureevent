@@ -38,7 +38,18 @@ export default function BirthdayMankameshwar() {
       <section className="section-padding bg-obsidian">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <Reveal><div><p className="mb-3 text-sm font-bold uppercase tracking-[0.35em] text-gold">Experience</p><h2 className="font-display text-4xl md:text-6xl">Royal Birthday Memories With Premium Hospitality</h2><p className="mt-5 leading-9 text-[#E8F4FD]/65">Mankameshwar Palace gives your birthday a grand indoor setting with elegant seating, stage styling, cake ceremony setup, family-friendly entertainment, and curated food counters. Our team manages guest flow, decor, vendor coordination, and timing so your celebration feels effortless.</p><div className="mt-8 grid gap-5 sm:grid-cols-3"><StatCounter value={150} suffix="+" label="Birthdays Hosted" /><StatCounter value={650} suffix="" label="Guest Capacity" /><StatCounter value={4} suffix=" hrs" label="Standard Slot" /></div></div></Reveal>
-          <Reveal><video src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/Untitled%20-%20September%2020,%202026%20at%2023.06.15.mp4" /></Reveal>
+          <Reveal>
+            <div className="relative h-full min-h-[400px] w-full overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl">
+              <video 
+                src="https://xaaqlitnmzuihgjwaqwt.supabase.co/storage/v1/object/public/media/Untitled%20-%20September%2020,%202026%20at%2023.06.15.mp4" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
